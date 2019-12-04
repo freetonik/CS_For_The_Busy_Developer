@@ -1,0 +1,26 @@
+LONG FIGURE
+
+#+BEGIN_EXPORT latex
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{./images/set_movies.png}
+\caption{\label{fig:orge2eb83a}
+This is the caption for the next figure link (or table)}
+\end{figure}
+#+END_EXPORT
+
+SIDE FIGURE
+
+#+BEGIN_EXPORT latex
+\begin{marginfigure}
+  \includegraphics[width=\linewidth]{images/file}
+  \caption{This is a margin figure}
+  \label{fig:marginfig}
+\end{marginfigure}
+#+END_EXPORT
+
+SIDE NOTE
+
+#+BEGIN_EXPORT latex
+\marginnote{This is a margin note using the geometry package, set at 3cm vertical offset to the line it is typeseted.}
+#+END_EXPORT

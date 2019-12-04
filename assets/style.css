@@ -1,0 +1,9 @@
+body {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  margin: 2rem;
+  max-width: 650px;
+}
+
+img {
+  max-width: 100%;
+}

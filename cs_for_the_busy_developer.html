@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-12-04 Wed 16:26 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computer Science For The Busy Developer</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" type="text/css" href="assets/style.css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="outline-container-org438b1fa" class="outline-2">
+<h2 id="org438b1fa"><span class="section-number-2">1</span> Relational algebra and SQL</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+If you worked with SQL in different databases, you've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called Relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
+</p>
+
+<p>
+Relational algebra was created by Edgar F. Codd in 1960s-1970s, who worked at IBM at the time. Codd proposed this formal language as a basis for database querying.
+</p>
+
+<p>
+The good news is that knowing set theory and relational algebra reduces potential SQL-related problems to basically documentation lookup. If you know how unions work, what's the idea behind a Cartesian product and what are expressions of relational algebra, then it comes down to finding the correct SQL syntax to solve the problem at hand.
+</p>
+
+<p>
+We will finish up the section on set theory with a short overview of different aspects of relational algebra and their relation to SQL.
+</p>
+</div>
+
+<div id="outline-container-org2fcca05" class="outline-3">
+<h3 id="org2fcca05"><span class="section-number-3">1.1</span> Relation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b><b>Relation</b></b> is basically a table, with columns (called "attributes") and rows. For example, a relation <code>User</code> may be used to describe users in a web service.
+</p>
+
+<pre class="example">
+User(id, username, firstName, lastName, email)
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">username</th>
+<th scope="col" class="org-left">firstName</th>
+<th scope="col" class="org-left">lastName</th>
+<th scope="col" class="org-left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jennifer</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jennc@hotmail.com</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxromana@aol.com</td>
+</tr>
+
+<tr>
+<td class="org-right">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+For demonstrating purposes, let's define another table:
+</p>
+
+<pre class="example">
+Manager(id, department, level)
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-right">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The name of a relation can play a role of the simplest query:
+</p>
+
+<pre class="example">
+User
+</pre>
+
+<p>
+which returns the whole table.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org52b49af" class="outline-3">
+<h3 id="org52b49af"><span class="section-number-3">1.2</span> Projection</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A <b><b>projection</b></b> is an operation of extracting records with specific columns (attributes). It is denoted by Greek letter \(\Pi\) (uppercase pi), with a list of columns as subscript, followed by relation's name.
+</p>
+
+<p>
+For example, here we extract a sub-relation of User with ids and emails only:
+</p>
+
+\begin{equation}
+\Pi_{\textrm{id, email}} \textrm{ User}
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jennc@hotmail.com</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">paxromana@aol.com</td>
+</tr>
+
+<tr>
+<td class="org-right">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org105dad9" class="outline-3">
+<h3 id="org105dad9"><span class="section-number-3">1.3</span> Select</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+A <b><b>selection</b></b> is an operation of filtering records by values. It is denoted by Greek letter \(\sigma\) (sigma) with a condition, followed by relation's name.
+</p>
+
+<p>
+For example, here we get managers with level higher than 2:
+</p>
+
+\begin{equation}
+\sigma_{\textrm{level} > 2} \textrm{ Manager}
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-orgf7ef9e5" class="outline-3">
+<h3 id="orgf7ef9e5"><span class="section-number-3">1.4</span> Set operations Intersection is defined as union + difference.</h3>
+</div>
+
+<div id="outline-container-org9d3f223" class="outline-3">
+<h3 id="org9d3f223"><span class="section-number-3">1.5</span> Cross product (cartesian product)</h3>
+</div>
+
+<div id="outline-container-org6a9827d" class="outline-3">
+<h3 id="org6a9827d"><span class="section-number-3">1.6</span> Natural join</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Syntactic sugar
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7a2118" class="outline-3">
+<h3 id="orgf7a2118"><span class="section-number-3">1.7</span> Theta join</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Syntactic sugar as well: bow tie theta. Adds a condition.
+</p>
+
+<p>
+Theta condition to cartesian product (join with condition, in DB join often means theta join)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6296a1b" class="outline-3">
+<h3 id="org6296a1b"><span class="section-number-3">1.8</span> SQL Joins</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>inner join</li>
+<li>left</li>
+<li>right</li>
+<li>full</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

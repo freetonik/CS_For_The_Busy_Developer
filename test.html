@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-10-15 Tue 18:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Rakhim Davletkaliyev" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgcd23fe6">1. Intro</a></li>
+<li><a href="#org6395374">2. Foundations of Math</a>
+<ul>
+<li><a href="#org25c33ba">2.1. Set theory</a>
+<ul>
+<li><a href="#org89db06c">2.1.1. Intro to sets</a></li>
+<li><a href="#org3e2aead">2.1.2. Empty set</a></li>
+<li><a href="#orgb7b1be0">2.1.3. Subset, superset</a></li>
+<li><a href="#orgcc8e297">2.1.4. Maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a626a4;">defun</span> <span style="color: #0184bc;">org-mode-export-myfile</span> ()
+  <span style="color: #50a14f; font-style: italic;">"Export org document to HTML automatically on change"</span>
+  (<span style="color: #a626a4;">when</span> (equal (buffer-file-name) <span style="color: #50a14f;">"/path/to/links.org"</span>)
+    (<span style="color: #a626a4;">progn</span>
+      (org-html-export-to-html)
+      (message <span style="color: #50a14f;">"HTML exported"</span>))))
+
+(add-hook 'after-save-hook 'org-mode-export-myfile)
+</pre>
+</div>
+
+
+<div id="outline-container-orgcd23fe6" class="outline-2">
+<h2 id="orgcd23fe6"><span class="section-number-2">1</span> Intro</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This course and the book constitute an high speed overview of the most important fundamental computer science areas. It is intended for intermediate and professional developers who, for any reason, are interested in getting to know the formal, academic side of CS better.
+</p>
+
+<p>
+The goal is to provide an overview deep enough so that you end up understanding the ares, their problems and the connections between them. And shallow enough so that you aren't buried under hundreds of pages of proofs, formalizations and exercises.
+</p>
+
+<p>
+We will start by trying to understand what computer science is and why it isn't a new area at all. We'll consider the computability as a fundamental property of reality rather than a technological apparatus.
+</p>
+
+<p>
+We shall then proceed to learning essential mathematics necessary for further topics. These include proof techniques, notation and logic.
+</p>
+
+<p>
+Next, we will learn about the following topics:
+</p>
+
+<ol class="org-ol">
+<li>Algorithms. Complexity and examples of important algorithms in sorting.</li>
+<li>Abstract Data Types.</li>
+<li>Set theory.</li>
+<li>Graph theory.</li>
+<li>Theory of computation.</li>
+<li>Cryptography.</li>
+<li>Information theory.</li>
+</ol>
+
+<p>
+Since it seems impossible or at least unpractical to put all of computer science curriculum into a single course, even in a minified format, we shall leave the following topics for the last chapter. In it, we will give an overview to them:
+</p>
+
+<ul class="org-ul">
+<li>Abstract algebra</li>
+<li>Category theory</li>
+<li>Type theory</li>
+<li>Computational geometry</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6395374" class="outline-2">
+<h2 id="org6395374"><span class="section-number-2">2</span> Foundations of Math</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org25c33ba" class="outline-3">
+<h3 id="org25c33ba"><span class="section-number-3">2.1</span> Set theory</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org89db06c" class="outline-4">
+<h4 id="org89db06c"><span class="section-number-4">2.1.1</span> Intro to sets</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Set theory is an important area of math which lays as a foundation of many computer science topics, such as databases, types in programming. Set theory isn't difficult conceptually, and is generally nice to think about, especially if you're a visual learner.
+</p>
+
+<p>
+A set is simply a collection of things. A thing can be anything: name, object, idea. It's a very abstract notion.
+</p>
+
+<p>
+For example, I can define a set of movies I have seen: American Pie, Breakfast Club, The Room. Yes, I have only seen those three movies in my entire life. I am busy writing computer science books.
+</p>
+
+<p>
+Actually, I've watched The Room five times. Does this affect the set? No, because it doesn't change the notion of "what movies have I watched". This obvious thing is an integral property of sets: they include unique objects.
+</p>
+
+<p>
+If an object \(o\) is in set \(A\), we say \(o\) is a member of \(A\). To express this fact easily, mathematicians use the following notation: \(o \in A\).
+</p>
+
+<p>
+So, if \(o\) is "The Room", and \(A\) is "Movies I've watched", then \(o \in A\). But if \(b\) is "Avengers", and I haven't watched Avengers, then \(b \notin A\).
+</p>
+
+<p>
+If we were to look inside set \(A\), it might look like this:
+</p>
+
+\begin{equation}
+\{s, m, o\}
+\end{equation}
+
+<p>
+Since \(b \notin A\), we can't find \(b\) among the members.
+</p>
+
+<p>
+Sets don't have the notion of order, so it doesn't matter how you mention its members as long as you mention them all. So, all these:
+</p>
+
+<ul class="org-ul">
+<li>\(\{s, m, o\}\)</li>
+<li>\(\{s, o, m\}\)</li>
+<li>\(\{m, s, o\}\)</li>
+<li>etc.</li>
+</ul>
+
+<p>
+describe the same set \(A\).
+</p>
+
+<p>
+Here we were lucky: set \(A\) is finite and quite small. But sets can be infinite, and it would be impossible to write all its members. There are ways to describe such sets nevertheless. For example, the set of all natural numbers from 1 to n can be described like so:
+</p>
+
+\begin{equation}
+\{1, 2, 3, 4, ... n\}
+\end{equation}
+</div>
+</div>
+
+
+
+<div id="outline-container-org3e2aead" class="outline-4">
+<h4 id="org3e2aead"><span class="section-number-4">2.1.2</span> Empty set</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Mathematicians love zero. Ever since its inception around 1770 BC, zero is an important part of mathematical models. The notion of "nothingness", which zero reflects in the context of counting, is present in all areas. In the context of sets, nothingness is an <i>empty set</i>.
+</p>
+
+<p>
+Obviously, an empty set is a set without members.
+</p>
+
+\begin{equation}
+\{\}
+\end{equation}
+
+<p>
+Why would we need empty sets? Well, sometimes we want to describe a notion of having no objects under a certain description. For example, since I only watched 3 movies in my life, and all of them were American, I can describe a set of all non-American movies I've watched: it's an empty set \(Z = \{\}\).
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgb7b1be0" class="outline-4">
+<h4 id="orgb7b1be0"><span class="section-number-4">2.1.3</span> Subset, superset</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+When all members of set \(A\) are present in another set \(B\), then \(A\) is a subset of \(B\). This notion is expressed like so:
+</p>
+
+\begin{equation}
+A \subseteq B
+\end{equation}
+
+<p>
+Let's say set \(B\) is the set of all movies ever produced. Then \(A\) is clearly a subset of \(B\).
+</p>
+
+<p>
+To look at things from the other end, \(B\) is a superset of \(A\):
+</p>
+
+\begin{equation}
+B \supseteq A
+\end{equation}
+
+<p>
+You know what else is a subset of \(B\)? An empty set!
+</p>
+
+\begin{equation}
+\{\} \subseteq B
+\end{equation}
+
+<p>
+This either sounds absolutely natural to you or extremely weird. This makes perfect sense to a mathematician, because it's easy to argue: <i>all</i> members of \(\{\}\) are present in \(B\), all zero of them.
+</p>
+
+<p>
+It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
+</p>
+
+\begin{equation}
+A \subseteq A \\
+B \subseteq B \\
+Z \subseteq B
+\end{equation}
+
+<p>
+By extension, if two sets are the same, then any of them is a subset of the other.
+</p>
+
+<p>
+Since often we only care about cases where sets aren't equal, there's a special notion of a <b>proper subset</b>.
+</p>
+
+<p>
+If \(A\) is a subset of \(B\), but \(A\) is not equal to \(B\), then \(A\) is a proper subset of \(B\).
+</p>
+
+\begin{equation}
+A \subset B
+\end{equation}
+
+<p>
+So, a set if a subset of itself, but is never a proper subset of itself.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc8e297" class="outline-4">
+<h4 id="orgcc8e297"><span class="section-number-4">2.1.4</span> Maps</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+Sets are somewhat boring.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Rakhim Davletkaliyev</p>
+<p class="date">Created: 2019-10-15 Tue 18:13</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

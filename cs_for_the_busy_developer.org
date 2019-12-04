@@ -1,0 +1,664 @@
+#+OPTIONS: toc:nil html-style:nil html-postamble:nil author:nil date:nil title:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="assets/style.css" />
+#+HTML_HEAD: <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+
+#+LATEX_CLASS: tufte-book
+#+LATEX_CLASS_OPTIONS: [a4paper, justified, notitlepage, sfsidenotes, notoc]
+#+TITLE: Computer Science For The Busy Developer
+
+#+BEGIN_EXPORT latex
+\begin{titlepage}
+\begin{fullwidth} % Suppresses headers and footers on the title page
+
+	\centering % Centre everything on the title page
+
+	\scshape % Use small caps for all text on the title page
+
+	\vspace*{\baselineskip} % White space at the top of the page
+
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+
+	\vspace{0.75\baselineskip} % Whitespace above the title
+
+	{\LARGE COMPUTER SCIENCE\\ FOR\\ THE BUSY DEVELOPER\\} % Title
+
+	\vspace{0.75\baselineskip} % Whitespace below the title
+
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+	\rule{\textwidth}{1.6pt} % Thick horizontal rule
+
+	\vspace{2\baselineskip} % Whitespace after the title block
+
+	%------------------------------------------------
+	%	Subtitle
+	%------------------------------------------------
+
+  A Relatively Quick Overview\\ Of Core Concepts Of Theoretical Computer Science
+
+	\vspace*{3\baselineskip} % Whitespace under the subtitle
+
+	%------------------------------------------------
+	%	Editor(s)
+	%------------------------------------------------
+
+	DRAFT
+
+	\vspace{0.5\baselineskip} % Whitespace before the editors
+
+	{\scshape\Large Rakhim Davletkaliyev \\} % Editor list
+
+	\vspace{0.5\baselineskip} % Whitespace below the editor list
+
+	\textit{Codexpanse Independent School\\ Helsinki, Finland} % Editor affiliation
+
+	\vfill % Whitespace between editor names and publisher logo
+
+	%------------------------------------------------
+	%	Publisher
+	%------------------------------------------------
+
+
+
+	2019 % Publication year
+
+	% {\large publisher} % Publisher
+
+\end{fullwidth}
+\end{titlepage}
+#+END_EXPORT
+
+#+TOC: headlines 4
+
+* Intro
+
+This course and the book constitute an high speed overview of the most important fundamental computer science areas. It is intended for intermediate and professional developers who, for any reason, are interested in getting to know the formal, academic side of CS better.
+
+The goal is to provide an overview deep enough so that you end up understanding the ares, their problems and the connections between them. And shallow enough so that you aren't buried under hundreds of pages of proofs, formalizations and exercises.
+
+We will start by trying to understand what computer science is and why it isn't a new area at all. We'll consider the computability as a fundamental property of reality rather than a technological apparatus.
+
+We shall then proceed to learning essential mathematics necessary for further topics. These include proof techniques, notation and logic.
+
+Next, we will learn about the following topics:
+
+1. Set theory.
+2. Algorithms. Complexity and examples of important algorithms in sorting.
+3. Abstract Data Types.
+4. Graph theory.
+5. Theory of computation.
+6. Cryptography.
+7. Information theory.
+
+Since it seems impossible or at least unpractical to put all of computer science curriculum into a single course, even in a minified format, we shall leave the following topics for the last chapter. In it, we will give an overview to them:
+
+- Abstract algebra
+- Category theory
+- Type theory
+- Computational geometry
+
+* Foundations of Math
+** Set theory
+
+*** Intro to sets
+
+**Set theory** is an important area of math which lays as a foundation of many computer science topics, such as databases and types in programming. Set theory isn't difficult conceptually, and is generally nice to think about, especially if you like to visualize.
+
+A **set** is simply a collection of things.
+
+A thing can be anything: name, object, idea. It's a very abstract notion. For example, I can define a set of movies I have seen: American Pie, Breakfast Club, The Room. Yes, I have only seen those three movies in my entire life. I am busy writing texts about set theory.
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/6ed/572/3eb/set_movies.png" style="max-width: 300px;" class="fr-fic fr-dib">
+<figcaption>Elements of set A.</figcaption>
+</figure>
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\begin{marginfigure}
+  \includegraphics[width=\linewidth]{images/set_movies.png}
+  \caption{Elements of set A.}
+  \label{fig:marginfig}
+\end{marginfigure}
+#+END_EXPORT
+
+Actually, I've watched The Room five times. Does this affect the set? No, because it doesn't change the notion of "what movies I have watched". This obvious idea is an integral property of sets: they contain only unique objects.
+
+#+BEGIN_EXPORT latex
+\marginnote{Nothing stops us from defining a set of movie viewings, though. In that case, each element would be a particular instance of a "movie watching event", and, in my sad case, would contain 7 elements.}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+(Nothing stops us from defining a set of movie viewings, though. In that case, each element would be a particular instance of a "movie watching event", and, in my sad case, would contain 7 elements.)
+#+END_EXPORT
+
+If an object $o$ is in set $A$, we say $o$ is a member of $A$. To express this fact easily, mathematicians use the following notation: $o \in A$.
+
+So, if $A = \textrm{Movies I've watched}$ and $o = \textrm{The Room}$, then $o \in A$. But if $b = \textrm{Avengers}$,  then $b \notin A$. Now you can generate infinitely many "nerdy" T-shirts with prints like $\textrm{joy} \in \textrm{mylife}$ or $\textrm{party} \in \textrm{dahouse}$.
+
+If we were to look inside set $A$, it might look like this:
+
+\begin{equation}
+\{s, m, o\}
+\end{equation}
+
+Sets don't have the notion of order, so it doesn't matter how you mention its members as long as you mention them all. So, all these:
+
+- $\{s, m, o\}$
+- $\{s, o, m\}$
+- $\{m, s, o\}$
+- etc.
+
+describe the same set $A$.
+
+We are lucky: set $A$ is finite and quite small. But sets can be infinite, and it would be impossible to write down all of its members. There are ways to describe such sets nevertheless. For example, the set of all natural numbers from $1$ to $n$ can be described like so:
+
+\begin{equation}
+\{1, 2, 3, 4, ... n\}
+\end{equation}
+
+Here we rely on reader's common sense and assume he or she can rightfully deduce what is meant by the ellipsis (=...=). Notations like this are very common in math, and while it isn't awfully strict, the idea is to be as unambiguous as possible. For example, when describing a set of odd natural numbers from $1$ to $n$, this would be bad:
+
+\begin{equation}
+\{1, 3, ... n\}
+\end{equation}
+
+simply because the sample isn't long enough to make a single assumption.
+
+Another example of a set that exists in math is the set of Boolean values:
+
+\begin{equation}
+\mathscr{B} = \{T, F\}
+\end{equation}
+
+$T$ and $F$ stand for /True/ and /False/. Certain tests (or, in other words, questions) that can be answered with "yes" and "no", produce values of said set. So, we can say that
+
+\begin{equation}
+(x > y) \in \mathscr{B}, \textrm{where }  x \in \mathbb{N} \textrm{ and } y \in \mathbb{N}
+\end{equation}
+
+In other words, the answer to the question "is $x$ greater than $y$" is a member of set $\mathscr{B}$, as long as $x$ and $y$ are members of $\mathbb{N}$ (i.e. natural numbers).
+
+Math in infinitely composable. Most programming languages can only dream of the level of composability and flexibility mathematicians enjoy. While not immediately useful, we could compose the following statements about sets:
+
+\begin{equation}
+((x + y) \in \mathbb{N}) \in \mathscr{B}, \textrm{where }  x, y \in \mathbb{N}
+\end{equation}
+
+Here we said "when $x$ and $y$ are members of $\mathbb{N}$, then the answer to the question 'is $x + y$ a member of $\mathbb{N}$' is a member of $\mathscr{B}$."
+
+Many groups in mathematics are sets: numbers of different types (natural, irrational, complex, etc.), notions of different types (e.g. Boolean), solutions to particular problems (e.g. graphs that satisfy a certain property). But describing groups of elements is just the tip of the iceberg. Set theory, with its axioms and definitions, can play a role of a foundational area of math, from which many other areas can be derived.
+
+In this course and the book we're not going to talk about how set theory (and category theory) can "generate" a large portion of the whole math. But these topics are among the most fascinating frontiers of modern mathematics.
+
+*** Empty set
+
+Mathematicians love zero. Ever since its inception around 1770 BC, zero is an important part of mathematical models. The notion of "nothingness", which zero reflects in the context of counting, is present in all areas. In the context of sets, nothingness is an /empty set/.
+
+\begin{equation}
+\varnothing = \{\}
+\end{equation}
+
+Why would we need empty sets? Well, sometimes we want to describe a notion of having no objects under a certain description. For example, since I only watched 3 movies in my life, and all of them were American, I can describe:
+
+\begin{equation}
+\varnothing = \textrm{the set of all non-American movies I've watched}.
+\end{equation}
+
+A more mathematical example would be something like this:
+
+\begin{equation}
+\varnothing = \{x | x \in \mathbb{N} \textrm{ and } x < 0\}
+\end{equation}
+
+which says that the set of natural numbers smaller than zero is an empty set. It's a formal way to say that there are no natural numbers less than zero.
+
+Note the use of vertical line *=|=*, it is a shorter way to say "where".
+
+*** Subset, superset
+
+When all members of set $A$ are present in another set $B$, then $A$ is a *subset* of $B$. Let's say set $B$ is the set of all movies ever produced. Then $A$ (movies I've watched) is clearly a subset of $B$. This notion is expressed like so:
+
+\begin{equation}
+A \subseteq B
+\end{equation}
+
+To look at things from the other end, $B$ is a *superset* of $A$:
+
+\begin{equation}
+B \supseteq A
+\end{equation}
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/5f4/657/168/subset.png" style="max-width: 300px; width: 300px;">
+<figcaption>A set and its subset.</figcaption>
+</figure>
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\begin{marginfigure}
+  \includegraphics[width=\linewidth]{images/subset.png}
+  \caption{A set and its subset.}
+  \label{fig:marginfig}
+\end{marginfigure}
+#+END_EXPORT
+
+
+You know what else is a subset of $B$? An empty set!
+
+\begin{equation}
+\varnothing \subseteq B
+\end{equation}
+
+This either sounds absolutely natural to you or extremely weird. It makes perfect sense to a mathematician, because it's easy to argue: /all/ members of $\varnothing$ are present in $B$, all zero of them.
+
+It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
+
+\begin{equation}
+\displaylines{
+A \subseteq A \\
+B \subseteq B \\
+Z \subseteq Z
+}
+\end{equation}
+
+By extension, if two sets are the same, then either of them is a subset of the other.
+
+\begin{equation}
+\textrm{if } A \subseteq B \textrm{ and } B \subseteq A \textrm{ then } A = B
+\end{equation}
+
+When we look at a statement $A \subseteq B$, we often need to know whether $A = B$ or not. To distinguish between the two cases, mathematicians use a special notion of a *proper subset*.
+
+If $A \in B$, but $A \neq B$, then $A$ is a proper subset of $B$.
+
+\begin{equation}
+A \subset B
+\end{equation}
+
+Since I haven't watched all the movies ever produced, I can say that $A$ is a proper subset of $B$. So, a set is a subset of itself, but is never a proper subset of itself.
+
+*** Cardinality
+
+Before we start to talk about sizes and products, let's first introduce a new notion:  **sequence**. A sequence is simply a series of elements. Unlike sets, sequences have order and may contain duplicate values. In this sense sequences are more down to earth, practical collections.
+
+Sequences are written with round brackets. For example, a sequence of prime numbers in ascending order is:
+
+\begin{equation}
+(2, 3, 5, 7, 11, ...)
+\end{equation}
+
+Note that it is an infinite sequence. An example of a finite sequence is a sequence of natural even numbers smaller than 10:
+
+\begin{equation}
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+\end{equation}
+
+-----
+
+If $A$ is a finite set (that is, $A$ is not infinite, and we can count how many elements there are in it), we use $|A|$ to denote the number of elements of $A$. This is the **cardinality**. For example:
+
+\begin{equation}
+\displaylines{
+|\{4, 8, 15, 16, 23, 42\}| = 6, \\
+|\varnothing| = 0, \\
+|\{\{a, e\}\}| = 1.
+}
+\end{equation}
+
+Note the last example: it defines a set which contains one set, thus its cardinality is 1. The number of elements of the internal set is irrelevant. Programmers find this obvious, as it reminds them of nested data structures like arrays of arrays.
+
+Knowing about sets, subsets and cardinalities, let's look at a statement and prove it.
+
+*Statement 1*: /If $A$ is a finite set of $m$ elements, then there are $2^{m}$ subsets of $A$./
+
+*Proof*: Suppose $A = \{a_{1}, a_{2}, ..., a_{m}\}$ and $\mathscr{P}A$ is the set of all subsets of $A$. Then we can divide $\mathscr{P}A$ into $2=2^{1}$ collections: subsets of $A$ which contain $a_{1}$ and those which don't. Considering the next element $a_{2}$, we get 4=2^{2} collections:
+
+1. One which contains both $a_{1}$ and $a_{2}$,
+2. one which contains $a_{1}$, but not $a_{2}$,
+2. one which contains $a_{2}$, but not $a_{1}$,
+2. one which contains neither $a_{1}$ nor $a_{2}$.
+
+Continuing this way, we see that there are $2^{m}$ subsets of $A$, each subset is determined by the fact of whether or not each $a_{j}$ is included, as $j$ goes from $1$ to $m$.■
+
+This sort of counting by inclusion / exclusion is a popular technique in math and especially in computer science. One can visualize such proof for a particular case by drawing a "binary decision tree".
+
+Consider set $A = \{a_{1}, a_{2}, a_{3}\}$. The proof states that there are $2^{3} = 8$ subsets of $A$. Do describe each imaginable set we need to determine whether each element is in it or not. Starting from $a_{1}$, we need to answer "yes" or "no", and proceed to ask the same question for $a_{2}$ and then for $a_{3}$.
+
+
+#+BEGIN_EXPORT latex
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{./images/powerset_binary_decision_tree.png}
+\caption{\label{fig:orge2eb83a}
+Binary decision tree for 8 subsets of \{a_{1}, a_{2}, a_{3}\}}
+\end{figure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/17e/f9a/a53/powerset_binary_decision_tree.png">
+<figcaption>Binary decision tree for 8 subsets of A.</figcaption>
+</figure>
+#+END_EXPORT
+
+*** Cartesian product
+
+Given two sets $A$ and $B$, we are often interested in all ordered pairs of their elements. For example, if $A = \{a, b\}$ and $B = \{1, 2\}$, the ordered pairs are as follows:
+
+\begin{equation}
+\displaylines{
+(a, 1)\\
+(a, 2)\\
+(b, 1)\\
+(b, 2)\\
+}
+\end{equation}
+
+The set of all such pairs is called the *Cartesian product* of $A$ and $B$. The name comes from the French mathematician René Descartes.
+
+#+BEGIN_EXPORT latex
+\begin{marginfigure}
+  \includegraphics[width=\linewidth]{images/Frans_Hals_-_Portret_van_Rene_Descartes.jpg}
+  \caption{Frans Hals, Portret van René Descartes}
+  \label{fig:marginfig}
+\end{marginfigure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/544/c5f/34f/Frans_Hals_-_Portret_van_Rene_Descartes.jpg" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Frans Hals, Portret van René Descartes.</figcaption>
+</figure>
+#+END_EXPORT
+
+Formally, Cartesian product can be described like this:
+
+\begin{equation}
+A \times B = \{(a,b) | a \in A, b \in B\}
+\end{equation}
+
+Descartes saw that the number plane $x, y$ could be represented as a product of two sets of real numbers.
+
+\begin{equation}
+\mathbb{R} \times \mathbb{R} = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}
+\end{equation}
+
+#+BEGIN_EXPORT latex
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{./images/xy_plane.png}
+\caption{\label{fig:orge2eb83a}
+Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.}
+\end{figure}
+#+END_EXPORT
+
+#+CAPTION: Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.
+[[https://s3.amazonaws.com/thinkific/file_uploads/146581/images/f4d/0cf/02f/xy_plane.png]]
+
+*** Union
+
+Sets on their own are a bit boring, frozen things. Interesting results can be observed when we consider interactions between sets. At the same time, these interactions can be viewed as frozen things themselves, not actions or processes.
+
+This happens often in math: the same idea can be viewed as either an action or a thing. Even functions, seemingly action-able, moving notions, can (and will) be defined as mere static constructs. It's interesting to ponder about these things, draw analogies to physics and time.
+
+Regardless, let's quickly overview three main sorts of interactions. Chances are they are already very familiar to you, especially if you've done any SQL.
+
+**Union** of a collection of sets is the set of all elements of the collection.
+
+Given two sets $A$ and $B$, union is defined as:
+
+\begin{equation}
+A \cup B = \{ x : x \in A \textrm{ or } x \in B \}
+\end{equation}
+
+This reads as:
+
+#+BEGIN_QUOTE
+Union of $A$ and $B$ is a set of elements $x$, where $x$ belongs to $A$ or x belongs to $B$.
+#+END_QUOTE
+
+For example, if $A = \{1, 2, 3\}$, and $B = \{3, 4, 5\}$, then:
+
+\begin{equation}
+A \cup B = \{1, 2, 3, 4, 5\}
+\end{equation}
+
+Note that even though each set contains 3 elements, the resulting union contains 5 elements only. Since union is a set, all rules and properties regarding sets still apply, so it cannot contain element $3$ twice.
+
+It is sometimes necessary to keep duplicates somehow, without violating the rules of sets. One way is "tag" each element in both sets by generating a Cartesian product of each set.
+
+\begin{equation}
+\displaylines{
+A \times \{t_{A} \} = \{(1, t_{A}), (2, t_{A}), (3, t_{A}) \} \\
+B \times \{t_{B} \} = \{(3, t_{B}), (4, t_{B}), (5, t_{B}) \}
+}
+\end{equation}
+
+So now instead of each number we deal with a sequence of two elements: the original number and a tag which refers to the original set. We use the term /n-tuple/ for a sequence of length $n$. Thus, here we deal with sets of /2-tuples/.
+
+Since all tuples are unique, the resulting union set contains 6 distinct elements:
+
+\begin{equation}
+\displaylines{
+A \times \{t_{A} \} \cup B \times \{t_{B} \} = \\
+\{(1, t_{A}), (2, t_{A}), (3, t_{A}), (3, t_{B}), (4, t_{B}), (5, t_{B}) \}
+}
+\end{equation}
+
+Every time we learn about a new approach or an idea, your inner mathematician should aspire to generalize. We've already generalized the notion of union by providing a formal mathematical definition. Let us now define this so-called **disjoint union** $\sum A_{i}$ to be:
+
+\begin{equation}
+\bigcup_{1 \leq i \leq n} A_{i} \times \{i\} = \{(x, i) | x \in A_{i} \textrm{ and } 1 \leq i \leq n\}
+\end{equation}
+
+It might seem like the notation is getting more and more complicated, but it's only a combination of existing notions and symbols, nothing new. The big U is a generalization of unions, here it is limited to all sets $A_{i} \times \{i\}$ where $i$ goes from 1 to some $n$. You can think of $i$ as a variable or a parameter. We see it is then used to define different sets (e.g. $A_{1}$, $A_{2}$, etc) and corresponding tagging sets $\{1\}$, $\{2\}$, etc. Then, on the right-hand side of the equation there's a set of many 2-tuples, each containing an element from $A_{i}$ and a tagging number $i$.
+
+To easily differentiate between regular unions and disjoint unions, we use two different symbols: $\cup$ for union, $+$ for disjoint union. Thus:
+
+\begin{equation}
+\bigcup_{1 \leq i \leq n} A_{i} \times \{i\} = A_{1} + ... + A_{n}.
+\end{equation}
+
+-----
+
+Even if you haven't heard of set union, you've definitely seen Venn diagrams. They illustrate union, intersection and complement quite nicely.
+
+#+CAPTION: Venn diagram illustrating the complex dichotomy of British Isles.
+[[https://s3.amazonaws.com/thinkific/file_uploads/146581/images/8cf/e18/857/British_Isles_Venn_Diagram-en.svg.png]]
+
+Contrary to popular belief, Venn diagrams aren't suitable representations of =SQL JOIN=. You'll see why later.
+
+When working with databases using SQL, union operation is a direct equivalent of union from set theory. The following example returns all usernames of both customers and managers:
+
+#+BEGIN_SRC sql
+SELECT username FROM users
+UNION
+SELECT username FROM managers;
+#+END_SRC
+
+This regular =UNION= operation behaves like set union in regards to duplicates. Thus, if both tables contain identical usernames, only one instance would end up in the union. An alternative SQL operator =UNION ALL= allows duplicates. The resulting collection of records is not necessarily a set, since it main contain identical records.
+
+It is tempting to see SQL as set theory applied to databases, but it would be wrong to think this way. SQL can be considered a domain specific language for a particular application of relational algebra, which /incorporates/ certain areas of set theory. In general, one can say that set theory and SQL /intersect/.
+
+*** Intersection
+
+**Intersection** of two sets $A$ and $B$ is the set containing all elements of $A$ that also belong to $B$ (or vice versa). In other words, it's a set of common elements.
+
+\begin{equation}
+A \cap B = \{ x : x \in A \textrm{ and } x \in B \}
+\end{equation}
+
+This reads as:
+
+#+BEGIN_QUOTE
+Intersection of $A$ and $B$ is the set of elements $x$, where $x$ belongs to $A$ and x belongs to $B$.
+#+END_QUOTE
+
+For example, if $A = \{1, 2, 3\}$, and $B = \{3, 4, 5\}$, then 3 is the only element present in both sets:
+
+\begin{equation}
+A \cap B = \{3\}
+\end{equation}
+
+/Sidenote: I quickly remembered which symbol -- $\cup$ and $\cap$ -- means which operation by noticing that $\cup$ looks like letter U, so it means union. I've had a similar moment when learning Boolean algebra and logic, where $\wedge$ means AND and looks like $A$ without the horizontal bar./
+
+SQL has =INTERSECT=:
+
+#+BEGIN_SRC sql
+SELECT username FROM customers
+INTERSECT
+SELECT username FROM managers;
+#+END_SRC
+
+Naturally, duplicates aren't an issue for intersection, because by definition one pair of elements results in one element, and not two. If there are two elements in one set, and one same element in the other set, the result is still one common element in the intersection.
+
+A Venn diagram for intersection is often used to show commonality. For example, coming back to sets of favorite movies, we can compare your favorite movies and mine and see if there are any movies we both love. If no such movies exist, then our sets are **disjoint**. Formally, two sets are disjoint if their intersection is an empty set:
+
+\begin{equation}
+A \cap B = \varnothing
+\end{equation}
+
+A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement.
+
+*** Complement (difference)
+
+**Complement** of set $A$ is a set of elements not in $A$. In other words, it's the opposite of $A$.
+
+\begin{equation}
+A^{C} = \{x : x \notin A \}
+\end{equation}
+
+The notion of complement (or difference) requires an implicit assumption: what other elements are we talking about? Say, the complement of all positive numbers is negative numbers, and zero, and dogs, and Korean words, and... all possible elements that aren't positive numbers? Thinking this way quickly reduces the conversation to either absurdity or to Russell's paradox. This is why the complement assumes some larger set in which $A$ exists. This larger set should be obvious from the context, or should be specified explicitly somewhere. For instance, when talking about movies, the complement of the set of my favorite movies is obviously all other movies that aren't my favorite.
+
+The term *universe* is used for a collection of entities one wishes to consider. For the example of movies, the universe is probably "all movies ever produced".
+
+-----
+
+It's sometimes useful to consider the complement of a set with respect to some other well-defined set. This is often called *set difference* and is denoted as $A - B$. Formally:
+
+\begin{equation}
+A - B = \{x | x \in A \textrm{ but } x \notin B\}
+\end{equation}
+
+SQL operator =EXCEPT= is similar to this idea.
+
+#+BEGIN_SRC sql
+SELECT username FROM users
+EXCEPT
+SELECT username FROM managers;
+#+END_SRC
+
+This query would return all users who aren't managers. In set theory, we'd write it this way:
+
+\begin{equation}
+\textrm{Users} - \textrm{Managers}
+\end{equation}
+
+Or, with implicit universe:
+
+\begin{equation}
+\textrm{Managers}^{C}
+\end{equation}
+
+with an assumption that we're talking about users in general.
+
+*** Relational algebra and SQL
+
+If you worked with SQL in different databases, you've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called Relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
+
+Relational algebra was created by Edgar F. Codd in 1960s-1970s, who worked at IBM at the time. Codd proposed this formal language as a basis for database querying.
+
+The good news is that knowing set theory and relational algebra reduces potential SQL-related problems to basically documentation lookup. If you know how unions work, what's the idea behind a Cartesian product and what are expressions of relational algebra, then it comes down to finding the correct SQL syntax to solve the problem at hand.
+
+We will finish up the section on set theory with a short overview of different aspects of relational algebra and their relation to SQL.
+
+**** Relation
+
+**Relation** is basically a table, with columns (called "attributes") and rows. For example, a relation =User= may be used to describe users in a web service.
+
+#+BEGIN_SRC
+User(id, username, firstName, lastName, email)
+#+END_SRC
+
+|  id | username | firstName | lastName | email             |
+|-----+----------+-----------+----------+-------------------|
+|   1 | jenn     | Jennifer  | Clarkson | jennc@hotmail.com |
+|   2 | pax      | Paxi      | Romanov  | paxromana@aol.com |
+| ... | ...      | ...       | ...      | ...               |
+
+For demonstrating purposes, let's define another table:
+
+#+BEGIN_SRC
+Manager(id, department, level)
+#+END_SRC
+
+|  id | department  | level |
+|-----+-------------+-------|
+|   2 | engineering |     3 |
+|   6 | medicine    |     2 |
+| ... | ...         | ...   |
+
+The name of a relation can play a role of the simplest query:
+
+#+BEGIN_SRC
+User
+#+END_SRC
+
+which returns the whole table.
+
+**** Projection
+
+A **projection** is an operation of extracting records with specific columns (attributes). It is denoted by Greek letter $\Pi$ (uppercase pi), with a list of columns as subscript, followed by relation's name.
+
+For example, here we extract a sub-relation of User with ids and emails only:
+
+\begin{equation}
+\Pi_{\textrm{id, email}} \textrm{ User}
+\end{equation}
+
+|  id | email             |
+|-----+-------------------|
+|   1 | jennc@hotmail.com |
+|   2 | paxromana@aol.com |
+| ... | ...               |
+
+**** Select
+
+A **selection** is an operation of filtering records by values. It is denoted by Greek letter $\sigma$ (sigma) with a condition, followed by relation's name.
+
+For example, here we get managers with level higher than 2:
+
+\begin{equation}
+\sigma_{\textrm{level} > 2} \textrm{ Manager}
+\end{equation}
+
+|  id | department  | level |
+|-----+-------------+-------|
+|   2 | engineering |     3 |
+| ... | ...         | ...   |
+
+**** Set operations Intersection is defined as union + difference.
+
+**** Cross product (cartesian product)
+
+**** Natural join
+
+Syntactic sugar
+
+**** Theta join
+
+Syntactic sugar as well: bow tie theta. Adds a condition.
+
+Theta condition to cartesian product (join with condition, in DB join often means theta join)
+
+**** SQL Joins
+
+- inner join
+- left
+- right
+- full
