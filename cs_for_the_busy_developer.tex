@@ -1,4 +1,4 @@
-% Created 2019-11-25 Mon 20:35
+% Created 2019-12-18 Wed 16:15
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper, justified, notitlepage, sfsidenotes, notoc]{tufte-book}
      \input{/users/rakhim/.emacs.d/latex/tufte.tex}
@@ -26,59 +26,24 @@
  pdflang={English}}
 \begin{document}
 
-\part{Subset, superset}
-\label{sec:org25368f9}
+\part{Direct proof}
+\label{sec:org243cb8d}
 
-When all members of set \(A\) are present in another set \(B\), then \(A\) is a \textbf{subset} of \(B\). Let's say set \(B\) is the set of all movies ever produced. Then \(A\) (movies I've watched) is clearly a subset of \(B\). This notion is expressed like so:
+Back when we were discussing set cardinality, we've successfully proved a statement: \emph{If \(A\) is a finite set of \(m\) elements, then there are \(2^{m}\) subsets of \(A\).} Let's talk about proofs in more detail, and discuss different proof techniques.
 
-\begin{equation}
-A \subseteq B
-\end{equation}
+A proof is a sequence of mathematical statements, a path from some basic truth to the desired outcome. An impeccable argument, if you will. Possible the simplest form of proof is a direct proof. It's a direct attempt to see what the statement means if we dare to play with it. Consider a theorem:
 
-To look at things from the other end, \(B\) is a \textbf{superset} of \(A\):
+\textbf{Theorem 1.} If \(n\) is an odd positive integer, then \(n^2\) is odd.
 
-\begin{equation}
-B \supseteq A
-\end{equation}
+\textbf{Proof.} An odd positive integer can be written as \(n = 2k + 1\), since something like \(2k\) is even and adding 1 makes it definitely odd. We're interested in what odd squared looks like, so let's square this definition:
 
-\begin{marginfigure}
-  \includegraphics[width=\linewidth]{images/subset.png}
-  \caption{A set and its subset.}
-  \label{fig:marginfig}
-\end{marginfigure}
+$$ n^2 = (2k + 1)^2 = $$
+$$ 4k^2 + 4k + 1 = $$
+$$ 2(2k^2 + 2k) + 1 $$
 
+So, we have this final formula \(2(2k^2 + 2k) + 1\) and it follows the pattern of \(2k + 1\). This means it's odd! We have a proof.
 
-You know what else is a subset of \(B\)? An empty set!
+This theorem is based on an idea that numbers described as \(2k + 1\) are definitely odd. This might be another theorem that requires another proof, and that proof might be based on some other theorems. The general idea of mathematics is that if you follow any theorem to the very beginning, you'll meet the fundamental axioms, the basis of everything.
 
-\begin{equation}
-\varnothing \subseteq B
-\end{equation}
-
-This either sounds absolutely natural to you or extremely weird. It makes perfect sense to a mathematician, because it's easy to argue: \emph{all} members of \(\varnothing\) are present in \(B\), all zero of them.
-
-It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
-
-\begin{equation}
-A \subseteq A \\
-B \subseteq B \\
-Z \subseteq Z
-\end{equation}
-
-By extension, if two sets are the same, then either of them is a subset of the other.
-
-\begin{equation}
-\textrm{if } A \subseteq B \textrm{ and } B \subseteq A \textrm{ then } A = B
-\end{equation}
-
----
-
-When we look at a statement \(A \subseteq B\), we often need to know whether \(A = B\) or not. To distinguish between the two cases, mathematicians use a special notion of a \textbf{proper subset}.
-
-If \(A \in B\), but \(A \neq B\), then \(A\) is a proper subset of \(B\).
-
-\begin{equation}
-A \subset B
-\end{equation}
-
-Since I haven't watched all the movies ever produced, I can say that \(A\) is a proper subset of \(B\). So, a set is a subset of itself, but is never a proper subset of itself.
+Now that we have this proven theorem in our arsenal, let's take a look at another theorem and prove it by contradiction.
 \end{document}

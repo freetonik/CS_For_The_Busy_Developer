@@ -54,7 +54,7 @@
 
 	\vspace{0.5\baselineskip} % Whitespace below the editor list
 
-	\textit{Codexpanse Independent School\\ Helsinki, Finland} % Editor affiliation
+	\textit{Codexpanse\\ Helsinki, Finland} % Editor affiliation
 
 	\vfill % Whitespace between editor names and publisher logo
 
@@ -325,7 +325,7 @@ Knowing about sets, subsets and cardinalities, let's look at a statement and pro
 2. one which contains $a_{2}$, but not $a_{1}$,
 2. one which contains neither $a_{1}$ nor $a_{2}$.
 
-Continuing this way, we see that there are $2^{m}$ subsets of $A$, each subset is determined by the fact of whether or not each $a_{j}$ is included, as $j$ goes from $1$ to $m$.■
+Continuing this way, we see that there are $2^{m}$ subsets of $A$, each subset is determined by the fact of whether or not each $a_{j}$ is included, as $j$ goes from $1$ to $m$.
 
 This sort of counting by inclusion / exclusion is a popular technique in math and especially in computer science. One can visualize such proof for a particular case by drawing a "binary decision tree".
 
@@ -338,7 +338,7 @@ Consider set $A = \{a_{1}, a_{2}, a_{3}\}$. The proof states that there are $2^{
 \includegraphics[width=.9\linewidth]{./images/powerset_binary_decision_tree.png}
 \caption{\label{fig:orge2eb83a}
 Binary decision tree for 8 subsets of \{a_{1}, a_{2}, a_{3}\}}
-\end{figure}
+\end{figure*}
 #+END_EXPORT
 
 #+BEGIN_EXPORT html
@@ -397,8 +397,13 @@ Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.}
 \end{figure}
 #+END_EXPORT
 
-#+CAPTION: Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.
-[[https://s3.amazonaws.com/thinkific/file_uploads/146581/images/f4d/0cf/02f/xy_plane.png]]
+#+BEGIN_EXPORT html
+<div class="figure">
+<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/f4d/0cf/02f/xy_plane.png" alt="xy_plane.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.</p>
+</div>
+#+END_EXPORT
 
 *** Union
 
@@ -742,3 +747,315 @@ As you see, natural join is basically a syntactic sugar on top of existing featu
 **** Union, intersection, difference
 
 Relational algebra includes three operators straight from set theory: union, intersection and difference. They work just like you might expect, although there are some caveats. We will not focus on these topics at the moment.
+
+*** Relations and Functions
+
+In programming, we often deal with paired data:
+
+- username — email
+- person — phone number
+- id — company
+
+All cases can be considered as two sets, with a rule to connect their elements.
+
+Given two sets $A$ and $B$, a /map function/ $f$ from $A$ to $B$, denoted as
+
+\begin{equation}
+f: A \rightarrow B
+\end{equation}
+
+is an assignment  to each element $a$ in $A$ of a single element in $B$.
+
+We sometimes use a notation $a \mapsto f(a)$ (note the different arrow) to indicate that $a$ maps to some value via function $f$. We call $f(a)$ an /image/ of $a$. Set $A$ is called the /domain/ of $f$, and $B$ the /codomain/ of $f$.
+
+Notice how we talk about functions as static data, not as a process. In programming, we're used to functions being descriptions of processes, even though in most languages we can pass functions around as data. But consider this: how would you cache a function call? An obvious approach is to pre-compute some answers beforehand and store them in a table:
+
+| Argument | Return |
+|----------+--------|
+| "a"      |  52321 |
+| "b"      |  12321 |
+| "c       |  81872 |
+| ...      | ...    |
+
+Theoretically, we could do this for all possible arguments, which would allow us to disregard all function's code and continue operating with a cache table exclusively. This means that any function (unless it deals with randomization) can be represented as static data. A mathematical notation of a function as a relation between two sets (essentially, a set of arguments and a set of return values) generalizes this idea.
+
+A *binary relation* of two sets $A$ and $B$ is a subset of $A \times B$. (Recall that $A \times B$ is a set of all combinations of pairs of values of the two sets). Thus, a /function/ is a binary relation, having the property that for each element $a \in A$ there is exactly one ordered pair in $A \times B$ whose first component is $a$.
+
+There are three types of relations:
+
+*1.* The function $f: A \rightarrow B$ is /one-to-one/ (*injective*) if no two values of $A$ result in the same value of $B$. In other words, there's at most one incoming arrow for each element of $B$.
+
+Formally: for any two distinct elements $a$ and $a'$ in $A$, we have $f(a) \neq f(a')$.
+
+#+BEGIN_EXPORT latex
+\begin{figure}
+  \includegraphics[width=.5\linewidth,right]{images/relations/injection.png}
+  \caption{Injection.}
+  \label{fig:injection}
+\end{figure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/2cc/7f2/62a/injection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Injection.</figcaption>
+</figure>
+#+END_EXPORT
+
+*2.* The function $f: A \rightarrow B$ is /onto/ (*surjective*) if all elements of $B$ are covered. In other words, no element of $B$ is without at least one arrow.
+
+Formally: for each element $b \in B$, there exists an element $a \in A$, such that $f(a) = b$.
+
+#+BEGIN_EXPORT latex
+\begin{figure}
+  \includegraphics[width=.5\linewidth,right]{images/relations/surjection.png}
+  \caption{Surjection.}
+  \label{fig:surjection}
+\end{figure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/acd/90a/08f/surjection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Surjection.</figcaption>
+</figure>
+#+END_EXPORT
+
+*3.* The function $f$ is a *bijection* if $f$ is both injective and surjective. In other words, all elements of $A$ are mapped uniquely to all elements of $B$.
+
+#+BEGIN_EXPORT latex
+\begin{figure}
+  \includegraphics[width=.5\linewidth,right]{images/relations/bijection.png}
+  \caption{Bijection.}
+  \label{fig:bijection}
+\end{figure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/cfc/97e/e37/bijection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Bijection.</figcaption>
+</figure>
+#+END_EXPORT
+
+We'll not focus on functions and relations anymore at the moment. Depending on how this course goes on, we'll either keep getting back to elements of this topic, or will extract it into a separate chapter.
+
+** Proof techniques
+
+*** Direct proof
+
+Back when we were discussing set cardinality, we've successfully proved a statement: /If $A$ is a finite set of $m$ elements, then there are $2^{m}$ subsets of $A$./ Let's talk about proofs in more detail, and discuss different proof techniques.
+
+A proof is a sequence of mathematical statements, a path from some basic truth to the desired outcome. An impeccable argument, if you will. Possible the simplest form of proof is a direct proof. It's a direct attempt to see what the statement means if we dare to play with it. Consider a theorem:
+
+*Theorem 1.* If \(n\) is an odd positive integer, then $n^2$ is odd.
+
+*Proof.* An odd positive integer can be written as \( n = 2k + 1 \), since something like \( 2k \) is even and adding 1 makes it definitely odd. We're interested in what odd squared looks like, so let's square this definition:
+
+$$ n^2 = (2k + 1)^2 = $$
+$$ 4k^2 + 4k + 1 = $$
+$$ 2(2k^2 + 2k) + 1 $$
+
+So, we have this final formula \( 2(2k^2 + 2k) + 1 \) and it follows the pattern of \( 2k + 1 \). This means it's odd! We have a proof.
+
+This theorem is based on an idea that numbers described as \( 2k + 1 \) are definitely odd. This might be another theorem that requires another proof, and that proof might be based on some other theorems. The general idea of mathematics is that if you follow any theorem to the very beginning, you'll meet the fundamental axioms, the basis of everything.
+
+*** Constructive proof
+
+The idea behind constructive proof is to prove the existence of a certain object by describing a method of creating it.
+
+*Theorem 2.* There exists a rational number $x$ such that $\sqrt{10^{100}} < x < \sqrt{10^{100}+1}$.
+
+*Proof.* $\sqrt{10^{100}}$ is $10^{50}$. Now, let's just try different clearly rational values for $x$ that /seem/ to lie between the required boundaries. For example, let's try $x = 10^{50} + 10^{51}$. It's obviously larger than $10^{50}$, so we only need to show that it's smaller than $\sqrt{10^{100}+1}$.
+
+To do that, let's compute $x^{2}$ so that we can compare it with $(\sqrt{10^{100}+1})^{2}$:
+
+$$ x^{2} = ((10^{50} + 10^{-51})^{2} $$
+$$ = 10^{100} + 2 \times (10^{50} \times 10^{-51}) + 10^{-102} $$
+$$ = 10^{100} + 2 \times 10^{50-51} + 10^{-102} $$
+$$ = 10^{100} + 2 \times 10^{-1} + 10^{-102} $$
+
+Clearly, $2 \times 10^{-1} + 10^{-102}$ is less than $1$, so $x^{2} < (\sqrt{10^{100}+1})^{2}$, and, by extension, $x < \sqrt{10^{100}+1}$.
+
+*** Proof by Contradiction
+
+Another approach is proof by contradiction. Here is the idea:
+
+1. Assume the statement is false or true.
+2. Derive a contradiction, a paradox, something that doesn't make sense. This will mean that the statement cannot possibly be what we assumed it to be, therefore it's the opposite.
+
+When I first saw this formal technique, it puzzled me. It didn't seem to be valid: alright, assuming something is false leads to a paradox, so what? We haven't proven that assuming it's true doesn't lead to another paradox! Or even the same paradox, for that matter. What I failed to understand conceptually is that a statement is a binary thing: it's either true or untrue. Nothing in between. So, if one can definitely declare "X is not false", then no other options are left: "X must be true".
+
+*Theorem 3.* \(n\) is a positive integer. If \( n^2 \) is even, then $n$ is even.
+
+We may try to construct another direct proof, but creating paradoxes is much more fun!
+
+*Proof.* Let's assume that \(n^2\) is even, *but $n$ is odd*. This is the opposite of what we want, and we will show that this scenario is impossible.
+
+$n$ is odd, then, according to Theorem 3, $n^2$ must be odd. This doesn't make sense! Our assumption and our conclusion are the opposite. This is a paradox, so the assumption was wrong. Meaning, the idea "\(n^2\) is even, but $n$ is odd" is false. Therefore, the idea "\(n^2\) is even, $n$ is even" is true.
+
+-----
+
+*Theorem 4.* \( \sqrt{2} \) is irrational.
+
+Woah, this is... different. Prior theorems were formulas, something to play with, something physical. But here is just an idea, so how would we even start?
+
+Let's start with a definition.
+
+#+BEGIN_QUOTE
+In mathematics, the irrational numbers are all real numbers which are not rational numbers.[fn:1]
+#+END_QUOTE
+
+Doesn't seem helpful, but let's continue. What are rational numbers then? Are they some reasonable beings who make optimal decisions all the time?
+
+#+BEGIN_QUOTE
+A rational number is any number that can be expressed as the fraction \(\frac{p}{q}\) of two integers.[fn:2]
+#+END_QUOTE
+
+Oh! They are rational because they are /ratios/! Just to make things super clear, let's dig one more step and make sure we understand integers.
+
+#+BEGIN_QUOTE
+An integer (from the Latin /integer/ meaning "whole") is a number that can be written without a fractional component. For example, $21$, $4$, $0$, and $−2048$ are integers, while \(9.75\), \( 5\frac{1}{2} \) and \( \sqrt{2} \) are not.[fn:3]
+#+END_QUOTE
+
+Combining these things, we can construct a comprehensive definition of the irrational number: it's a number that cannot be expressed as the fraction of two whole numbers. Now, let's apply this to Theorem 3 so that it has some meat:
+
+*Theorem 4, re-framed.* \( \sqrt{2} \) cannot be expressed as \( \frac{p}{q} \), where $p$ and $q$ are integers.
+
+Alright, now there is something to play with!
+
+*Proof.* Start by assuming the opposite -- \( \sqrt{2} \) is rational. This means it can be written as a fraction of two integers:
+
+$$ \sqrt{2} = \frac{p}{q}\ $$
+
+We can assume that $p$ and $q$ are not *both* even, because if they are, we can reduce them by dividing both by a common factor (like, for example, \( \frac{8}{10}\ \) should be reduced to \( \frac{4}{5}\ \)). In other words, if they are both even, reduce them until at least one is odd and no further reductions are possible.
+
+Now, let's square the square root:
+
+$$ (\sqrt{2})^2 = \frac{p^2}{q^2}\ $$
+
+$$ 2 = \frac{p^2}{q^2}\ $$
+
+$$ p^2 = 2q^2 $$
+
+Remember, something like $2k + 1$ is odd, and $2k$ is even. Here we see this pattern: $p^2 = 2q^2$, which means that $p^2$ is even (it consists of /two/ things).
+
+Then, using Theorem 3, we can say that $p$ is even as well, which means we can write $p$ as $p = 2k$. So:
+
+$$ 2q^2 = p^2 = (2k)^2 $$
+
+$$ 2q^2 = 4k^2 $$
+
+Divide both by two:
+
+$$ q^2 = 2k^2 $$
+
+So, $q^2$ is even. By the same Theorem 2 it follows that $q$ is even.
+
+Let's summarize the two conclusions:
+
+1. $p$ is even.
+2. $q$ is even.
+
+Wait... We made sure that not both $p$ and $q$ are even before starting this whole thing! We made sure to reduce them until at least one is odd, but then, by applying Theorem 2, we ended up with two even numbers. This is impossible, so the idea that "$\sqrt{2}$ is rational" is not true.
+
+Therefore, $\sqrt{2}$ is irrational.
+
+[fn:1] https://en.wikipedia.org/wiki/Irrational_number
+[fn:2] https://en.wikipedia.org/wiki/Rational_number
+[fn:3] https://en.wikipedia.org/wiki/Integer
+
+*** Proof by Induction
+
+One of the most powerful techniques is proof by induction.
+
+#+BEGIN_EXPORT latex
+\marginnote{Do not confuse mathematical induction with inductive or deductive reasoning. Despite the name, mathematical induction is actually a form of deductive reasoning.}
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<italic>(Do not confuse mathematical induction with inductive or deductive reasoning. Despite the name, mathematical induction is actually a form of deductive reasoning.)</italic>
+#+END_EXPORT
+
+Let's say, we want to prove that some statement $P$ is true for all positive integers. In other words:
+
+$P(1)$ is true, $P(2)$ is true, $P(3)$ is true... etc.
+
+We could try and prove each one directly or by contradiction, but the infinite number of positive integers makes this task rather grueling. Proof by induction is a sort of generalization that starts with the basis:
+
+*Basis:* Prove that $P(1)$ is true.
+
+Then makes one generic step that can be applied indefinitely:
+
+*Induction step:* Prove that for all $n\geq1$, the following statement holds: If $P(n)$ is true, then $P(n+1)$ is also true.
+
+We've devised another problem to solve, and it's seemingly the same. But if the basis is true, then proving this /inductive step/ will prove the theorem. To do this, we chose an arbitrary $n\geq1$ and assumed that $P(n)$ is true. This assumption is called the /inductive hypothesis/. The tricky part is this: we don't prove the hypothesis directly, but prove the $n+1$ version of it.
+
+This is all rather amorphous, so let's prove a real theorem.
+
+*Theorem 5.* For all positive integers $n$, the following is true:
+
+\begin{equation}
+\label{eq:1}
+1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}
+\end{equation}
+
+*Proof*. Start with the basis when $n$ is $1$. Just calculate it:
+
+$$ 1 = \frac{1(1+1)}{2}. $$
+
+This is correct, so, the basis is proven. Now, assume that the theorem is true for any $n\geq1$:
+
+\begin{equation}
+\label{eq:2}
+1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}
+\end{equation}
+
+In the induction step we have to prove that it's true for $n+1$:
+
+\begin{equation}
+\label{eq:3}
+1 + 2 + 3 + ... + (n+1) = \frac{(n+1)(n+2)}{2}
+\end{equation}
+
+
+Having this equation, we should just try to expand it and prove directly. Since the last member on the left side is $n+1$, the second last must be $n$, so:
+
+$$ 1 + 2 + 3 + ... + (n + 1) = 1 + 2 + 3 + ... + n + (n+1) $$
+
+From our assumption, we know, that
+
+$$ 1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}. $$
+
+So, let's replace it on the right hand side:
+
+$$ 1 + 2 + 3 + ... + (n + 1) = \frac{n(n+1)}{2} + (n+1) $$
+
+And then make that addition so that the right hand side is a single fraction:
+
+$$ 1 + 2 + 3 + ... + (n + 1) = \frac{n(n+1)}{2} + \frac{2(n+1)}{2} $$
+
+$$ = \frac{n(n+1) + 2(n+1)}{2} $$
+
+$$ = \frac{(n+1)(n+2)}{2}. $$
+
+Done, we have proven that the inductive step (\ref{eq:3}) is true.
+
+There are two results:
+
+1. The theorem is true for $n=1$.
+2. If the theorem is true for any $n$, then it's also true for $n+1$.
+
+Combining these two results we can conclude that the theorem is true for all positive integers $n$.
+
+-----
+
+I had troubles with this technique because for a long time I couldn't for the life of me understand why is this /enough/ and how is the basis /helping/?! The basis seemed redundant. We assume $P(n)$ is true, then prove that $P(n+1)$ is true given that $P(n)$ is true, but so what? We didn't prove the thing we assumed!
+
+It clicked after I understood that we don't have to prove $P(n)$, we just take the concrete value from the basis and use it as $n$. Since we have a proof of $P(n+1)$ being true *if* $P(n)$ is true, we conclude that if $P(1)$ is true, then $P(1+1)$ is true.
+
+Well, if $P(1+1)$ is true, then, using the same idea, $P(1+1+1)$ is true, and so forth.
+
+The basis was the cheat-code to kick-start the process by avoiding the need to prove the assumption \ref{eq:2}.
+
+*** The pigeon hole principle
