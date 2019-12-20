@@ -4,6 +4,7 @@
 
 #+LATEX_CLASS: tufte-book
 #+LATEX_CLASS_OPTIONS: [a4paper, justified, notitlepage, sfsidenotes, notoc]
+
 #+TITLE: Computer Science For The Busy Developer
 
 #+BEGIN_EXPORT latex
@@ -110,8 +111,6 @@ Since it seems impossible or at least unpractical to put all of computer science
 
 A **set** is simply a collection of things.
 
-A thing can be anything: name, object, idea. It's a very abstract notion. For example, I can define a set of movies I have seen: American Pie, Breakfast Club, The Room. Yes, I have only seen those three movies in my entire life. I am busy writing texts about set theory.
-
 #+BEGIN_EXPORT html
 <figure>
 <img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/6ed/572/3eb/set_movies.png" style="max-width: 300px;" class="fr-fic fr-dib">
@@ -127,11 +126,14 @@ A thing can be anything: name, object, idea. It's a very abstract notion. For ex
 \end{marginfigure}
 #+END_EXPORT
 
+A thing can be anything: name, object, idea. It's a very abstract notion. For example, I can define a set of movies I have seen: American Pie, Breakfast Club, The Room. Yes, I have only seen those three movies in my entire life. I am busy writing texts about set theory.
+
 Actually, I've watched The Room five times. Does this affect the set? No, because it doesn't change the notion of "what movies I have watched". This obvious idea is an integral property of sets: they contain only unique objects.
 
 #+BEGIN_EXPORT latex
 \marginnote{Nothing stops us from defining a set of movie viewings, though. In that case, each element would be a particular instance of a "movie watching event", and, in my sad case, would contain 7 elements.}
 #+END_EXPORT
+
 
 #+BEGIN_EXPORT html
 (Nothing stops us from defining a set of movie viewings, though. In that case, each element would be a particular instance of a "movie watching event", and, in my sad case, would contain 7 elements.)
@@ -844,9 +846,9 @@ We'll not focus on functions and relations anymore at the moment. Depending on h
 
 *** Direct proof
 
-Back when we were discussing set cardinality, we've successfully proved a statement: /If $A$ is a finite set of $m$ elements, then there are $2^{m}$ subsets of $A$./ Let's talk about proofs in more detail, and discuss different proof techniques.
+Back when we've been discussing set cardinality, we've successfully proved a statement: /If $A$ is a finite set of $m$ elements, then there are $2^{m}$ subsets of $A$./ Let's talk about proofs in more detail, and discuss different proof techniques.
 
-A proof is a sequence of mathematical statements, a path from some basic truth to the desired outcome. An impeccable argument, if you will. Possible the simplest form of proof is a direct proof. It's a direct attempt to see what the statement means if we dare to play with it. Consider a theorem:
+A proof is a sequence of mathematical statements, a path from some basic truth to the desired outcome. An impeccable argument, if you will. Possibly the simplest form of proof is a direct proof. It's a straightforward attempt to see what the statement means if we dare to play with it. Consider a theorem:
 
 *Theorem 1.* If \(n\) is an odd positive integer, then $n^2$ is odd.
 
@@ -856,13 +858,15 @@ $$ n^2 = (2k + 1)^2 = $$
 $$ 4k^2 + 4k + 1 = $$
 $$ 2(2k^2 + 2k) + 1 $$
 
-So, we have this final formula \( 2(2k^2 + 2k) + 1 \) and it follows the pattern of \( 2k + 1 \). This means it's odd! We have a proof.
+So, we have this final formula \( 2(2k^2 + 2k) + 1 \) and it follows the pattern of \( 2k + 1 \). This means it's odd! We have a proof. $\blacksquare$
 
-This theorem is based on an idea that numbers described as \( 2k + 1 \) are definitely odd. This might be another theorem that requires another proof, and that proof might be based on some other theorems. The general idea of mathematics is that if you follow any theorem to the very beginning, you'll meet the fundamental axioms, the basis of everything.
+(This black square — $\blacksquare$ — is the symbol mathematicians often use to denote the end of proof.)
+
+This theorem is based on an idea that numbers described as \( 2k + 1 \) are definitely odd. This idea could be another theorem that requires another proof, and that proof would be based on some other theorems. The general idea of mathematics is that if you follow any theorem to the very beginning, you'll meet the fundamental axioms, the basis of everything.
 
 *** Constructive proof
 
-The idea behind constructive proof is to prove the existence of a certain object by describing a method of creating it.
+The idea behind constructive proof is to show the existence of a certain object by describing a method of creating it.
 
 *Theorem 2.* There exists a rational number $x$ such that $\sqrt{10^{100}} < x < \sqrt{10^{100}+1}$.
 
@@ -875,7 +879,20 @@ $$ = 10^{100} + 2 \times (10^{50} \times 10^{-51}) + 10^{-102} $$
 $$ = 10^{100} + 2 \times 10^{50-51} + 10^{-102} $$
 $$ = 10^{100} + 2 \times 10^{-1} + 10^{-102} $$
 
-Clearly, $2 \times 10^{-1} + 10^{-102}$ is less than $1$, so $x^{2} < (\sqrt{10^{100}+1})^{2}$, and, by extension, $x < \sqrt{10^{100}+1}$.
+Clearly:
+
+$$ (2 \times 10^{-1} + 10^{-102}) < 1 $$
+
+therefore
+
+$$ 10^{100} + 2 \times 10^{-1} + 10^{-102} < (\sqrt{10^{100}+1})^{2} $$
+$$ x^{2} < (\sqrt{10^{100}+1})^{2} $$
+
+and, by extension
+
+$$ x < \sqrt{10^{100}+1} $$
+
+Therefore, there indeed exists a rational number $x$ such that $\sqrt{10^{100}} < x < \sqrt{10^{100}+1}$ $\blacksquare$.
 
 *** Proof by Contradiction
 
@@ -892,9 +909,11 @@ We may try to construct another direct proof, but creating paradoxes is much mor
 
 *Proof.* Let's assume that \(n^2\) is even, *but $n$ is odd*. This is the opposite of what we want, and we will show that this scenario is impossible.
 
-$n$ is odd, then, according to Theorem 3, $n^2$ must be odd. This doesn't make sense! Our assumption and our conclusion are the opposite. This is a paradox, so the assumption was wrong. Meaning, the idea "\(n^2\) is even, but $n$ is odd" is false. Therefore, the idea "\(n^2\) is even, $n$ is even" is true.
+$n$ is odd, then, according to Theorem 1 (which is already proven), $n^2$ must be odd. This doesn't make sense! Our assumption and our conclusion are the opposite. This is a paradox, so the assumption was wrong. Meaning, the idea "\(n^2\) is even, but $n$ is odd" is false. Therefore, the idea "\(n^2\) is even, $n$ is even" is true. $\blacksquare$
 
 -----
+
+Let's look at one rather famous proof of irrationality of $\sqrt{2}$.
 
 *Theorem 4.* \( \sqrt{2} \) is irrational.
 
@@ -924,7 +943,7 @@ Combining these things, we can construct a comprehensive definition of the irrat
 
 Alright, now there is something to play with!
 
-*Proof.* Start by assuming the opposite -- \( \sqrt{2} \) is rational. This means it can be written as a fraction of two integers:
+*Proof.* Start by assuming the opposite: \( \sqrt{2} \) is rational. This means it can be written as a fraction of two integers:
 
 $$ \sqrt{2} = \frac{p}{q}\ $$
 
@@ -950,16 +969,16 @@ Divide both by two:
 
 $$ q^2 = 2k^2 $$
 
-So, $q^2$ is even. By the same Theorem 2 it follows that $q$ is even.
+So, $q^2$ is even. According to the same Theorem 3 it follows that $q$ is even.
 
 Let's summarize the two conclusions:
 
 1. $p$ is even.
 2. $q$ is even.
 
-Wait... We made sure that not both $p$ and $q$ are even before starting this whole thing! We made sure to reduce them until at least one is odd, but then, by applying Theorem 2, we ended up with two even numbers. This is impossible, so the idea that "$\sqrt{2}$ is rational" is not true.
+Wait... We made sure that not both $p$ and $q$ are even before starting this whole thing! We made sure to reduce them until at least one is odd, but then, by applying Theorem 3, we ended up with two even numbers. This is impossible, so the idea that "$\sqrt{2}$ is rational" is not true.
 
-Therefore, $\sqrt{2}$ is irrational.
+Therefore, $\sqrt{2}$ is irrational. $\blacksquare$
 
 [fn:1] https://en.wikipedia.org/wiki/Irrational_number
 [fn:2] https://en.wikipedia.org/wiki/Rational_number
@@ -977,85 +996,118 @@ One of the most powerful techniques is proof by induction.
 <italic>(Do not confuse mathematical induction with inductive or deductive reasoning. Despite the name, mathematical induction is actually a form of deductive reasoning.)</italic>
 #+END_EXPORT
 
-Let's say, we want to prove that some statement $P$ is true for all positive integers. In other words:
-
-$P(1)$ is true, $P(2)$ is true, $P(3)$ is true... etc.
+Let's say, we want to prove that some statement $P$ is true for all positive integers. In other words: $P(1)$ is true, $P(2)$ is true, $P(3)$ is true... etc.
 
 We could try and prove each one directly or by contradiction, but the infinite number of positive integers makes this task rather grueling. Proof by induction is a sort of generalization that starts with the basis:
 
 *Basis:* Prove that $P(1)$ is true.
 
-Then makes one generic step that can be applied indefinitely:
-
-*Induction step:* Prove that for all $n\geq1$, the following statement holds: If $P(n)$ is true, then $P(n+1)$ is also true.
+Then makes one generic step that can be applied indefinitely. *Induction step:* Prove that for all $n\geq1$, the following statement holds: If $P(n)$ is true, then $P(n+1)$ is also true.
 
 We've devised another problem to solve, and it's seemingly the same. But if the basis is true, then proving this /inductive step/ will prove the theorem. To do this, we chose an arbitrary $n\geq1$ and assumed that $P(n)$ is true. This assumption is called the /inductive hypothesis/. The tricky part is this: we don't prove the hypothesis directly, but prove the $n+1$ version of it.
 
 This is all rather amorphous, so let's prove a real theorem.
 
+-----
+
 *Theorem 5.* For all positive integers $n$, the following is true:
 
 \begin{equation}
-\label{eq:1}
-1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}
+1 + 2 + \ldots + n = \frac{n(n+1)}{2}
 \end{equation}
 
-*Proof*. Start with the basis when $n$ is $1$. Just calculate it:
+*Proof*. First, just calculate the basis when $n = 1$:
 
-$$ 1 = \frac{1(1+1)}{2}. $$
+$$ 1 = \frac{1(1+1)}{2} = \frac{2}{2}. $$
 
 This is correct, so, the basis is proven. Now, assume that the theorem is true for any $n\geq1$:
 
 \begin{equation}
-\label{eq:2}
-1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}
+1 + 2 + \ldots + n = \frac{n(n+1)}{2}
 \end{equation}
 
-In the induction step we have to prove that it's true for $n+1$:
+Holding that assumption, prove the induction step. In other words, prove that the basis is also true for $n+1$:
 
 \begin{equation}
-\label{eq:3}
-1 + 2 + 3 + ... + (n+1) = \frac{(n+1)(n+2)}{2}
+1 + 2 + \ldots + (n+1) = \frac{(n+1)(n+2)}{2}
 \end{equation}
 
+/(All we did is substituted $n$ with $n+1$.)/
 
-Having this equation, we should just try to expand it and prove directly. Since the last member on the left side is $n+1$, the second last must be $n$, so:
+We can expand this equation. The last member on the left side is $n+1$. In front of it must be $n$, so let's show it:
 
-$$ 1 + 2 + 3 + ... + (n + 1) = 1 + 2 + 3 + ... + n + (n+1) $$
+$$ 1 + 2 + \ldots + (n+1) $$
+$$ = 1 + 2 + \ldots + n + (n+1)$$
 
-From our assumption, we know, that
+Assumption (2) tells us the value of $1 + 2 + \ldots + n$, so let's take it and replace the corresponding part of the right-hand side (rectangle shows this replacement):
 
-$$ 1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}. $$
-
-So, let's replace it on the right hand side:
-
-$$ 1 + 2 + 3 + ... + (n + 1) = \frac{n(n+1)}{2} + (n+1) $$
+$$ 1 + 2 + \ldots + (n + 1) = \boxed{ \frac{n(n+1)}{2} } + (n+1) $$
 
 And then make that addition so that the right hand side is a single fraction:
 
-$$ 1 + 2 + 3 + ... + (n + 1) = \frac{n(n+1)}{2} + \frac{2(n+1)}{2} $$
-
+$$ \frac{n(n+1)}{2} + \frac{2(n+1)}{2} $$
 $$ = \frac{n(n+1) + 2(n+1)}{2} $$
-
 $$ = \frac{(n+1)(n+2)}{2}. $$
 
-Done, we have proven that the inductive step (\ref{eq:3}) is true.
+So:
 
-There are two results:
+\begin{equation}
+1 + 2 + \ldots + (n + 1) = \frac{(n+1)(n+2)}{2}
+\end{equation}
+
+Great, the've proved that the induction step (3) is true. So far, we have two results:
 
 1. The theorem is true for $n=1$.
 2. If the theorem is true for any $n$, then it's also true for $n+1$.
 
-Combining these two results we can conclude that the theorem is true for all positive integers $n$.
+Note how neither of the two facts is sufficient alone. The first fact is limited to a single case. The second fact is based on a condition — it basically says "give me a ladder, then I can touch the sky". Fact 1 is the ladder. Now, we can touch the sky by combining the two facts. The theorem is true for all positive integers $n$. $\blacksquare$
 
 -----
 
 I had troubles with this technique because for a long time I couldn't for the life of me understand why is this /enough/ and how is the basis /helping/?! The basis seemed redundant. We assume $P(n)$ is true, then prove that $P(n+1)$ is true given that $P(n)$ is true, but so what? We didn't prove the thing we assumed!
 
-It clicked after I understood that we don't have to prove $P(n)$, we just take the concrete value from the basis and use it as $n$. Since we have a proof of $P(n+1)$ being true *if* $P(n)$ is true, we conclude that if $P(1)$ is true, then $P(1+1)$ is true.
+It clicked after I understood that we don't have to prove $P(n)$, we just take the concrete value from the basis and use it as $n$. Since we have a proof of $P(n+1)$ being true *if* $P(n)$ is true, we conclude that if $P(1)$ is true, then $P(1+1)$ is true. Well, if $P(1+1)$ is true, then, using the same idea, $P(1+1+1)$ is true, and so forth.
 
-Well, if $P(1+1)$ is true, then, using the same idea, $P(1+1+1)$ is true, and so forth.
-
-The basis was the cheat-code to kick-start the process by avoiding the need to prove the assumption \ref{eq:2}.
+The basis was the /cheat-code/ to kick-start the process by avoiding the need to prove the assumption (2).
 
 *** The pigeon hole principle
+
+This is a simple, obvious principle with surprisingly powerful consequences. The pigeon hole principle is something toddlers learn: if you put 3 blocks into 2 boxes, one box will end up with more than 1 block.
+
+Formally: if $n+1$ or more objects are placed into $n$ boxes, then there is at least one box containing two or more objects.
+
+Now that we know about sets and functions, we can also compose the definition in terms of set theory: if $A$ and $B$ are two sets such that $|A| > |B|$, then there is no one-to-one function from $A$ to $B$.
+
+*Theorem 6.* Let $n$ be a positive integer. Every sequence of $n^{2}+1$ distinct real numbers contains a subsequence of length $n+1$ that is either increasing or decreasing.
+
+Example: let's take $n = 3$. A sequence of $3^{2}+1$ distinct real numbers could look like so: $(20, 10, 9, 7, 11, 2, 21, 1, 20, 31)$. According to the theorem, it must contain a subsequence of length $3+1$. Look closely and, indeed, it does: $(10, 11, 21, 31)$.
+
+*Proof.* Let $(a_{1}, a_{2}, \ldots ,a_{n^{2}+1})$ be an arbitrary sequence of $n^{2}+1$ distinct real numbers. For each $i$ with $1 \leq i \leq n^{2} + 1$:
+
+- let $inc_{i}$ denote the length of the longest increasing subsequence that starts at $a_{i}$
+- let $dec_{i}$ denote the length of the longest decreasing subsequence that starts at $a_{i}$.
+
+Let's reformulate the theorem using this notation: there is an index $i$ such that $inc_{i} \geq n+1$ *or* $dec_{i} \geq n+1$.
+
+We will prove this claim by contradiction, using the pigeon hole principle. Recall that proof by contradiction starts with the negation (opposite) of the theorem's claim. So, *assume* that $inc_{i} \leq n$ and $dec_{i} \leq n$ for all $i$ with $1 \leq i \leq n^{2} + 1$.
+
+Now, consider the set:
+
+$$ B = \{ (b,c) : 1 \leq b \leq n, 1 \leq c \leq n \}, $$
+
+and think of elements of $B$ as boxes. For each $i$ with $1 \leq i \leq n^{2} + 1$, the pair $(inc_{i}, dec_{i})$ is an element of $B$. So we have $n^{2} + 1$ such elements $(inc_{i}, dec_{i})$, but there are only $n^{2}$ boxes in $B$. By the pigeon hole principle, there must be a box that contains two or more elements. So, there exists two integers $i$ and $j$ such that $i < j$ and
+
+\begin{equation}
+(inc_{i}, dec_{i}) < (inc_{j}, dec_{j}).
+\end{equation}
+
+Recall that the elements in the sequence are distinct (no repeating numbers). Hence, $a_{i} \neq a_{j}$. There are two cases then:
+
+*Case 1.* $a_{i} < a_{j}$. Then the length of the longest increasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest increasing subsequence starting from $a_{j}$. Therefore, $inc_{i} \neq inc_{j}$, which contradicts (1).
+
+*Case 2.* $a_{i} > a_{j}$. Then the length of the longest deccreasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest deccreasing subsequence starting from $a_{j}$. Therefore, $dec_{i} \neq dec_{j}$, which again contradicts (1). $\blacksquare$
+* COMMENT Local Variables
+
+# Local Variables:
+# after-save-hook: org-html-export-to-html
+# End:
