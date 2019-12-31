@@ -39,7 +39,7 @@
 	%	Subtitle
 	%------------------------------------------------
 
-  A Relatively Quick Overview\\ Of Core Concepts Of Theoretical Computer Science
+  A Relatively Quick Overview\\ Of Core Theoretical Computer Science Concepts
 
 	\vspace*{3\baselineskip} % Whitespace under the subtitle
 
@@ -79,9 +79,9 @@
 
 This course and the book constitute an high speed overview of the most important fundamental computer science areas. It is intended for intermediate and professional developers who, for any reason, are interested in getting to know the formal, academic side of CS better.
 
-The goal is to provide an overview deep enough so that you end up understanding the ares, their problems and the connections between them. And shallow enough so that you aren't buried under hundreds of pages of proofs, formalizations and exercises.
+The goal is to provide an overview deep enough so that you end up understanding the areas, their problems and the connections between them. And shallow enough so that you aren't buried under hundreds of pages of proofs, formalizations and exercises.
 
-We will start by trying to understand what computer science is and why it isn't a new area at all. We'll consider the computability as a fundamental property of reality rather than a technological apparatus.
+We will start by trying to understand what computer science is and why it isn't a new area at all. We'll consider computability as a fundamental property of reality rather than a technological apparatus.
 
 We shall then proceed to learning essential mathematics necessary for further topics. These include proof techniques, notation and logic.
 
@@ -95,7 +95,7 @@ Next, we will learn about the following topics:
 6. Cryptography.
 7. Information theory.
 
-Since it seems impossible or at least unpractical to put all of computer science curriculum into a single course, even in a minified format, we shall leave the following topics for the last chapter. In it, we will give an overview to them:
+Since it seems impossible or at least impractical to put all of a computer science curriculum into a single course, even in a minified format, we shall leave the following topics for the last chapter. In it, we will give an overview of:
 
 - Abstract algebra
 - Category theory
