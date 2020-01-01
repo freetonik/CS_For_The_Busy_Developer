@@ -409,9 +409,9 @@ Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.}
 
 *** Union
 
-Sets on their own are a bit boring, frozen things. Interesting results can be observed when we consider interactions between sets. At the same time, these interactions can be viewed as frozen things themselves, not actions or processes.
+Sets on their own are a bit boring – they're frozen. Interesting results can be observed when we consider interactions between sets. At the same time, these interactions can be viewed as frozen things themselves, not actions or processes.
 
-This happens often in math: the same idea can be viewed as either an action or a thing. Even functions, seemingly action-able, moving notions, can (and will) be defined as mere static constructs. It's interesting to ponder about these things, draw analogies to physics and time.
+This happens often in math: the same idea can be viewed as either an action or a thing. Even functions, seemingly action-able, moving notions, can (and will) be defined as mere static constructs. It's interesting to ponder these things, drawing analogies to physics and time.
 
 Regardless, let's quickly overview three main sorts of interactions. Chances are they are already very familiar to you, especially if you've done any SQL.
 
@@ -480,7 +480,7 @@ Even if you haven't heard of set union, you've definitely seen Venn diagrams. Th
 
 Contrary to popular belief, Venn diagrams aren't suitable representations of =SQL JOIN=. You'll see why later.
 
-When working with databases using SQL, union operation is a direct equivalent of union from set theory. The following example returns all usernames of both customers and managers:
+When working with databases using SQL, the union operation is a direct equivalent of union from set theory. The following example returns all usernames of both customers and managers:
 
 #+BEGIN_SRC sql
 SELECT username FROM users
@@ -488,7 +488,7 @@ UNION
 SELECT username FROM managers;
 #+END_SRC
 
-This regular =UNION= operation behaves like set union in regards to duplicates. Thus, if both tables contain identical usernames, only one instance would end up in the union. An alternative SQL operator =UNION ALL= allows duplicates. The resulting collection of records is not necessarily a set, since it main contain identical records.
+This regular =UNION= operation behaves like set union in regards to duplicates. Thus, if both tables contain identical usernames, only one instance would end up in the union. An alternative SQL operator =UNION ALL= allows duplicates. The resulting collection of records is not necessarily a set, since it may contain identical records.
 
 It is tempting to see SQL as set theory applied to databases, but it would be wrong to think this way. SQL can be considered a domain specific language for a particular application of relational algebra, which /incorporates/ certain areas of set theory. In general, one can say that set theory and SQL /intersect/.
 
@@ -534,7 +534,7 @@ A mathematician in love may describe the perfectness of their partner by saying 
 
 *** Complement (difference)
 
-**Complement** of set $A$ is a set of elements not in $A$. In other words, it's the opposite of $A$.
+A **complement** of set $A$ is a set of elements not in $A$. In other words, it's the opposite of $A$.
 
 \begin{equation}
 A^{C} = \{x : x \notin A \}
