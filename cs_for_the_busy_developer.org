@@ -576,17 +576,17 @@ with an assumption that we're talking about users in general.
 
 *** Relational algebra
 
-If you worked with SQL in different databases, you might've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called Relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
+If you worked with SQL in different databases, you might've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
 
-Relational algebra was created by Edgar F. Codd in 1960s-1970s, who worked at IBM at the time. Codd proposed this formal language as a basis for database querying.
+Relational algebra was created during the 1960s and 70s by Edgar F. Codd, who worked at IBM at the time. Codd proposed this formal language as a basis for database querying.
 
-The good news is that knowing set theory and relational algebra reduces potential SQL-related problems to basically documentation lookup. If you know how unions work, what's the idea behind a Cartesian product and what are expressions of relational algebra, then it comes down to finding the correct SQL syntax to solve the problem at hand.
+The good news is that knowing set theory and relational algebra reduces potential SQL-related problems to basically documentation lookup. If you understand how unions work, the idea behind Cartesian products, and what expressions of relational algebra are, then it comes down to finding the correct SQL syntax to solve the problem at hand.
 
 We will finish up the section on set theory with a short overview of different aspects of relational algebra and their relation to SQL.
 
 **** Relation
 
-**Relation** is essentially a table, with columns (called "attributes") and rows. For example, a relation =User= may be used to describe users in a web service.
+A **relation** is essentially a table, with columns (called "attributes") and rows. For example, a relation =User= may be used to describe users in a web service.
 
 #+BEGIN_SRC
 User(id, username, firstName, lastName, email)
@@ -620,9 +620,9 @@ which returns the whole table.
 
 **** Projection
 
-A **projection** is an operation of extracting records with specific columns (attributes). It is denoted by Greek letter $\Pi$ (uppercase pi), with a list of columns as subscript, followed by relation's name.
+A **projection** is an operation of extracting records with specific columns (attributes). It is denoted by the Greek letter $\Pi$ (uppercase pi), with a list of columns as subscript, followed by a relation's name.
 
-For example, here we extract a sub-relation of User with ids and emails only:
+For example, here we extract a sub-relation of =User= with ids and emails only:
 
 \begin{equation}
 \Pi_{\textrm{id, email}} \textrm{ User}
@@ -636,9 +636,9 @@ For example, here we extract a sub-relation of User with ids and emails only:
 
 **** Select
 
-A **selection** is an operation of filtering records by values. It is denoted by Greek letter $\sigma$ (sigma) with a condition, followed by relation's name.
+A **selection** is an operation of filtering records by values. It is denoted by the Greek letter $\sigma$ (sigma) with a condition, followed by the relation's name.
 
-For example, here we get managers with level higher than 2:
+For example, here we get managers with a level higher than 2:
 
 \begin{equation}
 \sigma_{\textrm{level} > 2} \textrm{ Manager}
@@ -652,7 +652,7 @@ For example, here we get managers with level higher than 2:
 
 **** Operating on expressions
 
-Select and project operators work on any expression, not only on whole relations. This means we can combine them arbitrarily. For example, we can select (essentially, filter) first, and then extract certain columns.
+Select and project operators work on any expression, not just whole relations. This means we can combine them arbitrarily. For example, we can select (essentially filter) first, and then extract certain columns.
 
 \begin{equation}
 \Pi_{\textrm{id, level}} (\sigma_{\textrm{level} > 2} \textrm{ Manager})
@@ -665,9 +665,9 @@ The result is a newly constructed relation consisting of only two columns, which
 |   1 |     3 |
 |  91 |     3 |
 
-**** Cross product (cartesian product)
+**** Cross product (Cartesian product)
 
-Recall the idea behind Cartesian product in set theory: given two sets $A = \{a, b\}$ and $B = \{1, 2\}$, the *Cartesian product* is a set of pairs of all combinations of elements:
+Recall the idea behind the Cartesian product in set theory: given two sets $A = \{a, b\}$ and $B = \{1, 2\}$, the *Cartesian product* is a set of pairs of all combinations of elements:
 
 \begin{equation}
 \displaylines{
@@ -678,7 +678,7 @@ Recall the idea behind Cartesian product in set theory: given two sets $A = \{a,
 }
 \end{equation}
 
-Much of the power of relational algebra comes from applying this idea to relations. It is also often called *cross product*.
+Much of the power of relational algebra comes from applying this idea to relations. It is also often called a *cross-product*.
 
 Here's the cross-product of =User= and =Manager=:
 
@@ -700,7 +700,7 @@ Here's the cross-product of =User= and =Manager=:
 
 Since both relations contain a column named =id=, the resulting relation contains two distinct columns with tagged names =User.id= and =Manager.id=. This is similar to the way we "tagged" items in set union.
 
-This might not seem too useful: we just combined all records, and many of the new rows don't make sense. Cross-product is rarely useful as is. Instead, the goal is often to generate raw data for the operations. For example, with this long table at hand, we can first eliminate the nonsense rows by applying select:
+This might not seem too useful: we just combined all records, and many of the new rows don't make sense. Cross-products are rarely useful on their own. Instead, the goal is often to generate raw data for operations. For example, with this long table at hand, we can first eliminate the nonsense rows by applying select:
 
 \begin{equation}
 \sigma_{\textrm{User.id} = \textrm{Manager.id}} (\textrm{User} \times \textrm{Manager})
@@ -732,7 +732,7 @@ Now we can filter managers by level and get rid of unneeded columns:
 
 **** Natural join
 
-The process of performing a cross-product and then filtering out rows that "make sense" by comparing the attributes of the same name is common enough so that relational algebra has a special operator called *natural join*. It is denoted by $\bowtie$ (bow tie). The result is a relation with matching rows and no "tagged" attributes:
+The process of performing a cross-product and then filtering out rows that "make sense" by comparing the attributes of the same name is common enough that relational algebra has a special operator called *natural join*. It is denoted by $\bowtie$ (bow tie). The result is a relation with matching rows and no "tagged" attributes:
 
 \begin{equation}
 \textrm{User} \bowtie \textrm{Manager}
@@ -744,7 +744,7 @@ The process of performing a cross-product and then filtering out rows that "make
 |  2 | pax      | Paxi      | Romanov  | paxro@aol.com   | medicine    |     2 |
 | 91 | thankso  | Barack    | Liu      | bl@wh.gov       | mathematics |     3 |
 
-As you see, natural join is basically a syntactic sugar on top of existing features of relational algebra.
+As you can see, a natural is basically syntactic sugar on top of the existing features of relational algebra.
 
 **** Union, intersection, difference
 
@@ -758,7 +758,7 @@ In programming, we often deal with paired data:
 - person — phone number
 - id — company
 
-All cases can be considered as two sets, with a rule to connect their elements.
+All cases can be thought of as two sets, with a rule to connect their elements.
 
 Given two sets $A$ and $B$, a /map function/ $f$ from $A$ to $B$, denoted as
 
