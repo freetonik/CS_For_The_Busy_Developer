@@ -1,0 +1,2071 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-01-14 Tue 12:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computer Science For The Busy Developer</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" type="text/css" href="assets/style.css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgea4d889">1. Intro</a></li>
+<li><a href="#org7b2b914">2. Foundations of Math</a>
+<ul>
+<li><a href="#org190ed95">2.1. Set theory</a>
+<ul>
+<li><a href="#orgf4caea4">2.1.1. Intro to sets</a></li>
+<li><a href="#orgc7320c8">2.1.2. Empty set</a></li>
+<li><a href="#orgfc8f148">2.1.3. Subset, superset</a></li>
+<li><a href="#org0f790ea">2.1.4. Cardinality</a></li>
+<li><a href="#org7218b4b">2.1.5. Cartesian product</a></li>
+<li><a href="#org0250c88">2.1.6. Union</a></li>
+<li><a href="#orgf7b8293">2.1.7. Intersection</a></li>
+<li><a href="#org04c011b">2.1.8. Complement (difference)</a></li>
+<li><a href="#orge533f83">2.1.9. Relational algebra</a></li>
+<li><a href="#orgbc57c2d">2.1.10. Relations and Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgac53dac">2.2. Proof techniques</a>
+<ul>
+<li><a href="#org7f95377">2.2.1. Direct proof</a></li>
+<li><a href="#org9157f37">2.2.2. Constructive proof</a></li>
+<li><a href="#org521482c">2.2.3. Proof by Contradiction</a></li>
+<li><a href="#org55d0f21">2.2.4. Proof by Induction</a></li>
+<li><a href="#org5589eb6">2.2.5. The pigeon hole principle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgea4d889" class="outline-2">
+<h2 id="orgea4d889"><span class="section-number-2">1</span> Intro</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This course and the book constitute an high speed overview of the most important fundamental computer science areas. It is intended for intermediate and professional developers who, for any reason, are interested in getting to know the formal, academic side of CS better.
+</p>
+
+<p>
+The goal is to provide an overview deep enough so that you end up understanding the ares, their problems and the connections between them. And shallow enough so that you aren't buried under hundreds of pages of proofs, formalizations and exercises.
+</p>
+
+<p>
+We will start by trying to understand what computer science is and why it isn't a new area at all. We'll consider the computability as a fundamental property of reality rather than a technological apparatus.
+</p>
+
+<p>
+We shall then proceed to learning essential mathematics necessary for further topics. These include proof techniques, notation and logic.
+</p>
+
+<p>
+Next, we will learn about the following topics:
+</p>
+
+<ol class="org-ol">
+<li>Set theory.</li>
+<li>Algorithms. Complexity and examples of important algorithms in sorting.</li>
+<li>Abstract Data Types.</li>
+<li>Graph theory.</li>
+<li>Theory of computation.</li>
+<li>Cryptography.</li>
+<li>Information theory.</li>
+</ol>
+
+<p>
+Since it seems impossible or at least unpractical to put all of computer science curriculum into a single course, even in a minified format, we shall leave the following topics for the last chapter. In it, we will give an overview to them:
+</p>
+
+<ul class="org-ul">
+<li>Abstract algebra</li>
+<li>Category theory</li>
+<li>Type theory</li>
+<li>Computational geometry</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7b2b914" class="outline-2">
+<h2 id="org7b2b914"><span class="section-number-2">2</span> Foundations of Math</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org190ed95" class="outline-3">
+<h3 id="org190ed95"><span class="section-number-3">2.1</span> Set theory</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgf4caea4" class="outline-4">
+<h4 id="orgf4caea4"><span class="section-number-4">2.1.1</span> Intro to sets</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+<b><b>Set theory</b></b> is an important area of math which lays as a foundation of many computer science topics, such as databases and types in programming. Set theory isn't difficult conceptually, and is generally nice to think about, especially if you like to visualize.
+</p>
+
+<p>
+A <b><b>set</b></b> is simply a collection of things.
+</p>
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/6ed/572/3eb/set_movies.png" style="max-width: 300px;" class="fr-fic fr-dib">
+<figcaption>Elements of set A.</figcaption>
+</figure>
+
+<p>
+A thing can be anything: name, object, idea. It's a very abstract notion. For example, I can define a set of movies I have seen: American Pie, Breakfast Club, The Room. Yes, I have only seen those three movies in my entire life. I am busy writing texts about set theory.
+</p>
+
+<p>
+Actually, I've watched The Room five times. Does this affect the set? No, because it doesn't change the notion of "what movies I have watched". This obvious idea is an integral property of sets: they contain only unique objects.
+</p>
+
+(Nothing stops us from defining a set of movie viewings, though. In that case, each element would be a particular instance of a "movie watching event", and, in my sad case, would contain 7 elements.)
+
+<p>
+If an object \(o\) is in set \(A\), we say \(o\) is a member of \(A\). To express this fact easily, mathematicians use the following notation: \(o \in A\).
+</p>
+
+<p>
+So, if \(A = \textrm{Movies I've watched}\) and \(o = \textrm{The Room}\), then \(o \in A\). But if \(b = \textrm{Avengers}\),  then \(b \notin A\). Now you can generate infinitely many "nerdy" T-shirts with prints like \(\textrm{joy} \in \textrm{mylife}\) or \(\textrm{party} \in \textrm{dahouse}\).
+</p>
+
+<p>
+If we were to look inside set \(A\), it might look like this:
+</p>
+
+\begin{equation}
+\{s, m, o\}
+\end{equation}
+
+<p>
+Sets don't have the notion of order, so it doesn't matter how you mention its members as long as you mention them all. So, all these:
+</p>
+
+<ul class="org-ul">
+<li>\(\{s, m, o\}\)</li>
+<li>\(\{s, o, m\}\)</li>
+<li>\(\{m, s, o\}\)</li>
+<li>etc.</li>
+</ul>
+
+<p>
+describe the same set \(A\).
+</p>
+
+<p>
+We are lucky: set \(A\) is finite and quite small. But sets can be infinite, and it would be impossible to write down all of its members. There are ways to describe such sets nevertheless. For example, the set of all natural numbers from \(1\) to \(n\) can be described like so:
+</p>
+
+\begin{equation}
+\{1, 2, 3, 4, ... n\}
+\end{equation}
+
+<p>
+Here we rely on reader's common sense and assume he or she can rightfully deduce what is meant by the ellipsis (<code>...</code>). Notations like this are very common in math, and while it isn't awfully strict, the idea is to be as unambiguous as possible. For example, when describing a set of odd natural numbers from \(1\) to \(n\), this would be bad:
+</p>
+
+\begin{equation}
+\{1, 3, ... n\}
+\end{equation}
+
+<p>
+simply because the sample isn't long enough to make a single assumption.
+</p>
+
+<p>
+Another example of a set that exists in math is the set of Boolean values:
+</p>
+
+\begin{equation}
+\mathscr{B} = \{T, F\}
+\end{equation}
+
+<p>
+\(T\) and \(F\) stand for <i>True</i> and <i>False</i>. Certain tests (or, in other words, questions) that can be answered with "yes" and "no", produce values of said set. So, we can say that
+</p>
+
+\begin{equation}
+(x > y) \in \mathscr{B}, \textrm{where }  x \in \mathbb{N} \textrm{ and } y \in \mathbb{N}
+\end{equation}
+
+<p>
+In other words, the answer to the question "is \(x\) greater than \(y\)" is a member of set \(\mathscr{B}\), as long as \(x\) and \(y\) are members of \(\mathbb{N}\) (i.e. natural numbers).
+</p>
+
+<p>
+Math in infinitely composable. Most programming languages can only dream of the level of composability and flexibility mathematicians enjoy. While not immediately useful, we could compose the following statements about sets:
+</p>
+
+\begin{equation}
+((x + y) \in \mathbb{N}) \in \mathscr{B}, \textrm{where }  x, y \in \mathbb{N}
+\end{equation}
+
+<p>
+Here we said "when \(x\) and \(y\) are members of \(\mathbb{N}\), then the answer to the question 'is \(x + y\) a member of \(\mathbb{N}\)' is a member of \(\mathscr{B}\)."
+</p>
+
+<p>
+Many groups in mathematics are sets: numbers of different types (natural, irrational, complex, etc.), notions of different types (e.g. Boolean), solutions to particular problems (e.g. graphs that satisfy a certain property). But describing groups of elements is just the tip of the iceberg. Set theory, with its axioms and definitions, can play a role of a foundational area of math, from which many other areas can be derived.
+</p>
+
+<p>
+In this course and the book we're not going to talk about how set theory (and category theory) can "generate" a large portion of the whole math. But these topics are among the most fascinating frontiers of modern mathematics.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7320c8" class="outline-4">
+<h4 id="orgc7320c8"><span class="section-number-4">2.1.2</span> Empty set</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Mathematicians love zero. Ever since its inception around 1770 BC, zero is an important part of mathematical models. The notion of "nothingness", which zero reflects in the context of counting, is present in all areas. In the context of sets, nothingness is an <i>empty set</i>.
+</p>
+
+\begin{equation}
+\varnothing = \{\}
+\end{equation}
+
+<p>
+Why would we need empty sets? Well, sometimes we want to describe a notion of having no objects under a certain description. For example, since I only watched 3 movies in my life, and all of them were American, I can describe:
+</p>
+
+\begin{equation}
+\varnothing = \textrm{the set of all non-American movies I've watched}.
+\end{equation}
+
+<p>
+A more mathematical example would be something like this:
+</p>
+
+\begin{equation}
+\varnothing = \{x | x \in \mathbb{N} \textrm{ and } x < 0\}
+\end{equation}
+
+<p>
+which says that the set of natural numbers smaller than zero is an empty set. It's a formal way to say that there are no natural numbers less than zero.
+</p>
+
+<p>
+Note the use of vertical line <b><code>|</code></b>, it is a shorter way to say "where".
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfc8f148" class="outline-4">
+<h4 id="orgfc8f148"><span class="section-number-4">2.1.3</span> Subset, superset</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+When all members of set \(A\) are present in another set \(B\), then \(A\) is a <b>subset</b> of \(B\). Let's say set \(B\) is the set of all movies ever produced. Then \(A\) (movies I've watched) is clearly a subset of \(B\). This notion is expressed like so:
+</p>
+
+\begin{equation}
+A \subseteq B
+\end{equation}
+
+<p>
+To look at things from the other end, \(B\) is a <b>superset</b> of \(A\):
+</p>
+
+\begin{equation}
+B \supseteq A
+\end{equation}
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/5f4/657/168/subset.png" style="max-width: 300px; width: 300px;">
+<figcaption>A set and its subset.</figcaption>
+</figure>
+
+<p>
+You know what else is a subset of \(B\)? An empty set!
+</p>
+
+\begin{equation}
+\varnothing \subseteq B
+\end{equation}
+
+<p>
+This either sounds absolutely natural to you or extremely weird. It makes perfect sense to a mathematician, because it's easy to argue: <i>all</i> members of \(\varnothing\) are present in \(B\), all zero of them.
+</p>
+
+<p>
+It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
+</p>
+
+\begin{equation}
+\displaylines{
+A \subseteq A \\
+B \subseteq B \\
+Z \subseteq Z
+}
+\end{equation}
+
+<p>
+By extension, if two sets are the same, then either of them is a subset of the other.
+</p>
+
+\begin{equation}
+\textrm{if } A \subseteq B \textrm{ and } B \subseteq A \textrm{ then } A = B
+\end{equation}
+
+<p>
+When we look at a statement \(A \subseteq B\), we often need to know whether \(A = B\) or not. To distinguish between the two cases, mathematicians use a special notion of a <b>proper subset</b>.
+</p>
+
+<p>
+If \(A \subseteq B\), but \(A \neq B\), then \(A\) is a proper subset of \(B\).
+</p>
+
+\begin{equation}
+A \subset B
+\end{equation}
+
+<p>
+Since I haven't watched all the movies ever produced, I can say that \(A\) is a proper subset of \(B\). So, a set is a subset of itself, but is never a proper subset of itself.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f790ea" class="outline-4">
+<h4 id="org0f790ea"><span class="section-number-4">2.1.4</span> Cardinality</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+Before we start to talk about sizes and products, let's first introduce a new notion:  <b><b>sequence</b></b>. A sequence is simply a series of elements. Unlike sets, sequences have order and may contain duplicate values. In this sense sequences are more down to earth, practical collections.
+</p>
+
+<p>
+Sequences are written with round brackets. For example, a sequence of prime numbers in ascending order is:
+</p>
+
+\begin{equation}
+(2, 3, 5, 7, 11, ...)
+\end{equation}
+
+<p>
+Note that it is an infinite sequence. An example of a finite sequence is a sequence of natural even numbers smaller than 10:
+</p>
+
+\begin{equation}
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+\end{equation}
+
+<hr />
+
+<p>
+If \(A\) is a finite set (that is, \(A\) is not infinite, and we can count how many elements there are in it), we use \(|A|\) to denote the number of elements of \(A\). This is the <b><b>cardinality</b></b>. For example:
+</p>
+
+\begin{equation}
+\displaylines{
+|\{4, 8, 15, 16, 23, 42\}| = 6, \\
+|\varnothing| = 0, \\
+|\{\{a, e\}\}| = 1.
+}
+\end{equation}
+
+<p>
+Note the last example: it defines a set which contains one set, thus its cardinality is 1. The number of elements of the internal set is irrelevant. Programmers find this obvious, as it reminds them of nested data structures like arrays of arrays.
+</p>
+
+<p>
+Knowing about sets, subsets and cardinalities, let's look at a statement and prove it.
+</p>
+
+<p>
+<b>Statement 1</b>: <i>If \(A\) is a finite set of \(m\) elements, then there are \(2^{m}\) subsets of \(A\).</i>
+</p>
+
+<p>
+<b>Proof</b>: Suppose \(A = \{a_{1}, a_{2}, ..., a_{m}\}\) and \(\mathscr{P}A\) is the set of all subsets of \(A\). Then we can divide \(\mathscr{P}A\) into \(2=2^{1}\) collections: subsets of \(A\) which contain \(a_{1}\) and those which don't. Considering the next element \(a_{2}\), we get 4=2<sup>2</sup> collections:
+</p>
+
+<ol class="org-ol">
+<li>One which contains both \(a_{1}\) and \(a_{2}\),</li>
+<li>one which contains \(a_{1}\), but not \(a_{2}\),</li>
+<li>one which contains \(a_{2}\), but not \(a_{1}\),</li>
+<li>one which contains neither \(a_{1}\) nor \(a_{2}\).</li>
+</ol>
+
+<p>
+Continuing this way, we see that there are \(2^{m}\) subsets of \(A\), each subset is determined by the fact of whether or not each \(a_{j}\) is included, as \(j\) goes from \(1\) to \(m\).
+</p>
+
+<p>
+This sort of counting by inclusion / exclusion is a popular technique in math and especially in computer science. One can visualize such proof for a particular case by drawing a "binary decision tree".
+</p>
+
+<p>
+Consider set \(A = \{a_{1}, a_{2}, a_{3}\}\). The proof states that there are \(2^{3} = 8\) subsets of \(A\). Do describe each imaginable set we need to determine whether each element is in it or not. Starting from \(a_{1}\), we need to answer "yes" or "no", and proceed to ask the same question for \(a_{2}\) and then for \(a_{3}\).
+</p>
+
+
+<figure><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/17e/f9a/a53/powerset_binary_decision_tree.png">
+<figcaption>Binary decision tree for 8 subsets of A.</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org7218b4b" class="outline-4">
+<h4 id="org7218b4b"><span class="section-number-4">2.1.5</span> Cartesian product</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+Given two sets \(A\) and \(B\), we are often interested in all ordered pairs of their elements. For example, if \(A = \{a, b\}\) and \(B = \{1, 2\}\), the ordered pairs are as follows:
+</p>
+
+\begin{equation}
+\displaylines{
+(a, 1)\\
+(a, 2)\\
+(b, 1)\\
+(b, 2)\\
+}
+\end{equation}
+
+<p>
+The set of all such pairs is called the <b>Cartesian product</b> of \(A\) and \(B\). The name comes from the French mathematician René Descartes.
+</p>
+
+<figure><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/544/c5f/34f/Frans_Hals_-_Portret_van_Rene_Descartes.jpg" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Frans Hals, Portret van René Descartes.</figcaption>
+</figure>
+
+<p>
+Formally, Cartesian product can be described like this:
+</p>
+
+\begin{equation}
+A \times B = \{(a,b) | a \in A, b \in B\}
+\end{equation}
+
+<p>
+Descartes saw that the number plane \(x, y\) could be represented as a product of two sets of real numbers.
+</p>
+
+\begin{equation}
+\mathbb{R} \times \mathbb{R} = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}
+\end{equation}
+
+<div class="figure">
+<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/f4d/0cf/02f/xy_plane.png" alt="xy_plane.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Each point on x, y plane is in the Cartesian product of 2 sets of real numbers.</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0250c88" class="outline-4">
+<h4 id="org0250c88"><span class="section-number-4">2.1.6</span> Union</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<p>
+Sets on their own are a bit boring, frozen things. Interesting results can be observed when we consider interactions between sets. At the same time, these interactions can be viewed as frozen things themselves, not actions or processes.
+</p>
+
+<p>
+This happens often in math: the same idea can be viewed as either an action or a thing. Even functions, seemingly action-able, moving notions, can (and will) be defined as mere static constructs. It's interesting to ponder about these things, draw analogies to physics and time.
+</p>
+
+<p>
+Regardless, let's quickly overview three main sorts of interactions. Chances are they are already very familiar to you, especially if you've done any SQL.
+</p>
+
+<p>
+<b><b>Union</b></b> of a collection of sets is the set of all elements of the collection.
+</p>
+
+<p>
+Given two sets \(A\) and \(B\), union is defined as:
+</p>
+
+\begin{equation}
+A \cup B = \{ x : x \in A \textrm{ or } x \in B \}
+\end{equation}
+
+<p>
+This reads as:
+</p>
+
+<blockquote>
+<p>
+Union of \(A\) and \(B\) is a set of elements \(x\), where \(x\) belongs to \(A\) or x belongs to \(B\).
+</p>
+</blockquote>
+
+<p>
+For example, if \(A = \{1, 2, 3\}\), and \(B = \{3, 4, 5\}\), then:
+</p>
+
+\begin{equation}
+A \cup B = \{1, 2, 3, 4, 5\}
+\end{equation}
+
+<p>
+Note that even though each set contains 3 elements, the resulting union contains 5 elements only. Since union is a set, all rules and properties regarding sets still apply, so it cannot contain element \(3\) twice.
+</p>
+
+<p>
+It is sometimes necessary to keep duplicates somehow, without violating the rules of sets. One way is "tag" each element in both sets by generating a Cartesian product of each set.
+</p>
+
+\begin{equation}
+\displaylines{
+A \times \{t_{A} \} = \{(1, t_{A}), (2, t_{A}), (3, t_{A}) \} \\
+B \times \{t_{B} \} = \{(3, t_{B}), (4, t_{B}), (5, t_{B}) \}
+}
+\end{equation}
+
+<p>
+So now instead of each number we deal with a sequence of two elements: the original number and a tag which refers to the original set. We use the term <i>n-tuple</i> for a sequence of length \(n\). Thus, here we deal with sets of <i>2-tuples</i>.
+</p>
+
+<p>
+Since all tuples are unique, the resulting union set contains 6 distinct elements:
+</p>
+
+\begin{equation}
+\displaylines{
+A \times \{t_{A} \} \cup B \times \{t_{B} \} = \\
+\{(1, t_{A}), (2, t_{A}), (3, t_{A}), (3, t_{B}), (4, t_{B}), (5, t_{B}) \}
+}
+\end{equation}
+
+<p>
+Every time we learn about a new approach or an idea, your inner mathematician should aspire to generalize. We've already generalized the notion of union by providing a formal mathematical definition. Let us now define this so-called <b><b>disjoint union</b></b> \(\sum A_{i}\) to be:
+</p>
+
+\begin{equation}
+\bigcup_{1 \leq i \leq n} A_{i} \times \{i\} = \{(x, i) | x \in A_{i} \textrm{ and } 1 \leq i \leq n\}
+\end{equation}
+
+<p>
+It might seem like the notation is getting more and more complicated, but it's only a combination of existing notions and symbols, nothing new. The big U is a generalization of unions, here it is limited to all sets \(A_{i} \times \{i\}\) where \(i\) goes from 1 to some \(n\). You can think of \(i\) as a variable or a parameter. We see it is then used to define different sets (e.g. \(A_{1}\), \(A_{2}\), etc) and corresponding tagging sets \(\{1\}\), \(\{2\}\), etc. Then, on the right-hand side of the equation there's a set of many 2-tuples, each containing an element from \(A_{i}\) and a tagging number \(i\).
+</p>
+
+<p>
+To easily differentiate between regular unions and disjoint unions, we use two different symbols: \(\cup\) for union, \(+\) for disjoint union. Thus:
+</p>
+
+\begin{equation}
+\bigcup_{1 \leq i \leq n} A_{i} \times \{i\} = A_{1} + ... + A_{n}.
+\end{equation}
+
+<hr />
+
+<p>
+Even if you haven't heard of set union, you've definitely seen Venn diagrams. They illustrate union, intersection and complement quite nicely.
+</p>
+
+
+<div class="figure">
+<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/8cf/e18/857/British_Isles_Venn_Diagram-en.svg.png" alt="British_Isles_Venn_Diagram-en.svg.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Venn diagram illustrating the complex dichotomy of British Isles.</p>
+</div>
+
+<p>
+Contrary to popular belief, Venn diagrams aren't suitable representations of <code>SQL JOIN</code>. You'll see why later.
+</p>
+
+<p>
+When working with databases using SQL, union operation is a direct equivalent of union from set theory. The following example returns all usernames of both customers and managers:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> users
+<span style="color: #a626a4;">UNION</span>
+<span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> managers;
+</pre>
+</div>
+
+<p>
+This regular <code>UNION</code> operation behaves like set union in regards to duplicates. Thus, if both tables contain identical usernames, only one instance would end up in the union. An alternative SQL operator <code>UNION ALL</code> allows duplicates. The resulting collection of records is not necessarily a set, since it main contain identical records.
+</p>
+
+<p>
+It is tempting to see SQL as set theory applied to databases, but it would be wrong to think this way. SQL can be considered a domain specific language for a particular application of relational algebra, which <i>incorporates</i> certain areas of set theory. In general, one can say that set theory and SQL <i>intersect</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7b8293" class="outline-4">
+<h4 id="orgf7b8293"><span class="section-number-4">2.1.7</span> Intersection</h4>
+<div class="outline-text-4" id="text-2-1-7">
+<p>
+<b><b>Intersection</b></b> of two sets \(A\) and \(B\) is the set containing all elements of \(A\) that also belong to \(B\) (or vice versa). In other words, it's a set of common elements.
+</p>
+
+\begin{equation}
+A \cap B = \{ x : x \in A \textrm{ and } x \in B \}
+\end{equation}
+
+<p>
+This reads as:
+</p>
+
+<blockquote>
+<p>
+Intersection of \(A\) and \(B\) is the set of elements \(x\), where \(x\) belongs to \(A\) and x belongs to \(B\).
+</p>
+</blockquote>
+
+<p>
+For example, if \(A = \{1, 2, 3\}\), and \(B = \{3, 4, 5\}\), then 3 is the only element present in both sets:
+</p>
+
+\begin{equation}
+A \cap B = \{3\}
+\end{equation}
+
+<p>
+<i>Sidenote: I quickly remembered which symbol &#x2013; \(\cup\) and \(\cap\) &#x2013; means which operation by noticing that \(\cup\) looks like letter U, so it means union. I've had a similar moment when learning Boolean algebra and logic, where \(\wedge\) means AND and looks like \(A\) without the horizontal bar.</i>
+</p>
+
+<p>
+SQL has <code>INTERSECT</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> customers
+<span style="color: #a626a4;">INTERSECT</span>
+<span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> managers;
+</pre>
+</div>
+
+<p>
+Naturally, duplicates aren't an issue for intersection, because by definition one pair of elements results in one element, and not two. If there are two elements in one set, and one same element in the other set, the result is still one common element in the intersection.
+</p>
+
+<p>
+A Venn diagram for intersection is often used to show commonality. For example, coming back to sets of favorite movies, we can compare your favorite movies and mine and see if there are any movies we both love. If no such movies exist, then our sets are <b><b>disjoint</b></b>. Formally, two sets are disjoint if their intersection is an empty set:
+</p>
+
+\begin{equation}
+A \cap B = \varnothing
+\end{equation}
+
+<p>
+A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org04c011b" class="outline-4">
+<h4 id="org04c011b"><span class="section-number-4">2.1.8</span> Complement (difference)</h4>
+<div class="outline-text-4" id="text-2-1-8">
+<p>
+<b><b>Complement</b></b> of set \(A\) is a set of elements not in \(A\). In other words, it's the opposite of \(A\).
+</p>
+
+\begin{equation}
+A^{C} = \{x : x \notin A \}
+\end{equation}
+
+<p>
+The notion of complement (or difference) requires an implicit assumption: what other elements are we talking about? Say, the complement of all positive numbers is negative numbers, and zero, and dogs, and Korean words, and&#x2026; all possible elements that aren't positive numbers? Thinking this way quickly reduces the conversation to either absurdity or to Russell's paradox. This is why the complement assumes some larger set in which \(A\) exists. This larger set should be obvious from the context, or should be specified explicitly somewhere. For instance, when talking about movies, the complement of the set of my favorite movies is obviously all other movies that aren't my favorite.
+</p>
+
+<p>
+The term <b>universe</b> is used for a collection of entities one wishes to consider. For the example of movies, the universe is probably "all movies ever produced".
+</p>
+
+<hr />
+
+<p>
+It's sometimes useful to consider the complement of a set with respect to some other well-defined set. This is often called <b>set difference</b> and is denoted as \(A - B\). Formally:
+</p>
+
+\begin{equation}
+A - B = \{x | x \in A \textrm{ but } x \notin B\}
+\end{equation}
+
+<p>
+SQL operator <code>EXCEPT</code> is similar to this idea.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> users
+<span style="color: #a626a4;">EXCEPT</span>
+<span style="color: #a626a4;">SELECT</span> username <span style="color: #a626a4;">FROM</span> managers;
+</pre>
+</div>
+
+<p>
+This query would return all users who aren't managers. In set theory, we'd write it this way:
+</p>
+
+\begin{equation}
+\textrm{Users} - \textrm{Managers}
+\end{equation}
+
+<p>
+Or, with implicit universe:
+</p>
+
+\begin{equation}
+\textrm{Managers}^{C}
+\end{equation}
+
+<p>
+with an assumption that we're talking about users in general.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge533f83" class="outline-4">
+<h4 id="orge533f83"><span class="section-number-4">2.1.9</span> Relational algebra</h4>
+<div class="outline-text-4" id="text-2-1-9">
+<p>
+If you worked with SQL in different databases, you might've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called Relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
+</p>
+
+<p>
+Relational algebra was created by Edgar F. Codd in 1960s-1970s, who worked at IBM at the time. Codd proposed this formal language as a basis for database querying.
+</p>
+
+<p>
+The good news is that knowing set theory and relational algebra reduces potential SQL-related problems to basically documentation lookup. If you know how unions work, what's the idea behind a Cartesian product and what are expressions of relational algebra, then it comes down to finding the correct SQL syntax to solve the problem at hand.
+</p>
+
+<p>
+We will finish up the section on set theory with a short overview of different aspects of relational algebra and their relation to SQL.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd797539"></a>Relation<br />
+<div class="outline-text-5" id="text-2-1-9-1">
+<p>
+<b><b>Relation</b></b> is essentially a table, with columns (called "attributes") and rows. For example, a relation <code>User</code> may be used to describe users in a web service.
+</p>
+
+<pre class="example">
+User(id, username, firstName, lastName, email)
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">username</th>
+<th scope="col" class="org-left">firstName</th>
+<th scope="col" class="org-left">lastName</th>
+<th scope="col" class="org-left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+For demonstrating purposes, let's define another table:
+</p>
+
+<pre class="example">
+Manager(id, department, level)
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The name of a relation can play a role of the simplest query:
+</p>
+
+<pre class="example">
+User
+</pre>
+
+<p>
+which returns the whole table.
+</p>
+</div>
+</li>
+
+<li><a id="org81ca9a1"></a>Projection<br />
+<div class="outline-text-5" id="text-2-1-9-2">
+<p>
+A <b><b>projection</b></b> is an operation of extracting records with specific columns (attributes). It is denoted by Greek letter \(\Pi\) (uppercase pi), with a list of columns as subscript, followed by relation's name.
+</p>
+
+<p>
+For example, here we extract a sub-relation of User with ids and emails only:
+</p>
+
+\begin{equation}
+\Pi_{\textrm{id, email}} \textrm{ User}
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jnc@hotmail.com</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">paxro@aol.com</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">bl@wh.gov</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgb12e23c"></a>Select<br />
+<div class="outline-text-5" id="text-2-1-9-3">
+<p>
+A <b><b>selection</b></b> is an operation of filtering records by values. It is denoted by Greek letter \(\sigma\) (sigma) with a condition, followed by relation's name.
+</p>
+
+<p>
+For example, here we get managers with level higher than 2:
+</p>
+
+\begin{equation}
+\sigma_{\textrm{level} > 2} \textrm{ Manager}
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgc48916c"></a>Operating on expressions<br />
+<div class="outline-text-5" id="text-2-1-9-4">
+<p>
+Select and project operators work on any expression, not only on whole relations. This means we can combine them arbitrarily. For example, we can select (essentially, filter) first, and then extract certain columns.
+</p>
+
+\begin{equation}
+\Pi_{\textrm{id, level}} (\sigma_{\textrm{level} > 2} \textrm{ Manager})
+\end{equation}
+
+<p>
+The result is a newly constructed relation consisting of only two columns, which, in turn, can be used for other operations:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="org3782472"></a>Cross product (cartesian product)<br />
+<div class="outline-text-5" id="text-2-1-9-5">
+<p>
+Recall the idea behind Cartesian product in set theory: given two sets \(A = \{a, b\}\) and \(B = \{1, 2\}\), the <b>Cartesian product</b> is a set of pairs of all combinations of elements:
+</p>
+
+\begin{equation}
+\displaylines{
+(a, 1)\\
+(a, 2)\\
+(b, 1)\\
+(b, 2)\\
+}
+\end{equation}
+
+<p>
+Much of the power of relational algebra comes from applying this idea to relations. It is also often called <b>cross product</b>.
+</p>
+
+<p>
+Here's the cross-product of <code>User</code> and <code>Manager</code>:
+</p>
+
+\begin{equation}
+\textrm{User} \times \textrm{Manager}
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">User.id</th>
+<th scope="col" class="org-left">username</th>
+<th scope="col" class="org-left">firstName</th>
+<th scope="col" class="org-left">lastName</th>
+<th scope="col" class="org-left">email</th>
+<th scope="col" class="org-right">Manager.id</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Since both relations contain a column named <code>id</code>, the resulting relation contains two distinct columns with tagged names <code>User.id</code> and <code>Manager.id</code>. This is similar to the way we "tagged" items in set union.
+</p>
+
+<p>
+This might not seem too useful: we just combined all records, and many of the new rows don't make sense. Cross-product is rarely useful as is. Instead, the goal is often to generate raw data for the operations. For example, with this long table at hand, we can first eliminate the nonsense rows by applying select:
+</p>
+
+\begin{equation}
+\sigma_{\textrm{User.id} = \textrm{Manager.id}} (\textrm{User} \times \textrm{Manager})
+\end{equation}
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">User.id</th>
+<th scope="col" class="org-left">username</th>
+<th scope="col" class="org-left">firstName</th>
+<th scope="col" class="org-left">lastName</th>
+<th scope="col" class="org-left">email</th>
+<th scope="col" class="org-right">Manager.id</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-right">1</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+<td class="org-right">2</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-right">91</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Assuming user ids in the system are used to identify managers as well, we now have a sensible relation of managers with their complete user info intact.
+</p>
+
+<p>
+Now we can filter managers by level and get rid of unneeded columns:
+</p>
+
+
+\begin{equation}
+\Pi_{\textrm{User.id, email, department}}
+\big(
+\sigma_{\textrm{User.id} = \textrm{Manager.id}, \textrm{level} > 2} (\textrm{User} \times \textrm{Manager})
+\big)
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">User.id</th>
+<th scope="col" class="org-left">email</th>
+<th scope="col" class="org-left">department</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-left">engineering</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-left">mathematics</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="org61780d3"></a>Natural join<br />
+<div class="outline-text-5" id="text-2-1-9-6">
+<p>
+The process of performing a cross-product and then filtering out rows that "make sense" by comparing the attributes of the same name is common enough so that relational algebra has a special operator called <b>natural join</b>. It is denoted by \(\bowtie\) (bow tie). The result is a relation with matching rows and no "tagged" attributes:
+</p>
+
+\begin{equation}
+\textrm{User} \bowtie \textrm{Manager}
+\end{equation}
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">id</th>
+<th scope="col" class="org-left">username</th>
+<th scope="col" class="org-left">firstName</th>
+<th scope="col" class="org-left">lastName</th>
+<th scope="col" class="org-left">email</th>
+<th scope="col" class="org-left">department</th>
+<th scope="col" class="org-right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">jenn</td>
+<td class="org-left">Jenn</td>
+<td class="org-left">Clarkson</td>
+<td class="org-left">jnc@hotmail.com</td>
+<td class="org-left">engineering</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">pax</td>
+<td class="org-left">Paxi</td>
+<td class="org-left">Romanov</td>
+<td class="org-left">paxro@aol.com</td>
+<td class="org-left">medicine</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">thankso</td>
+<td class="org-left">Barack</td>
+<td class="org-left">Liu</td>
+<td class="org-left">bl@wh.gov</td>
+<td class="org-left">mathematics</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+As you see, natural join is basically a syntactic sugar on top of existing features of relational algebra.
+</p>
+</div>
+</li>
+
+<li><a id="org32e00e5"></a>Union, intersection, difference<br />
+<div class="outline-text-5" id="text-2-1-9-7">
+<p>
+Relational algebra includes three operators straight from set theory: union, intersection and difference. They work just like you might expect, although there are some caveats. We will not focus on these topics at the moment.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgbc57c2d" class="outline-4">
+<h4 id="orgbc57c2d"><span class="section-number-4">2.1.10</span> Relations and Functions</h4>
+<div class="outline-text-4" id="text-2-1-10">
+<p>
+In programming, we often deal with paired data:
+</p>
+
+<ul class="org-ul">
+<li>username — email</li>
+<li>person — phone number</li>
+<li>id — company</li>
+</ul>
+
+<p>
+All cases can be considered as two sets, with a rule to connect their elements.
+</p>
+
+<p>
+Given two sets \(A\) and \(B\), a <i>map function</i> \(f\) from \(A\) to \(B\), denoted as
+</p>
+
+\begin{equation}
+f: A \rightarrow B
+\end{equation}
+
+<p>
+is an assignment  to each element \(a\) in \(A\) of a single element in \(B\).
+</p>
+
+<p>
+We sometimes use a notation \(a \mapsto f(a)\) (note the different arrow) to indicate that \(a\) maps to some value via function \(f\). We call \(f(a)\) an <i>image</i> of \(a\). Set \(A\) is called the <i>domain</i> of \(f\), and \(B\) the <i>codomain</i> of \(f\).
+</p>
+
+<p>
+Notice how we talk about functions as static data, not as a process. In programming, we're used to functions being descriptions of processes, even though in most languages we can pass functions around as data. But consider this: how would you cache a function call? An obvious approach is to pre-compute some answers beforehand and store them in a table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Argument</th>
+<th scope="col" class="org-right">Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">"a"</td>
+<td class="org-right">52321</td>
+</tr>
+
+<tr>
+<td class="org-left">"b"</td>
+<td class="org-right">12321</td>
+</tr>
+
+<tr>
+<td class="org-left">"c</td>
+<td class="org-right">81872</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2026;</td>
+<td class="org-right">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Theoretically, we could do this for all possible arguments, which would allow us to disregard all function's code and continue operating with a cache table exclusively. This means that any function (unless it deals with randomization) can be represented as static data. A mathematical notation of a function as a relation between two sets (essentially, a set of arguments and a set of return values) generalizes this idea.
+</p>
+
+<p>
+A <b>binary relation</b> of two sets \(A\) and \(B\) is a subset of \(A \times B\). (Recall that \(A \times B\) is a set of all combinations of pairs of values of the two sets). Thus, a <i>function</i> is a binary relation, having the property that for each element \(a \in A\) there is exactly one ordered pair in \(A \times B\) whose first component is \(a\).
+</p>
+
+<p>
+There are three types of relations:
+</p>
+
+<p>
+<b>1.</b> The function \(f: A \rightarrow B\) is <i>one-to-one</i> (<b>injective</b>) if no two values of \(A\) result in the same value of \(B\). In other words, there's at most one incoming arrow for each element of \(B\).
+</p>
+
+<p>
+Formally: for any two distinct elements \(a\) and \(a'\) in \(A\), we have \(f(a) \neq f(a')\).
+</p>
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/2cc/7f2/62a/injection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Injection.</figcaption>
+</figure>
+
+<p>
+<b>2.</b> The function \(f: A \rightarrow B\) is <i>onto</i> (<b>surjective</b>) if all elements of \(B\) are covered. In other words, no element of \(B\) is without at least one arrow.
+</p>
+
+<p>
+Formally: for each element \(b \in B\), there exists an element \(a \in A\), such that \(f(a) = b\).
+</p>
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/acd/90a/08f/surjection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Surjection.</figcaption>
+</figure>
+
+<p>
+<b>3.</b> The function \(f\) is a <b>bijection</b> if \(f\) is both injective and surjective. In other words, all elements of \(A\) are mapped uniquely to all elements of \(B\).
+</p>
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/cfc/97e/e37/bijection.png" style="width: 300px;" class="fr-fic fr-dib">
+<figcaption>Bijection.</figcaption>
+</figure>
+
+<p>
+We'll not focus on functions and relations anymore at the moment. Depending on how this course goes on, we'll either keep getting back to elements of this topic, or will extract it into a separate chapter.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac53dac" class="outline-3">
+<h3 id="orgac53dac"><span class="section-number-3">2.2</span> Proof techniques</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org7f95377" class="outline-4">
+<h4 id="org7f95377"><span class="section-number-4">2.2.1</span> Direct proof</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Back when we've been discussing set cardinality, we've successfully proved a statement: <i>If \(A\) is a finite set of \(m\) elements, then there are \(2^{m}\) subsets of \(A\).</i> Let's talk about proofs in more detail, and discuss different proof techniques.
+</p>
+
+<p>
+A proof is a sequence of mathematical statements, a path from some basic truth to the desired outcome. An impeccable argument, if you will. Possibly the simplest form of proof is a direct proof. It's a straightforward attempt to see what the statement means if we dare to play with it. Consider a theorem:
+</p>
+
+<p>
+<b>Theorem 1.</b> If \(n\) is an odd positive integer, then \(n^2\) is odd.
+</p>
+
+<p>
+<b>Proof.</b> An odd positive integer can be written as \( n = 2k + 1 \), since something like \( 2k \) is even and adding 1 makes it definitely odd. We're interested in what odd squared looks like, so let's square this definition:
+</p>
+
+<p>
+\[ n^2 = (2k + 1)^2 = \]
+\[ 4k^2 + 4k + 1 = \]
+\[ 2(2k^2 + 2k) + 1 \]
+</p>
+
+<p>
+So, we have this final formula \( 2(2k^2 + 2k) + 1 \) and it follows the pattern of \( 2k + 1 \). This means it's odd! We have a proof. \(\blacksquare\)
+</p>
+
+<p>
+(This black square — \(\blacksquare\) — is the symbol mathematicians often use to denote the end of proof.)
+</p>
+
+<p>
+This theorem is based on an idea that numbers described as \( 2k + 1 \) are definitely odd. This idea could be another theorem that requires another proof, and that proof would be based on some other theorems. The general idea of mathematics is that if you follow any theorem to the very beginning, you'll meet the fundamental axioms, the basis of everything.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9157f37" class="outline-4">
+<h4 id="org9157f37"><span class="section-number-4">2.2.2</span> Constructive proof</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+The idea behind constructive proof is to show the existence of a certain object by describing a method of creating it.
+</p>
+
+<p>
+<b>Theorem 2.</b> There exists a rational number \(x\) such that \(\sqrt{10^{100}} < x < \sqrt{10^{100}+1}\).
+</p>
+
+<p>
+<b>Proof.</b> \(\sqrt{10^{100}}\) is \(10^{50}\). Now, let's just try different clearly rational values for \(x\) that <i>seem</i> to lie between the required boundaries. For example, let's try \(x = 10^{50} + 10^{-51}\). It's obviously larger than \(10^{50}\), so we only need to show that it's smaller than \(\sqrt{10^{100}+1}\).
+</p>
+
+<p>
+To do that, let's compute \(x^{2}\) so that we can compare it with \((\sqrt{10^{100}+1})^{2}\):
+</p>
+
+<p>
+\[ x^{2} = (10^{50} + 10^{-51})^{2} \]
+\[ = 10^{100} + 2 \times (10^{50} \times 10^{-51}) + 10^{-102} \]
+\[ = 10^{100} + 2 \times 10^{50-51} + 10^{-102} \]
+\[ = 10^{100} + 2 \times 10^{-1} + 10^{-102} \]
+</p>
+
+<p>
+Clearly:
+</p>
+
+<p>
+\[ (2 \times 10^{-1} + 10^{-102}) < 1 \]
+</p>
+
+<p>
+therefore
+</p>
+
+<p>
+\[ 10^{100} + 2 \times 10^{-1} + 10^{-102} < (\sqrt{10^{100}+1})^{2} \]
+\[ x^{2} < (\sqrt{10^{100}+1})^{2} \]
+</p>
+
+<p>
+and, by extension
+</p>
+
+<p>
+\[ x < \sqrt{10^{100}+1} \]
+</p>
+
+<p>
+Therefore, there indeed exists a rational number \(x\) such that \(\sqrt{10^{100}} < x < \sqrt{10^{100}+1}\) \(\blacksquare\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org521482c" class="outline-4">
+<h4 id="org521482c"><span class="section-number-4">2.2.3</span> Proof by Contradiction</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Another approach is proof by contradiction. Here is the idea:
+</p>
+
+<ol class="org-ol">
+<li>Assume the statement is false or true.</li>
+<li>Derive a contradiction, a paradox, something that doesn't make sense. This will mean that the statement cannot possibly be what we assumed it to be, therefore it's the opposite.</li>
+</ol>
+
+<p>
+When I first saw this formal technique, it puzzled me. It didn't seem to be valid: alright, assuming something is false leads to a paradox, so what? We haven't proven that assuming it's true doesn't lead to another paradox! Or even the same paradox, for that matter. What I failed to understand conceptually is that a statement is a binary thing: it's either true or untrue. Nothing in between. So, if one can definitely declare "X is not false", then no other options are left: "X must be true".
+</p>
+
+<p>
+<b>Theorem 3.</b> \(n\) is a positive integer. If \( n^2 \) is even, then \(n\) is even.
+</p>
+
+<p>
+We may try to construct another direct proof, but creating paradoxes is much more fun!
+</p>
+
+<p>
+<b>Proof.</b> Let's assume that \(n^2\) is even, <b>but \(n\) is odd</b>. This is the opposite of what we want, and we will show that this scenario is impossible.
+</p>
+
+<p>
+\(n\) is odd, then, according to Theorem 1 (which is already proven), \(n^2\) must be odd. This doesn't make sense! Our assumption and our conclusion are the opposite. This is a paradox, so the assumption was wrong. Meaning, the idea "\(n^2\) is even, but \(n\) is odd" is false. Therefore, the idea "\(n^2\) is even, \(n\) is even" is true. \(\blacksquare\)
+</p>
+
+<hr />
+
+<p>
+Let's look at one rather famous proof of irrationality of \(\sqrt{2}\).
+</p>
+
+<p>
+<b>Theorem 4.</b> \( \sqrt{2} \) is irrational.
+</p>
+
+<p>
+Woah, this is&#x2026; different. Prior theorems were formulas, something to play with, something physical. But here is just an idea, so how would we even start?
+</p>
+
+<p>
+Let's start with a definition.
+</p>
+
+<blockquote>
+<p>
+In mathematics, the irrational numbers are all real numbers which are not rational numbers.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+</blockquote>
+
+<p>
+Doesn't seem helpful, but let's continue. What are rational numbers then? Are they some reasonable beings who make optimal decisions all the time?
+</p>
+
+<blockquote>
+<p>
+A rational number is any number that can be expressed as the fraction \(\frac{p}{q}\) of two integers.<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+</p>
+</blockquote>
+
+<p>
+Oh! They are rational because they are <i>ratios</i>! Just to make things super clear, let's dig one more step and make sure we understand integers.
+</p>
+
+<blockquote>
+<p>
+An integer (from the Latin <i>integer</i> meaning "whole") is a number that can be written without a fractional component. For example, \(21\), \(4\), \(0\), and \(−2048\) are integers, while \(9.75\), \( 5\frac{1}{2} \) and \( \sqrt{2} \) are not.<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
+</p>
+</blockquote>
+
+<p>
+Combining these things, we can construct a comprehensive definition of the irrational number: it's a number that cannot be expressed as the fraction of two whole numbers. Now, let's apply this to Theorem 3 so that it has some meat:
+</p>
+
+<p>
+<b>Theorem 4, re-framed.</b> \( \sqrt{2} \) cannot be expressed as \( \frac{p}{q} \), where \(p\) and \(q\) are integers.
+</p>
+
+<p>
+Alright, now there is something to play with!
+</p>
+
+<p>
+<b>Proof.</b> Start by assuming the opposite: \( \sqrt{2} \) is rational. This means it can be written as a fraction of two integers:
+</p>
+
+<p>
+\[ \sqrt{2} = \frac{p}{q}\ \]
+</p>
+
+<p>
+We can assume that \(p\) and \(q\) are not <b>both</b> even, because if they are, we can reduce them by dividing both by a common factor (like, for example, \( \frac{8}{10}\ \) should be reduced to \( \frac{4}{5}\ \)). In other words, if they are both even, reduce them until at least one is odd and no further reductions are possible.
+</p>
+
+<p>
+Now, let's square the square root:
+</p>
+
+<p>
+\[ (\sqrt{2})^2 = \frac{p^2}{q^2}\ \]
+</p>
+
+<p>
+\[ 2 = \frac{p^2}{q^2}\ \]
+</p>
+
+<p>
+\[ p^2 = 2q^2 \]
+</p>
+
+<p>
+Remember, something like \(2k + 1\) is odd, and \(2k\) is even. Here we see this pattern: \(p^2 = 2q^2\), which means that \(p^2\) is even (it consists of <i>two</i> things).
+</p>
+
+<p>
+Then, using Theorem 3, we can say that \(p\) is even as well, which means we can write \(p\) as \(p = 2k\). So:
+</p>
+
+<p>
+\[ 2q^2 = p^2 = (2k)^2 \]
+</p>
+
+<p>
+\[ 2q^2 = 4k^2 \]
+</p>
+
+<p>
+Divide both by two:
+</p>
+
+<p>
+\[ q^2 = 2k^2 \]
+</p>
+
+<p>
+So, \(q^2\) is even. According to the same Theorem 3 it follows that \(q\) is even.
+</p>
+
+<p>
+Let's summarize the two conclusions:
+</p>
+
+<ol class="org-ol">
+<li>\(p\) is even.</li>
+<li>\(q\) is even.</li>
+</ol>
+
+<p>
+Wait&#x2026; We made sure that not both \(p\) and \(q\) are even before starting this whole thing! We made sure to reduce them until at least one is odd, but then, by applying Theorem 3, we ended up with two even numbers. This is impossible, so the idea that "\(\sqrt{2}\) is rational" is not true.
+</p>
+
+<p>
+Therefore, \(\sqrt{2}\) is irrational. \(\blacksquare\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org55d0f21" class="outline-4">
+<h4 id="org55d0f21"><span class="section-number-4">2.2.4</span> Proof by Induction</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+One of the most powerful techniques is proof by induction.
+</p>
+
+<italic>(Do not confuse mathematical induction with inductive or deductive reasoning. Despite the name, mathematical induction is actually a form of deductive reasoning.)</italic>
+
+<p>
+Let's say, we want to prove that some statement \(P\) is true for all positive integers. In other words: \(P(1)\) is true, \(P(2)\) is true, \(P(3)\) is true&#x2026; etc.
+</p>
+
+<p>
+We could try and prove each one directly or by contradiction, but the infinite number of positive integers makes this task rather grueling. Proof by induction is a sort of generalization that starts with the basis:
+</p>
+
+<p>
+<b>Basis:</b> Prove that \(P(1)\) is true.
+</p>
+
+<p>
+Then makes one generic step that can be applied indefinitely. <b>Induction step:</b> Prove that for all \(n\geq1\), the following statement holds: If \(P(n)\) is true, then \(P(n+1)\) is also true.
+</p>
+
+<p>
+We've devised another problem to solve, and it's seemingly the same. But if the basis is true, then proving this <i>inductive step</i> will prove the theorem. To do this, we chose an arbitrary \(n\geq1\) and assumed that \(P(n)\) is true. This assumption is called the <i>inductive hypothesis</i>. The tricky part is this: we don't prove the hypothesis directly, but prove the \(n+1\) version of it.
+</p>
+
+<p>
+This is all rather amorphous, so let's prove a real theorem.
+</p>
+
+<hr />
+
+<p>
+<b>Theorem 5.</b> For all positive integers \(n\), the following is true:
+</p>
+
+\begin{equation}
+1 + 2 + \ldots + n = \frac{n(n+1)}{2}
+\end{equation}
+
+<p>
+<b>Proof</b>. First, just calculate the basis when \(n = 1\):
+</p>
+
+<p>
+\[ 1 = \frac{1(1+1)}{2} = \frac{2}{2}. \]
+</p>
+
+<p>
+This is correct, so, the basis is proven. Now, assume that the theorem is true for any \(n\geq1\):
+</p>
+
+\begin{equation}
+1 + 2 + \ldots + n = \frac{n(n+1)}{2}
+\end{equation}
+
+<p>
+Holding that assumption, prove the induction step. In other words, prove that the basis is also true for \(n+1\):
+</p>
+
+\begin{equation}
+1 + 2 + \ldots + (n+1) = \frac{(n+1)(n+2)}{2}
+\end{equation}
+
+<p>
+<i>(All we did is substituted \(n\) with \(n+1\).)</i>
+</p>
+
+<p>
+We can expand this equation. The last member on the left side is \(n+1\). In front of it must be \(n\), so let's show it:
+</p>
+
+<p>
+\[ 1 + 2 + \ldots + (n+1) \]
+\[ = 1 + 2 + \ldots + n + (n+1)\]
+</p>
+
+<p>
+Assumption (2) tells us the value of \(1 + 2 + \ldots + n\), so let's take it and replace the corresponding part of the right-hand side (rectangle shows this replacement):
+</p>
+
+<p>
+\[ 1 + 2 + \ldots + (n + 1) = \boxed{ \frac{n(n+1)}{2} } + (n+1) \]
+</p>
+
+<p>
+And then make that addition so that the right hand side is a single fraction:
+</p>
+
+<p>
+\[ \frac{n(n+1)}{2} + \frac{2(n+1)}{2} \]
+\[ = \frac{n(n+1) + 2(n+1)}{2} \]
+\[ = \frac{(n+1)(n+2)}{2}. \]
+</p>
+
+<p>
+So:
+</p>
+
+\begin{equation}
+1 + 2 + \ldots + (n + 1) = \frac{(n+1)(n+2)}{2}
+\end{equation}
+
+<p>
+Great, the've proved that the induction step (3) is true. So far, we have two results:
+</p>
+
+<ol class="org-ol">
+<li>The theorem is true for \(n=1\).</li>
+<li>If the theorem is true for any \(n\), then it's also true for \(n+1\).</li>
+</ol>
+
+<p>
+Note how neither of the two facts is sufficient alone. The first fact is limited to a single case. The second fact is based on a condition — it basically says "give me a ladder, then I can touch the sky". Fact 1 is the ladder. Now, we can touch the sky by combining the two facts. The theorem is true for all positive integers \(n\). \(\blacksquare\)
+</p>
+
+<hr />
+
+<p>
+I had troubles with this technique because for a long time I couldn't for the life of me understand why is this <i>enough</i> and how is the basis <i>helping</i>?! The basis seemed redundant. We assume \(P(n)\) is true, then prove that \(P(n+1)\) is true given that \(P(n)\) is true, but so what? We didn't prove the thing we assumed!
+</p>
+
+<p>
+It clicked after I understood that we don't have to prove \(P(n)\), we just take the concrete value from the basis and use it as \(n\). Since we have a proof of \(P(n+1)\) being true <b>if</b> \(P(n)\) is true, we conclude that if \(P(1)\) is true, then \(P(1+1)\) is true. Well, if \(P(1+1)\) is true, then, using the same idea, \(P(1+1+1)\) is true, and so forth.
+</p>
+
+<p>
+The basis was the <i>cheat-code</i> to kick-start the process by avoiding the need to prove the assumption (2).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5589eb6" class="outline-4">
+<h4 id="org5589eb6"><span class="section-number-4">2.2.5</span> The pigeon hole principle</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+This is a simple, obvious principle with surprisingly powerful consequences. The pigeon hole principle is something toddlers learn: if you put 3 blocks into 2 boxes, one box will end up with more than 1 block.
+</p>
+
+<p>
+Formally: if \(n+1\) or more objects are placed into \(n\) boxes, then there is at least one box containing two or more objects.
+</p>
+
+<p>
+Now that we know about sets and functions, we can also compose the definition in terms of set theory: if \(A\) and \(B\) are two sets such that \(|A| > |B|\), then there is no one-to-one function from \(A\) to \(B\).
+</p>
+
+<p>
+<b>Theorem 6.</b> Let \(n\) be a positive integer. Every sequence of \(n^{2}+1\) distinct real numbers contains a subsequence of length \(n+1\) that is either increasing or decreasing.
+</p>
+
+<p>
+Example: let's take \(n = 3\). A sequence of \(3^{2}+1\) distinct real numbers could look like so: \((20, 10, 9, 7, 11, 2, 21, 1, 20, 31)\). According to the theorem, it must contain a subsequence of length \(3+1\). Look closely and, indeed, it does: \((10, 11, 21, 31)\).
+</p>
+
+<p>
+<b>Proof.</b> Let \((a_{1}, a_{2}, \ldots ,a_{n^{2}+1})\) be an arbitrary sequence of \(n^{2}+1\) distinct real numbers. For each \(i\) with \(1 \leq i \leq n^{2} + 1\):
+</p>
+
+<ul class="org-ul">
+<li>let \(inc_{i}\) denote the length of the longest increasing subsequence that starts at \(a_{i}\)</li>
+<li>let \(dec_{i}\) denote the length of the longest decreasing subsequence that starts at \(a_{i}\).</li>
+</ul>
+
+<p>
+Let's reformulate the theorem using this notation: there is an index \(i\) such that \(inc_{i} \geq n+1\) <b>or</b> \(dec_{i} \geq n+1\).
+</p>
+
+<p>
+We will prove this claim by contradiction, using the pigeon hole principle. Recall that proof by contradiction starts with the negation (opposite) of the theorem's claim. So, <b>assume</b> that \(inc_{i} \leq n\) and \(dec_{i} \leq n\) for all \(i\) with \(1 \leq i \leq n^{2} + 1\).
+</p>
+
+<p>
+Now, consider the set:
+</p>
+
+<p>
+\[ B = \{ (b,c) : 1 \leq b \leq n, 1 \leq c \leq n \}, \]
+</p>
+
+<p>
+and think of elements of \(B\) as boxes. For each \(i\) with \(1 \leq i \leq n^{2} + 1\), the pair \((inc_{i}, dec_{i})\) is an element of \(B\). So we have \(n^{2} + 1\) such elements \((inc_{i}, dec_{i})\), but there are only \(n^{2}\) boxes in \(B\). By the pigeon hole principle, there must be a box that contains two or more elements. So, there exists two integers \(i\) and \(j\) such that \(i < j\) and
+</p>
+
+\begin{equation}
+(inc_{i}, dec_{i}) < (inc_{j}, dec_{j}).
+\end{equation}
+
+<p>
+Recall that the elements in the sequence are distinct (no repeating numbers). Hence, \(a_{i} \neq a_{j}\). There are two cases then:
+</p>
+
+<p>
+<b>Case 1.</b> \(a_{i} < a_{j}\). Then the length of the longest increasing subsequence starting at \(a_{i}\) must be \(1 + inc_{j}\), because we can append \(a_{i}\) to the longest increasing subsequence starting from \(a_{j}\). Therefore, \(inc_{i} \neq inc_{j}\), which contradicts (1).
+</p>
+
+<p>
+<b>Case 2.</b> \(a_{i} > a_{j}\). Then the length of the longest deccreasing subsequence starting at \(a_{i}\) must be \(1 + inc_{j}\), because we can append \(a_{i}\) to the longest deccreasing subsequence starting from \(a_{j}\). Therefore, \(dec_{i} \neq dec_{j}\), which again contradicts (1). \(\blacksquare\)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Irrational_number">https://en.wikipedia.org/wiki/Irrational_number</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Rational_number">https://en.wikipedia.org/wiki/Rational_number</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Integer">https://en.wikipedia.org/wiki/Integer</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

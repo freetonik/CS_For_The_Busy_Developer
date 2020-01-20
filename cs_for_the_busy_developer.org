@@ -6,7 +6,7 @@
 #+LATEX_CLASS_OPTIONS: [a4paper, justified, notitlepage, sfsidenotes, notoc]
 
 #+TITLE: Computer Science For The Busy Developer
-
+#+EXPORT_FILE_NAME: index.html
 #+BEGIN_EXPORT latex
 \begin{titlepage}
 \begin{fullwidth} % Suppresses headers and footers on the title page
@@ -278,7 +278,7 @@ By extension, if two sets are the same, then either of them is a subset of the o
 
 When we look at a statement $A \subseteq B$, we often need to know whether $A = B$ or not. To distinguish between the two cases, mathematicians use a special notion of a *proper subset*.
 
-If $A \in B$, but $A \neq B$, then $A$ is a proper subset of $B$.
+If $A \subseteq B$, but $A \neq B$, then $A$ is a proper subset of $B$.
 
 \begin{equation}
 A \subset B
@@ -870,11 +870,11 @@ The idea behind constructive proof is to show the existence of a certain object 
 
 *Theorem 2.* There exists a rational number $x$ such that $\sqrt{10^{100}} < x < \sqrt{10^{100}+1}$.
 
-*Proof.* $\sqrt{10^{100}}$ is $10^{50}$. Now, let's just try different clearly rational values for $x$ that /seem/ to lie between the required boundaries. For example, let's try $x = 10^{50} + 10^{51}$. It's obviously larger than $10^{50}$, so we only need to show that it's smaller than $\sqrt{10^{100}+1}$.
+*Proof.* $\sqrt{10^{100}}$ is $10^{50}$. Now, let's just try different clearly rational values for $x$ that /seem/ to lie between the required boundaries. For example, let's try $x = 10^{50} + 10^{-51}$. It's obviously larger than $10^{50}$, so we only need to show that it's smaller than $\sqrt{10^{100}+1}$.
 
 To do that, let's compute $x^{2}$ so that we can compare it with $(\sqrt{10^{100}+1})^{2}$:
 
-$$ x^{2} = ((10^{50} + 10^{-51})^{2} $$
+$$ x^{2} = (10^{50} + 10^{-51})^{2} $$
 $$ = 10^{100} + 2 \times (10^{50} \times 10^{-51}) + 10^{-102} $$
 $$ = 10^{100} + 2 \times 10^{50-51} + 10^{-102} $$
 $$ = 10^{100} + 2 \times 10^{-1} + 10^{-102} $$

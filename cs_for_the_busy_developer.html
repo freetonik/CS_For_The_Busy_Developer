@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-20 Fri 16:43 -->
+<!-- 2020-01-13 Mon 12:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Computer Science For The Busy Developer</title>
@@ -81,59 +81,76 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<div id="outline-container-org546ee36" class="outline-2">
-<h2 id="org546ee36"><span class="section-number-2">1</span> Constructive proof</h2>
+<div id="outline-container-org1274477" class="outline-2">
+<h2 id="org1274477"><span class="section-number-2">1</span> Subset, superset</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The idea behind constructive proof is to show the existence of a certain object by describing a method of creating it.
+When all members of set \(A\) are present in another set \(B\), then \(A\) is a <b>subset</b> of \(B\). Let's say set \(B\) is the set of all movies ever produced. Then \(A\) (movies I've watched) is clearly a subset of \(B\). This notion is expressed like so:
+</p>
+
+\begin{equation}
+A \subseteq B
+\end{equation}
+
+<p>
+To look at things from the other end, \(B\) is a <b>superset</b> of \(A\):
+</p>
+
+\begin{equation}
+B \supseteq A
+\end{equation}
+
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/5f4/657/168/subset.png" style="max-width: 300px; width: 300px;">
+<figcaption>A set and its subset.</figcaption>
+</figure>
+
+<p>
+You know what else is a subset of \(B\)? An empty set!
+</p>
+
+\begin{equation}
+\varnothing \subseteq B
+\end{equation}
+
+<p>
+This either sounds absolutely natural to you or extremely weird. It makes perfect sense to a mathematician, because it's easy to argue: <i>all</i> members of \(\varnothing\) are present in \(B\), all zero of them.
 </p>
 
 <p>
-<b>Theorem 2.</b> There exists a rational number \(x\) such that \(\sqrt{10^{100}} < x < \sqrt{10^{100}+1}\).
+It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
+</p>
+
+\begin{equation}
+\displaylines{
+A \subseteq A \\
+B \subseteq B \\
+Z \subseteq Z
+}
+\end{equation}
+
+<p>
+By extension, if two sets are the same, then either of them is a subset of the other.
+</p>
+
+\begin{equation}
+\textrm{if } A \subseteq B \textrm{ and } B \subseteq A \textrm{ then } A = B
+\end{equation}
+
+<p>
+When we look at a statement \(A \subseteq B\), we often need to know whether \(A = B\) or not. To distinguish between the two cases, mathematicians use a special notion of a <b>proper subset</b>.
 </p>
 
 <p>
-<b>Proof.</b> \(\sqrt{10^{100}}\) is \(10^{50}\). Now, let's just try different clearly rational values for \(x\) that <i>seem</i> to lie between the required boundaries. For example, let's try \(x = 10^{50} + 10^{51}\). It's obviously larger than \(10^{50}\), so we only need to show that it's smaller than \(\sqrt{10^{100}+1}\).
+If \(A \subseteq B\), but \(A \neq B\), then \(A\) is a proper subset of \(B\).
 </p>
 
-<p>
-To do that, let's compute \(x^{2}\) so that we can compare it with \((\sqrt{10^{100}+1})^{2}\):
-</p>
+\begin{equation}
+A \subset B
+\end{equation}
 
 <p>
-\[ x^{2} = ((10^{50} + 10^{-51})^{2} \]
-\[ = 10^{100} + 2 \times (10^{50} \times 10^{-51}) + 10^{-102} \]
-\[ = 10^{100} + 2 \times 10^{50-51} + 10^{-102} \]
-\[ = 10^{100} + 2 \times 10^{-1} + 10^{-102} \]
-</p>
-
-<p>
-Clearly:
-</p>
-
-<p>
-\[ (2 \times 10^{-1} + 10^{-102}) < 1 \]
-</p>
-
-<p>
-therefore
-</p>
-
-<p>
-\[ 10^{100} + 2 \times 10^{-1} + 10^{-102} < (\sqrt{10^{100}+1})^{2} \]
-\[ x^{2} < (\sqrt{10^{100}+1})^{2} \]
-</p>
-
-<p>
-and, by extension
-</p>
-
-<p>
-\[ x < \sqrt{10^{100}+1} \]
-</p>
-
-<p>
-Therefore, there indeed exists a rational number \(x\) such that \(\sqrt{10^{100}} < x < \sqrt{10^{100}+1}\) \(\blacksquare\).
+Since I haven't watched all the movies ever produced, I can say that \(A\) is a proper subset of \(B\). So, a set is a subset of itself, but is never a proper subset of itself.
 </p>
 </div>
 </div>
