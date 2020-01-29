@@ -6,7 +6,7 @@
 #+LATEX_CLASS_OPTIONS: [a4paper, justified, notitlepage, sfsidenotes, notoc]
 
 #+TITLE: Computer Science For The Busy Developer
-#+EXPORT_FILE_NAME: index.html
+
 #+BEGIN_EXPORT latex
 \begin{titlepage}
 \begin{fullwidth} % Suppresses headers and footers on the title page
@@ -72,7 +72,6 @@
 \end{fullwidth}
 \end{titlepage}
 #+END_EXPORT
-
 #+TOC: headlines 4
 
 * Intro
@@ -420,7 +419,7 @@ Regardless, let's quickly overview three main sorts of interactions. Chances are
 Given two sets $A$ and $B$, union is defined as:
 
 \begin{equation}
-A \cup B = \{ x : x \in A \textrm{ or } x \in B \}
+A \cup B = \{ x | x \in A \textrm{ or } x \in B \}
 \end{equation}
 
 This reads as:
@@ -530,7 +529,7 @@ A Venn diagram for intersection is often used to show commonality. For example, 
 A \cap B = \varnothing
 \end{equation}
 
-A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement.
+A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement (sic)...
 
 *** Complement (difference)
 
@@ -1106,6 +1105,201 @@ Recall that the elements in the sequence are distinct (no repeating numbers). He
 *Case 1.* $a_{i} < a_{j}$. Then the length of the longest increasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest increasing subsequence starting from $a_{j}$. Therefore, $inc_{i} \neq inc_{j}$, which contradicts (1).
 
 *Case 2.* $a_{i} > a_{j}$. Then the length of the longest deccreasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest deccreasing subsequence starting from $a_{j}$. Therefore, $dec_{i} \neq dec_{j}$, which again contradicts (1). $\blacksquare$
+
+* Computational Complexity
+
+** Intro to complexity
+
+The proper way to discuss computational complexity would probably look like this: start with the idea of computation, describe models of computation (e.g. Turing machines and/or Lambda calculus), discuss limits of computation, explore automatons and languages (not programming languages, but formal languages derived from formal grammars like Context-free grammar), and then, finally, discuss the ways we can count the number of operations for certain algorithms.
+
+Since this isn't an academic textbook (and we're busy developers), we will talk about computational complexity from the points of view of everyday programming. Nevertheless, the computability of the Universe, models of computations and their limits are very interesting and important (in that order!) topics. A separate chapter will focus on those.
+
+You probably have at least a vague idea about algorithms. Often, analogies are used:
+
+- meal recipe
+- walking instructions
+- emergency situation instructions
+
+It's important to distinguish between the general idea of algorithm and the precise, formal, mathematical algorithms used in computer science. The ones above are /examples/ of regular, every-day algorithms. They aren't really analogies, but we don't think of them as algorithms, simply because they are too vague, open to interpretation. "Fry onions on medium heat until brown" — how brown is brown enough? what is medium heat? what exact light frequencies and temperatures are we talking about?!
+
+The reason such instructions aren't extremely precise is that for the most part they're enough. The recipes are more like suggestions. People can make their own decisions and interpretations.
+
+#+BEGIN_EXPORT latex
+\begin{marginfigure}
+  \includegraphics[width=\linewidth]{images/Muhammad ibn Musa al-Khwarizmi.jpg}
+  \caption{Statue of Muhammad ibn Musa al-Khwarizmi, just outside Khiva’s west wall, Uzbekistan. Photo by Dan Lundberg.}
+  \label{fig:marginfig}
+\end{marginfigure}
+#+END_EXPORT
+
+But computers can't. Computers can only follow precise, unambiguous instructions. Yet, the roots of this formal nature of algorithms are much older than digital computers. The word "algorithm" itself was derived from the name of Muhammad ibn Musa al-Khwarizmi, a Persian scholar who lived between in years 780-850. His books described algorithms for calculating certain numbers. These algorithms — instructions — must be precise and unambiguous even though they were created for mortal humans.
+
+#+BEGIN_EXPORT html
+<figure>
+<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/997/ce8/70f/Muhammad_ibn_Musa_al-Khwarizmi.jpg">
+<figcaption>Statue of Muhammad ibn Musa al-Khwarizmi, just outside Khiva’s west wall, Uzbekistan. Photo by Dan Lundberg.</figcaption>
+</figure>
+#+END_EXPORT
+
+
+** Algorithm vs program
+
+** Euclid's algorithm
+
+Let's start with the famous, ancient algorithm for finding the greatest common divisor (GCD) of two numbers. GCD is the largest number that divides both given numbers without leaving a remained. For example, GCD of 4 and 8 is 2.
+
+Unless you know about Euclid's algorithm, stop and think for a while — how would you find a GCD of two numbers? What generic approach might work for any case (not taking efficiency into account at the moment)?
+
+Right off the bat, one could suggest just trying all the numbers from the largest-minus-one down to 1. That's certainly a fine way, and considering the enormous power of modern computers, will take a fraction of a second for even large-ish numbers. Euclid, of course, was trying to solve this about 2300 years before modern computers. Trying out all the numbers manually is the last resort for any computational task. Although, if you can prove that the only way to solve the problem at hand is by brute force, then that's a good result. Some problems are fundamentally hard, for example, finding an element in an unsorted collection: there is just no way to optimize anything, you have to check all the elements (in the general case).
+
+The Euclid's algorithm is a series of simple computations. Let's say we want to find the GCD of two numbers $a = 47, b = 831$. The first step is to divide the larger number by the smaller and find the remainder:
+
+$$831 = q_{0} \times 47 + r_{0}$$
+$$831 = 17 \times 47 + 32$$
+
+These new numbers $q_{0}$ and $r_{0}$ are called /quotient/ and /remainder/. Next, we repeat the process, this time using the new numbers:
+
+$$47 = q_{1} \times 32 + r_{1}$$
+$$47 = 1 \times 32 + 15$$
+
+And again:
+
+$$32 = q_{2} \times 15 + r_{2}$$
+$$32 = 2 \times 15 + 2$$
+
+And again:
+
+$$15 = q_{3} \times 2 + r_{3}$$
+$$15 = 7 \times 2 + 1$$
+
+And finally, we reach the remainder = $0$:
+
+$$7 = q_{4} \times 1 + r_{4}$$
+$$7 = 7 \times 1 + 0$$
+
+This series is guaranteed to end with a zero remainder, and the last non-zero remainder is the greatest common divisor (we won't provide a proof here for either statements). In our example, $GCD(47, 831) = 1$.
+
+-----
+
+This is a proper algorithm because:
+- It is formal and unambiguous. There is no room for interpretation or assumption.
+- It can be proved to we correct.
+- It can be analyzed, best and worst case scenarios can be determined for the general case.
+
+These are kind of properties we want from algorithms.
+
+Let's implement this algorithm in Python.
+
+#+BEGIN_SRC python
+def gcd(a, b):
+  while b != 0:
+    t = b
+    b = a % b
+    a = t
+  return a
+#+END_SRC
+
+This is a recursive approach, which is a natural idea under given circumstances, since each step of the Euclid's algorithm is the same, only the numbers "shift". The stopping condition is ~b != 0~, and until it's reached we use =t= as a temporary variable while computing new value for =b=. Recall that =%= is a modulo operator which returns the remainder after division — exactly what we need for $d_{k}$ at each step $k$.
+
+** Analyzing Euclid's algorithm
+
+Let's now try to analyze Euclid's algorithm, or, rather, this particular implementation in Python:
+
+#+BEGIN_SRC python
+def gcd(a, b):
+  while b != 0:
+    t = b
+    b = a % b
+    a = t
+  return a
+#+END_SRC
+
+We're interested in the algorithm itself, so we'll ignore any caveats, details or optimizations of the Python interpreter.
+
+What is there to analyze? What can we count? Perhaps, the number of loop iterations. It's a good start, but let's zoom out and think about the purpose of such analysis.
+
+Analyzing a single algorithm doesn't seem useful. Let's say we've figured out that it takes $N$ loop iterations. So? Is this information useful or actionable? Not really. It makes sense to analyze so that we can /compare/ different algorithms. If Euclid's algorithm takes $N$ loop iterations, while some other Algorithm X takes $N/2$ loop iterations, then clearly, the other algorithm is better!
+
+*Purpose of algorithm analysis 1: to compare algorithms.*
+
+Another purpose is to compare the algorithm to itself with different inputs. Obviously, we're not fundamentally interested in the complexity of calculating GCD of 47 and 831. We're interested in the complexity of calculating any GCD. This means we need to think about how one input compares to another input in terms of loop iterations or whatever measure we've chosen. In other words, we care about how much would the number of iterations increase if inputs increase.
+
+*Purpose of algorithm analysis 1: to evaluate the scalability of the algorithm.*
+
+Now, loop iterations are too vague of a term. We need to count something more concrete and fundamental enough so that any algorithm can be thought of as a combination of such operations. Atomic operations, if you will. There are different ways to chose which operations to consider atomic. A common way is to think about real CPUs and RAM. In the context of digital computing and [[https://en.wikipedia.org/wiki/Von_Neumann_architecture][Von Neumann architecture]], the atomic operations could be:
+
+- arithmetic operations =+=, =*=, =-=
+- comparison of values using ~=~
+- accessing memory
+- writing into memory
+- loops, subroutines, function calls, conditionals
+
+This approach is called The RAM Model of Computation. It approximates what the computer does, but is not precise. It is useful for our 2 purposes, but is not a way to measure the performance of computer programs.
+
+How many atomic operations happen in a single loop iteration of =gcd=?
+
+#+BEGIN_SRC python
+t = b      # 1 memory read + 1 write
+b = a % b  # 1 calculation + 1 memory write
+a = t      # 1 memory read + 1 write
+#+END_SRC
+
+6 in total. It's a small number, could've been 100 for some other algorithm, but it is insignificant due to its static nature, not its value. Any given iteration will have 6 operations, regardless of the size of the input numbers. So, for the most part, we can ignore this particular number and instead think about the thing that changes when input changes. That thing is the number of loop iterations.
+
+First, let's consider possible scenarios:
+
+1. =gcd(0,0)=. No steps, yields =0= right away. Not interesting for our purposes.
+2. =gcd(a,0)= or =gcd(0,b)=. No steps, yields =a= or =b= right away. Not interesting for our purposes.
+3. =gcd(a,1)= or =gcd(1,b)=. 1 step, yields =1= right away.
+4. =gcd(a,b)= where one is the multiple of the other. 2 steps, yields the smaller number.
+5. =gcd(a,b)= where one is not the multiple of the other.
+
+Cases 3 and 4 are interesting, because the number of steps is fixed regardless of the numbers, as long as the numbers satisfy the described conditions. Case 5 is the general case, which includes the worst possible combination of inputs.
+
+Cases 1,2,3,4 describe the best scenarios. It doesn't really matter than some perform 0 steps while others perform 1 step. What's important is that all cases have constant number of steps regardless of the input. We can say they are **constant time cases**.
+
+An algorithm that always works in constant time is the best possible thing. For example, getting a random element from an array is a constant time operation.
+
+Case 5 on the other hand describes the non-best scenarios. The number of steps depends on the inputs. The important question is *how*? The mathematical answer to this question is exactly what we want for the second purpose of analysis: to determine the scalability.
+
+Let's consider the example we've covered before: $GCD(831,47)$. From our step-by-step description, we know it took 5 steps (from 0 to 4) to find out
+** Upper bound. Big O.
+
+** Multiplication algorithm. Pseudocode.
+
+** Sorting. Bubble sort
+
+Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf, by author or, perhaps, by color; tasks in our ToDo lists, by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm at work, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
+
+The reason people give sorting this much attention is twofold:
+
+1. It is a truly important kind of problem in computer science.
+2. Understanding and implementing sorting algorithms is a good exercise for computational thinking.
+
+
+** Insertion sort
+
+** Divide and conquer
+
+** Big O
+- doesn't allow to predict or analyze performance
+- defines the limits of growth
+- allows to classify algos
+-
+
+** Big theta, etc
+
+* TODO
+** Graphs
+- bridges problem
+- dijkstra's algorithm
+
+** Data structures
+- array
+- hash-table
+- linked list
+- tree
+
 * COMMENT Local Variables
 
 # Local Variables:

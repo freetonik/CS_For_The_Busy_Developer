@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-01-14 Tue 12:49 -->
+<!-- 2020-01-29 Wed 12:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Computer Science For The Busy Developer</title>
@@ -85,40 +85,59 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgea4d889">1. Intro</a></li>
-<li><a href="#org7b2b914">2. Foundations of Math</a>
+<li><a href="#orga851ca5">1. Intro</a></li>
+<li><a href="#orge327629">2. Foundations of Math</a>
 <ul>
-<li><a href="#org190ed95">2.1. Set theory</a>
+<li><a href="#org1c57c99">2.1. Set theory</a>
 <ul>
-<li><a href="#orgf4caea4">2.1.1. Intro to sets</a></li>
-<li><a href="#orgc7320c8">2.1.2. Empty set</a></li>
-<li><a href="#orgfc8f148">2.1.3. Subset, superset</a></li>
-<li><a href="#org0f790ea">2.1.4. Cardinality</a></li>
-<li><a href="#org7218b4b">2.1.5. Cartesian product</a></li>
-<li><a href="#org0250c88">2.1.6. Union</a></li>
-<li><a href="#orgf7b8293">2.1.7. Intersection</a></li>
-<li><a href="#org04c011b">2.1.8. Complement (difference)</a></li>
-<li><a href="#orge533f83">2.1.9. Relational algebra</a></li>
-<li><a href="#orgbc57c2d">2.1.10. Relations and Functions</a></li>
+<li><a href="#org6f3815f">2.1.1. Intro to sets</a></li>
+<li><a href="#orge50bd2d">2.1.2. Empty set</a></li>
+<li><a href="#org1ee9e9e">2.1.3. Subset, superset</a></li>
+<li><a href="#orgd37a83b">2.1.4. Cardinality</a></li>
+<li><a href="#org429510f">2.1.5. Cartesian product</a></li>
+<li><a href="#org0e84baa">2.1.6. Union</a></li>
+<li><a href="#org59a9a53">2.1.7. Intersection</a></li>
+<li><a href="#org6bfed04">2.1.8. Complement (difference)</a></li>
+<li><a href="#orga563a1e">2.1.9. Relational algebra</a></li>
+<li><a href="#org422a8d7">2.1.10. Relations and Functions</a></li>
 </ul>
 </li>
-<li><a href="#orgac53dac">2.2. Proof techniques</a>
+<li><a href="#org3da4cd6">2.2. Proof techniques</a>
 <ul>
-<li><a href="#org7f95377">2.2.1. Direct proof</a></li>
-<li><a href="#org9157f37">2.2.2. Constructive proof</a></li>
-<li><a href="#org521482c">2.2.3. Proof by Contradiction</a></li>
-<li><a href="#org55d0f21">2.2.4. Proof by Induction</a></li>
-<li><a href="#org5589eb6">2.2.5. The pigeon hole principle</a></li>
+<li><a href="#org54b9158">2.2.1. Direct proof</a></li>
+<li><a href="#org2f1cd24">2.2.2. Constructive proof</a></li>
+<li><a href="#org8bee7d9">2.2.3. Proof by Contradiction</a></li>
+<li><a href="#orga1c99f9">2.2.4. Proof by Induction</a></li>
+<li><a href="#org395ec02">2.2.5. The pigeon hole principle</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orga2a4d36">3. Computational Complexity</a>
+<ul>
+<li><a href="#orgc3e38fa">3.1. Intro to complexity</a></li>
+<li><a href="#orgaec0fb5">3.2. Algorithm vs program</a></li>
+<li><a href="#org306b3b3">3.3. Euclid's algorithm</a></li>
+<li><a href="#orga98c552">3.4. Multiplication algorithm. Pseudocode.</a></li>
+<li><a href="#orgce7a693">3.5. Sorting. Bubble sort</a></li>
+<li><a href="#orgbbd1cde">3.6. Insertion sort</a></li>
+<li><a href="#orgf193c4a">3.7. Divide and conquer</a></li>
+<li><a href="#org578cc4f">3.8. Big O</a></li>
+<li><a href="#orgb2b93d3">3.9. Big theta, etc</a></li>
+</ul>
+</li>
+<li><a href="#orgefb5570">4. <span class="todo TODO">TODO</span> </a>
+<ul>
+<li><a href="#org468bbe6">4.1. Graphs</a></li>
+<li><a href="#orgbe4a761">4.2. Data structures</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgea4d889" class="outline-2">
-<h2 id="orgea4d889"><span class="section-number-2">1</span> Intro</h2>
+<div id="outline-container-orga851ca5" class="outline-2">
+<h2 id="orga851ca5"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This course and the book constitute an high speed overview of the most important fundamental computer science areas. It is intended for intermediate and professional developers who, for any reason, are interested in getting to know the formal, academic side of CS better.
@@ -163,16 +182,16 @@ Since it seems impossible or at least unpractical to put all of computer science
 </div>
 </div>
 
-<div id="outline-container-org7b2b914" class="outline-2">
-<h2 id="org7b2b914"><span class="section-number-2">2</span> Foundations of Math</h2>
+<div id="outline-container-orge327629" class="outline-2">
+<h2 id="orge327629"><span class="section-number-2">2</span> Foundations of Math</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org190ed95" class="outline-3">
-<h3 id="org190ed95"><span class="section-number-3">2.1</span> Set theory</h3>
+<div id="outline-container-org1c57c99" class="outline-3">
+<h3 id="org1c57c99"><span class="section-number-3">2.1</span> Set theory</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgf4caea4" class="outline-4">
-<h4 id="orgf4caea4"><span class="section-number-4">2.1.1</span> Intro to sets</h4>
+<div id="outline-container-org6f3815f" class="outline-4">
+<h4 id="org6f3815f"><span class="section-number-4">2.1.1</span> Intro to sets</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <b><b>Set theory</b></b> is an important area of math which lays as a foundation of many computer science topics, such as databases and types in programming. Set theory isn't difficult conceptually, and is generally nice to think about, especially if you like to visualize.
@@ -290,8 +309,8 @@ In this course and the book we're not going to talk about how set theory (and ca
 </div>
 </div>
 
-<div id="outline-container-orgc7320c8" class="outline-4">
-<h4 id="orgc7320c8"><span class="section-number-4">2.1.2</span> Empty set</h4>
+<div id="outline-container-orge50bd2d" class="outline-4">
+<h4 id="orge50bd2d"><span class="section-number-4">2.1.2</span> Empty set</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 Mathematicians love zero. Ever since its inception around 1770 BC, zero is an important part of mathematical models. The notion of "nothingness", which zero reflects in the context of counting, is present in all areas. In the context of sets, nothingness is an <i>empty set</i>.
@@ -327,8 +346,8 @@ Note the use of vertical line <b><code>|</code></b>, it is a shorter way to say 
 </div>
 </div>
 
-<div id="outline-container-orgfc8f148" class="outline-4">
-<h4 id="orgfc8f148"><span class="section-number-4">2.1.3</span> Subset, superset</h4>
+<div id="outline-container-org1ee9e9e" class="outline-4">
+<h4 id="org1ee9e9e"><span class="section-number-4">2.1.3</span> Subset, superset</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 When all members of set \(A\) are present in another set \(B\), then \(A\) is a <b>subset</b> of \(B\). Let's say set \(B\) is the set of all movies ever produced. Then \(A\) (movies I've watched) is clearly a subset of \(B\). This notion is expressed like so:
@@ -401,8 +420,8 @@ Since I haven't watched all the movies ever produced, I can say that \(A\) is a 
 </div>
 </div>
 
-<div id="outline-container-org0f790ea" class="outline-4">
-<h4 id="org0f790ea"><span class="section-number-4">2.1.4</span> Cardinality</h4>
+<div id="outline-container-orgd37a83b" class="outline-4">
+<h4 id="orgd37a83b"><span class="section-number-4">2.1.4</span> Cardinality</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Before we start to talk about sizes and products, let's first introduce a new notion:  <b><b>sequence</b></b>. A sequence is simply a series of elements. Unlike sets, sequences have order and may contain duplicate values. In this sense sequences are more down to earth, practical collections.
@@ -480,8 +499,8 @@ Consider set \(A = \{a_{1}, a_{2}, a_{3}\}\). The proof states that there are \(
 </div>
 </div>
 
-<div id="outline-container-org7218b4b" class="outline-4">
-<h4 id="org7218b4b"><span class="section-number-4">2.1.5</span> Cartesian product</h4>
+<div id="outline-container-org429510f" class="outline-4">
+<h4 id="org429510f"><span class="section-number-4">2.1.5</span> Cartesian product</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <p>
 Given two sets \(A\) and \(B\), we are often interested in all ordered pairs of their elements. For example, if \(A = \{a, b\}\) and \(B = \{1, 2\}\), the ordered pairs are as follows:
@@ -528,8 +547,8 @@ Descartes saw that the number plane \(x, y\) could be represented as a product o
 </div>
 </div>
 
-<div id="outline-container-org0250c88" class="outline-4">
-<h4 id="org0250c88"><span class="section-number-4">2.1.6</span> Union</h4>
+<div id="outline-container-org0e84baa" class="outline-4">
+<h4 id="org0e84baa"><span class="section-number-4">2.1.6</span> Union</h4>
 <div class="outline-text-4" id="text-2-1-6">
 <p>
 Sets on their own are a bit boring, frozen things. Interesting results can be observed when we consider interactions between sets. At the same time, these interactions can be viewed as frozen things themselves, not actions or processes.
@@ -552,7 +571,7 @@ Given two sets \(A\) and \(B\), union is defined as:
 </p>
 
 \begin{equation}
-A \cup B = \{ x : x \in A \textrm{ or } x \in B \}
+A \cup B = \{ x | x \in A \textrm{ or } x \in B \}
 \end{equation}
 
 <p>
@@ -661,8 +680,8 @@ It is tempting to see SQL as set theory applied to databases, but it would be wr
 </div>
 </div>
 
-<div id="outline-container-orgf7b8293" class="outline-4">
-<h4 id="orgf7b8293"><span class="section-number-4">2.1.7</span> Intersection</h4>
+<div id="outline-container-org59a9a53" class="outline-4">
+<h4 id="org59a9a53"><span class="section-number-4">2.1.7</span> Intersection</h4>
 <div class="outline-text-4" id="text-2-1-7">
 <p>
 <b><b>Intersection</b></b> of two sets \(A\) and \(B\) is the set containing all elements of \(A\) that also belong to \(B\) (or vice versa). In other words, it's a set of common elements.
@@ -718,13 +737,13 @@ A \cap B = \varnothing
 \end{equation}
 
 <p>
-A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement.
+A mathematician in love may describe the perfectness of their partner by saying that the partner's qualities and bad qualities are disjoint sets. The partner would definitely accept this as a complement (sic)&#x2026;
 </p>
 </div>
 </div>
 
-<div id="outline-container-org04c011b" class="outline-4">
-<h4 id="org04c011b"><span class="section-number-4">2.1.8</span> Complement (difference)</h4>
+<div id="outline-container-org6bfed04" class="outline-4">
+<h4 id="org6bfed04"><span class="section-number-4">2.1.8</span> Complement (difference)</h4>
 <div class="outline-text-4" id="text-2-1-8">
 <p>
 <b><b>Complement</b></b> of set \(A\) is a set of elements not in \(A\). In other words, it's the opposite of \(A\).
@@ -785,8 +804,8 @@ with an assumption that we're talking about users in general.
 </div>
 </div>
 
-<div id="outline-container-orge533f83" class="outline-4">
-<h4 id="orge533f83"><span class="section-number-4">2.1.9</span> Relational algebra</h4>
+<div id="outline-container-orga563a1e" class="outline-4">
+<h4 id="orga563a1e"><span class="section-number-4">2.1.9</span> Relational algebra</h4>
 <div class="outline-text-4" id="text-2-1-9">
 <p>
 If you worked with SQL in different databases, you might've noticed slight differences or even large, annoying discrepancies. The reason is that SQL isn't a formal, strict language, but rather an approach based on a general formal language called Relational algebra. Developers of different databases design their own versions of SQL and implement and modify its features at their discretion.
@@ -806,7 +825,7 @@ We will finish up the section on set theory with a short overview of different a
 </div>
 
 <ol class="org-ol">
-<li><a id="orgd797539"></a>Relation<br />
+<li><a id="org8ab7ff1"></a>Relation<br />
 <div class="outline-text-5" id="text-2-1-9-1">
 <p>
 <b><b>Relation</b></b> is essentially a table, with columns (called "attributes") and rows. For example, a relation <code>User</code> may be used to describe users in a web service.
@@ -926,7 +945,7 @@ which returns the whole table.
 </div>
 </li>
 
-<li><a id="org81ca9a1"></a>Projection<br />
+<li><a id="orgd300c98"></a>Projection<br />
 <div class="outline-text-5" id="text-2-1-9-2">
 <p>
 A <b><b>projection</b></b> is an operation of extracting records with specific columns (attributes). It is denoted by Greek letter \(\Pi\) (uppercase pi), with a list of columns as subscript, followed by relation's name.
@@ -974,7 +993,7 @@ For example, here we extract a sub-relation of User with ids and emails only:
 </div>
 </li>
 
-<li><a id="orgb12e23c"></a>Select<br />
+<li><a id="org95570cc"></a>Select<br />
 <div class="outline-text-5" id="text-2-1-9-3">
 <p>
 A <b><b>selection</b></b> is an operation of filtering records by values. It is denoted by Greek letter \(\sigma\) (sigma) with a condition, followed by relation's name.
@@ -1028,7 +1047,7 @@ For example, here we get managers with level higher than 2:
 </div>
 </li>
 
-<li><a id="orgc48916c"></a>Operating on expressions<br />
+<li><a id="org1d3da22"></a>Operating on expressions<br />
 <div class="outline-text-5" id="text-2-1-9-4">
 <p>
 Select and project operators work on any expression, not only on whole relations. This means we can combine them arbitrarily. For example, we can select (essentially, filter) first, and then extract certain columns.
@@ -1071,7 +1090,7 @@ The result is a newly constructed relation consisting of only two columns, which
 </div>
 </li>
 
-<li><a id="org3782472"></a>Cross product (cartesian product)<br />
+<li><a id="org8466927"></a>Cross product (cartesian product)<br />
 <div class="outline-text-5" id="text-2-1-9-5">
 <p>
 Recall the idea behind Cartesian product in set theory: given two sets \(A = \{a, b\}\) and \(B = \{1, 2\}\), the <b>Cartesian product</b> is a set of pairs of all combinations of elements:
@@ -1363,7 +1382,7 @@ Now we can filter managers by level and get rid of unneeded columns:
 </div>
 </li>
 
-<li><a id="org61780d3"></a>Natural join<br />
+<li><a id="org44c1f28"></a>Natural join<br />
 <div class="outline-text-5" id="text-2-1-9-6">
 <p>
 The process of performing a cross-product and then filtering out rows that "make sense" by comparing the attributes of the same name is common enough so that relational algebra has a special operator called <b>natural join</b>. It is denoted by \(\bowtie\) (bow tie). The result is a relation with matching rows and no "tagged" attributes:
@@ -1441,7 +1460,7 @@ As you see, natural join is basically a syntactic sugar on top of existing featu
 </div>
 </li>
 
-<li><a id="org32e00e5"></a>Union, intersection, difference<br />
+<li><a id="org140ec48"></a>Union, intersection, difference<br />
 <div class="outline-text-5" id="text-2-1-9-7">
 <p>
 Relational algebra includes three operators straight from set theory: union, intersection and difference. They work just like you might expect, although there are some caveats. We will not focus on these topics at the moment.
@@ -1451,8 +1470,8 @@ Relational algebra includes three operators straight from set theory: union, int
 </ol>
 </div>
 
-<div id="outline-container-orgbc57c2d" class="outline-4">
-<h4 id="orgbc57c2d"><span class="section-number-4">2.1.10</span> Relations and Functions</h4>
+<div id="outline-container-org422a8d7" class="outline-4">
+<h4 id="org422a8d7"><span class="section-number-4">2.1.10</span> Relations and Functions</h4>
 <div class="outline-text-4" id="text-2-1-10">
 <p>
 In programming, we often deal with paired data:
@@ -1579,12 +1598,12 @@ We'll not focus on functions and relations anymore at the moment. Depending on h
 </div>
 </div>
 
-<div id="outline-container-orgac53dac" class="outline-3">
-<h3 id="orgac53dac"><span class="section-number-3">2.2</span> Proof techniques</h3>
+<div id="outline-container-org3da4cd6" class="outline-3">
+<h3 id="org3da4cd6"><span class="section-number-3">2.2</span> Proof techniques</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org7f95377" class="outline-4">
-<h4 id="org7f95377"><span class="section-number-4">2.2.1</span> Direct proof</h4>
+<div id="outline-container-org54b9158" class="outline-4">
+<h4 id="org54b9158"><span class="section-number-4">2.2.1</span> Direct proof</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Back when we've been discussing set cardinality, we've successfully proved a statement: <i>If \(A\) is a finite set of \(m\) elements, then there are \(2^{m}\) subsets of \(A\).</i> Let's talk about proofs in more detail, and discuss different proof techniques.
@@ -1622,8 +1641,8 @@ This theorem is based on an idea that numbers described as \( 2k + 1 \) are defi
 </div>
 </div>
 
-<div id="outline-container-org9157f37" class="outline-4">
-<h4 id="org9157f37"><span class="section-number-4">2.2.2</span> Constructive proof</h4>
+<div id="outline-container-org2f1cd24" class="outline-4">
+<h4 id="org2f1cd24"><span class="section-number-4">2.2.2</span> Constructive proof</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 The idea behind constructive proof is to show the existence of a certain object by describing a method of creating it.
@@ -1679,8 +1698,8 @@ Therefore, there indeed exists a rational number \(x\) such that \(\sqrt{10^{100
 </div>
 </div>
 
-<div id="outline-container-org521482c" class="outline-4">
-<h4 id="org521482c"><span class="section-number-4">2.2.3</span> Proof by Contradiction</h4>
+<div id="outline-container-org8bee7d9" class="outline-4">
+<h4 id="org8bee7d9"><span class="section-number-4">2.2.3</span> Proof by Contradiction</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 Another approach is proof by contradiction. Here is the idea:
@@ -1842,8 +1861,8 @@ Therefore, \(\sqrt{2}\) is irrational. \(\blacksquare\)
 </div>
 </div>
 
-<div id="outline-container-org55d0f21" class="outline-4">
-<h4 id="org55d0f21"><span class="section-number-4">2.2.4</span> Proof by Induction</h4>
+<div id="outline-container-orga1c99f9" class="outline-4">
+<h4 id="orga1c99f9"><span class="section-number-4">2.2.4</span> Proof by Induction</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 One of the most powerful techniques is proof by induction.
@@ -1977,8 +1996,8 @@ The basis was the <i>cheat-code</i> to kick-start the process by avoiding the ne
 </div>
 </div>
 
-<div id="outline-container-org5589eb6" class="outline-4">
-<h4 id="org5589eb6"><span class="section-number-4">2.2.5</span> The pigeon hole principle</h4>
+<div id="outline-container-org395ec02" class="outline-4">
+<h4 id="org395ec02"><span class="section-number-4">2.2.5</span> The pigeon hole principle</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <p>
 This is a simple, obvious principle with surprisingly powerful consequences. The pigeon hole principle is something toddlers learn: if you put 3 blocks into 2 boxes, one box will end up with more than 1 block.
@@ -2045,6 +2064,224 @@ Recall that the elements in the sequence are distinct (no repeating numbers). He
 <b>Case 2.</b> \(a_{i} > a_{j}\). Then the length of the longest deccreasing subsequence starting at \(a_{i}\) must be \(1 + inc_{j}\), because we can append \(a_{i}\) to the longest deccreasing subsequence starting from \(a_{j}\). Therefore, \(dec_{i} \neq dec_{j}\), which again contradicts (1). \(\blacksquare\)
 </p>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga2a4d36" class="outline-2">
+<h2 id="orga2a4d36"><span class="section-number-2">3</span> Computational Complexity</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgc3e38fa" class="outline-3">
+<h3 id="orgc3e38fa"><span class="section-number-3">3.1</span> Intro to complexity</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The proper way to discuss computational complexity would probably look like this: start with the idea of computation, describe models of computation (e.g. Turing machines and/or Lambda calculus), discuss limits of computation, explore automatons and languages (not programming languages, but formal languages derived from formal grammars like Context-free grammar), and then, finally, discuss the ways we can count the number of operations for certain algorithms.
+</p>
+
+<p>
+Since this isn't an academic textbook (and we're busy developers), we will talk about computational complexity from the points of view of everyday programming. Nevertheless, the computability of the Universe, models of computations and their limits are very interesting and important (in that order!) topics. A separate chapter will focus on those.
+</p>
+
+<p>
+You probably have at least an idea about algorithms. Often, analogies are used:
+</p>
+
+<ul class="org-ul">
+<li>meal recipe</li>
+<li>walking instructions</li>
+<li>emergency situation instructions</li>
+</ul>
+
+<p>
+It's important to distinguish between the general idea of algorithm and the precise, formal, mathematical algorithms used in computer science. The ones above are <i>examples</i> of regular, every-day algorithms. They aren't really analogies, but we don't think of them as algorithms, simply because they are too vague, open to interpretation. "Fry onions on medium heat until brown" — how brown is brown enough? what is medium heat? what exact light frequencies and temperatures are we talking about?!
+</p>
+
+<p>
+The reason such instructions aren't extremely precise is that for the most part they're enough. The recipes are more like suggestions. People can make their own decisions and interpretations.
+</p>
+
+<p>
+But computers can't. Computers can only follow precise, unambiguous instructions. Yet, the roots of this formal nature of algorithms are much older than digital computers. The word "algorithm" itself was derived from the name of Muhammad ibn Musa al-Khwarizmi, a Persian scholar who lived between in years 780-850. His books described algorithms for calculating certain numbers. These algorithms — instructions — must be precise and unambiguous even though they were created for mortal humans.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaec0fb5" class="outline-3">
+<h3 id="orgaec0fb5"><span class="section-number-3">3.2</span> Algorithm vs program</h3>
+</div>
+
+<div id="outline-container-org306b3b3" class="outline-3">
+<h3 id="org306b3b3"><span class="section-number-3">3.3</span> Euclid's algorithm</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Let's start with the famous, ancient algorithm for finding the greatest common divisor (GCD) of two numbers. GCD is the largest number that divides both given numbers without leaving a remained. For example, GCD of 4 and 8 is 2.
+</p>
+
+<p>
+Unless you know about Euclid's algorithm, stop and think for a while — how would you find a GCD of two numbers? What generic approach might work for any case (not taking efficiency into account at the moment)?
+</p>
+
+<p>
+Right off the bat, one could suggest just trying all the numbers from the largest-minus-one down to 1. That's certainly a fine way, and considering the enormous power of modern computers, will take a fraction of a second for even large-ish numbers. Euclid, of course, was trying to solve this about 2300 years before modern computers. Trying out all the numbers manually is the last resort for any computational task.
+</p>
+
+<p>
+The Euclid's algorithm is a series of simple computations, and to track the steps let's introduce a number \(k\). The initial step corresponds to \(k=0\), the next step to \(k=1\), and so forth.
+</p>
+
+<p>
+We want to find the GCD of two numbers \(a = 47, b = 831\). The first step is to divide the larger number by the smaller:
+</p>
+
+<p>
+\[831 = q_{0} \times 47 + r_{0}\]
+\[831 = 17 \times 47 + 32\]
+</p>
+
+<p>
+These new numbers \(q_{0}\) and \(r_{0}\) are called <i>quotient</i> and <i>remainder</i>. Next, we repeat the process, but this time use the new numbers:
+</p>
+
+<p>
+\[47 = q_{1} \times 32 + r_{1}\]
+\[47 = 1 \times 32 + 15\]
+</p>
+
+<p>
+And again:
+</p>
+
+<p>
+\[32 = q_{2} \times 15 + r_{2}\]
+\[32 = 2 \times 15 + 2\]
+</p>
+
+<p>
+And again:
+</p>
+
+<p>
+\[15 = q_{3} \times 2 + r_{3}\]
+\[15 = 7 \times 2 + 1\]
+</p>
+
+<p>
+And finally, we reach the remainder = \(0\):
+</p>
+
+<p>
+\[7 = q_{4} \times 1 + r_{4}\]
+\[7 = 7 \times 1 + 0\]
+</p>
+
+<p>
+This series is guaranteed to end with a zero remainder, and the last non-zero remainder is the greatest common divisor (we won't provide a proof here for either statements). In our example, \(GCD(47, 831) = 1\).
+</p>
+
+<hr />
+
+<p>
+This is a proper algorithm because:
+</p>
+<ul class="org-ul">
+<li>It is formal and unambiguous. There is no room for interpretation or assumption.</li>
+<li>It can be proved to we correct.</li>
+<li>It can be analyzed, best and worst case scenarios can be determined for the general case.</li>
+</ul>
+
+<p>
+These are kind of properties we want from algorithms.
+</p>
+
+<p>
+Let's implement this algorithm in Python.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">gcd</span>(a,b):
+  <span style="color: #a626a4;">while</span> b != 0:
+    <span style="color: #8b4513;">t</span> = b
+    <span style="color: #8b4513;">b</span> = a % b
+    <span style="color: #8b4513;">a</span> = t
+  <span style="color: #a626a4;">return</span> a
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga98c552" class="outline-3">
+<h3 id="orga98c552"><span class="section-number-3">3.4</span> Multiplication algorithm. Pseudocode.</h3>
+</div>
+
+<div id="outline-container-orgce7a693" class="outline-3">
+<h3 id="orgce7a693"><span class="section-number-3">3.5</span> Sorting. Bubble sort</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf, by author or, perhaps, by color; tasks in our ToDo lists, by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm at work, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
+</p>
+
+<p>
+The reason people give sorting this much attention is twofold:
+</p>
+
+<ol class="org-ol">
+<li>It is a truly important kind of problem in computer science.</li>
+<li>Understanding and implementing sorting algorithms is a good exercise for computational thinking.</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgbbd1cde" class="outline-3">
+<h3 id="orgbbd1cde"><span class="section-number-3">3.6</span> Insertion sort</h3>
+</div>
+
+<div id="outline-container-orgf193c4a" class="outline-3">
+<h3 id="orgf193c4a"><span class="section-number-3">3.7</span> Divide and conquer</h3>
+</div>
+
+<div id="outline-container-org578cc4f" class="outline-3">
+<h3 id="org578cc4f"><span class="section-number-3">3.8</span> Big O</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>doesn't allow to predict or analyze performance</li>
+<li>defines the limits of growth</li>
+<li>allows to classify algos</li>
+<li></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb2b93d3" class="outline-3">
+<h3 id="orgb2b93d3"><span class="section-number-3">3.9</span> Big theta, etc</h3>
+</div>
+</div>
+
+<div id="outline-container-orgefb5570" class="outline-2">
+<h2 id="orgefb5570"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> </h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org468bbe6" class="outline-3">
+<h3 id="org468bbe6"><span class="section-number-3">4.1</span> Graphs</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>bridges problem</li>
+<li>dijkstra's algorithm</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbe4a761" class="outline-3">
+<h3 id="orgbe4a761"><span class="section-number-3">4.2</span> Data structures</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>array</li>
+<li>hash-table</li>
+<li>linked list</li>
+<li>tree</li>
+</ul>
 </div>
 </div>
 </div>

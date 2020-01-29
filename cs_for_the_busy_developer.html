@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-01-13 Mon 12:54 -->
+<!-- 2020-01-29 Wed 14:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Computer Science For The Busy Developer</title>
@@ -81,76 +81,101 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<div id="outline-container-org1274477" class="outline-2">
-<h2 id="org1274477"><span class="section-number-2">1</span> Subset, superset</h2>
+<div id="outline-container-orgda6e3a5" class="outline-2">
+<h2 id="orgda6e3a5"><span class="section-number-2">1</span> Euclid's algorithm</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-When all members of set \(A\) are present in another set \(B\), then \(A\) is a <b>subset</b> of \(B\). Let's say set \(B\) is the set of all movies ever produced. Then \(A\) (movies I've watched) is clearly a subset of \(B\). This notion is expressed like so:
-</p>
-
-\begin{equation}
-A \subseteq B
-\end{equation}
-
-<p>
-To look at things from the other end, \(B\) is a <b>superset</b> of \(A\):
-</p>
-
-\begin{equation}
-B \supseteq A
-\end{equation}
-
-<figure>
-<img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/5f4/657/168/subset.png" style="max-width: 300px; width: 300px;">
-<figcaption>A set and its subset.</figcaption>
-</figure>
-
-<p>
-You know what else is a subset of \(B\)? An empty set!
-</p>
-
-\begin{equation}
-\varnothing \subseteq B
-\end{equation}
-
-<p>
-This either sounds absolutely natural to you or extremely weird. It makes perfect sense to a mathematician, because it's easy to argue: <i>all</i> members of \(\varnothing\) are present in \(B\), all zero of them.
+Let's start with the famous, ancient algorithm for finding the greatest common divisor (GCD) of two numbers. GCD is the largest number that divides both given numbers without leaving a remained. For example, GCD of 4 and 8 is 2.
 </p>
 
 <p>
-It gets weirder. As per our definition, if all members of a set are also present in another set, then the one is a subset of the other. This means any set is a subset of itself.
-</p>
-
-\begin{equation}
-\displaylines{
-A \subseteq A \\
-B \subseteq B \\
-Z \subseteq Z
-}
-\end{equation}
-
-<p>
-By extension, if two sets are the same, then either of them is a subset of the other.
-</p>
-
-\begin{equation}
-\textrm{if } A \subseteq B \textrm{ and } B \subseteq A \textrm{ then } A = B
-\end{equation}
-
-<p>
-When we look at a statement \(A \subseteq B\), we often need to know whether \(A = B\) or not. To distinguish between the two cases, mathematicians use a special notion of a <b>proper subset</b>.
+Unless you know about Euclid's algorithm, stop and think for a while — how would you find a GCD of two numbers? What generic approach might work for any case (not taking efficiency into account at the moment)?
 </p>
 
 <p>
-If \(A \subseteq B\), but \(A \neq B\), then \(A\) is a proper subset of \(B\).
+Right off the bat, one could suggest just trying all the numbers from the largest-minus-one down to 1. That's certainly a fine way, and considering the enormous power of modern computers, will take a fraction of a second for even large-ish numbers. Euclid, of course, was trying to solve this about 2300 years before modern computers. Trying out all the numbers manually is the last resort for any computational task. Although, if you can prove that the only way to solve the problem at hand is by brute force, then that's a good result. Some problems are fundamentally hard, for example, finding an element in an unsorted collection: there is just no way to optimize anything, you have to check all the elements (in the general case).
 </p>
 
-\begin{equation}
-A \subset B
-\end{equation}
+<p>
+The Euclid's algorithm is a series of simple computations. Let's say we want to find the GCD of two numbers \(a = 47, b = 831\). The first step is to divide the larger number by the smaller and find the remainder:
+</p>
 
 <p>
-Since I haven't watched all the movies ever produced, I can say that \(A\) is a proper subset of \(B\). So, a set is a subset of itself, but is never a proper subset of itself.
+\[831 = q_{0} \times 47 + r_{0}\]
+\[831 = 17 \times 47 + 32\]
+</p>
+
+<p>
+These new numbers \(q_{0}\) and \(r_{0}\) are called <i>quotient</i> and <i>remainder</i>. Next, we repeat the process, this time using the new numbers:
+</p>
+
+<p>
+\[47 = q_{1} \times 32 + r_{1}\]
+\[47 = 1 \times 32 + 15\]
+</p>
+
+<p>
+And again:
+</p>
+
+<p>
+\[32 = q_{2} \times 15 + r_{2}\]
+\[32 = 2 \times 15 + 2\]
+</p>
+
+<p>
+And again:
+</p>
+
+<p>
+\[15 = q_{3} \times 2 + r_{3}\]
+\[15 = 7 \times 2 + 1\]
+</p>
+
+<p>
+And finally, we reach the remainder = \(0\):
+</p>
+
+<p>
+\[7 = q_{4} \times 1 + r_{4}\]
+\[7 = 7 \times 1 + 0\]
+</p>
+
+<p>
+This series is guaranteed to end with a zero remainder, and the last non-zero remainder is the greatest common divisor (we won't provide a proof here for either statements). In our example, \(GCD(47, 831) = 1\).
+</p>
+
+<hr />
+
+<p>
+This is a proper algorithm because:
+</p>
+<ul class="org-ul">
+<li>It is formal and unambiguous. There is no room for interpretation or assumption.</li>
+<li>It can be proved to we correct.</li>
+<li>It can be analyzed, best and worst case scenarios can be determined for the general case.</li>
+</ul>
+
+<p>
+These are kind of properties we want from algorithms.
+</p>
+
+<p>
+Let's implement this algorithm in Python.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">gcd</span>(a, b):
+  <span style="color: #a626a4;">while</span> b != 0:
+    <span style="color: #8b4513;">t</span> = b
+    <span style="color: #8b4513;">b</span> = a % b
+    <span style="color: #8b4513;">a</span> = t
+  <span style="color: #a626a4;">return</span> a
+</pre>
+</div>
+
+<p>
+This is a recursive approach, which is a natural idea under given circumstances, since each step of the Euclid's algorithm is the same, only the numbers "shift". The stopping condition is <code>b != 0</code>, and until it's reached we use <code>t</code> as a temporary variable while computing new value for <code>b</code>. Recall that <code>%</code> is a modulo operator which returns the remainder after division — exactly what we need for \(d_{k}\) at each step \(k\).
 </p>
 </div>
 </div>
