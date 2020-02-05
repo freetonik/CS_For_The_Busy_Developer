@@ -1377,14 +1377,87 @@ This slightly difficult result is based on several assumptions and omitted proof
 - doesn't allow to predict or analyze performance
 - defines the limits of growth
 - allows to classify algos
-** Sorting. Bubble sort
 
-Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf, by author or, perhaps, by color; tasks in our ToDo lists, by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm at work, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
+** Why sort? Faithsort and Bogosort
+
+Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf by author or, perhaps, by color; tasks in our ToDo lists by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm in a professional setting, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
 
 The reason people give sorting this much attention is twofold:
 
 1. It is a truly important kind of problem in computer science.
 2. Understanding and implementing sorting algorithms is a good exercise for computational thinking.
+
+Let's take an example collection of numbers =[3, 8, 1, 2, 5, 6, 4, 7, 9]= and see what approaches we can take.
+
+What is the dumbest sorting algorithm possible? One idea is to check whether the collection is sorted, and if not, just wait and check again later. Of course, it will never be sorted. Or will it? Maybe with enough time in an infinite universe, bits could spontaneously flip due to quantum effects. Or, if we're talking on a more practical level, the electronic representation of said bits (computer memory) could be affected by cosmic rays, radiation or just plain data corruption. As a result, the possibility of the collection becoming sorted by accident is non-zero.
+
+Let's call it "faithsort":
+
+#+BEGIN_SRC python
+def faithsort(collection):
+    while not is_sorted(collection):
+        time.sleep(random.random())
+    return collection
+#+END_SRC
+
+How long would it take to successfully finish?
+
+1. Best case: collection is empty or already sorted. Time needed: effectively 0.
+2. Average case: collection becomes sorted after some time. Time needed: unknown, but finite.
+3. Worst case: collection is never sorted. Time needed: n/a.
+
+Alright, jokes aside, what is the dumbest but still practical sorting algorithm possible? It's probably bogosort: shuffle the collection until it's sorted:
+
+#+BEGIN_SRC python
+def bogosort(collection):
+    while not is_sorted(collection):
+        random.shuffle(collection)
+    return collection
+#+END_SRC
+
+How long would it take to successfully finish?
+
+1. Best case: collection is empty or already sorted. Time needed: effectively 0.
+2. Average case: collection becomes sorted after some shuffling. Time needed: unknown, but finite.
+3. Worst case: collection is never sorted. Time needed: n/a.
+
+You can say that both faithsort and bogosort are equally useless, but it looks like with bogosort it's at least not inconceivable to expect the correct result in our lifetime. In fact, for our collection =[3, 8, 1, 2, 5, 6, 4, 7, 9]=, the Python program presented above was successful on average with ≈100000 permutations and took about 2-5 seconds on a modern laptop.
+
+Both algorithms are bad not because they are slow, but mainly because they are *unbounded*: their worst case is infinity. This means we can't ever rely on the program to terminate (finish executing).
+
+-----
+
+Consider a slightly better version: deterministic bogosort. In this version, the shuffling is not completely random, but instead it iterates through all possible permutations. The amount of permutations is finite if the collection is finite.
+
+How to determine the number of permutations of $n$ items? An intuitive explanation is rather simple. Consider nine elements =1, 2, 3, 4, 5, 6, 7, 8, 9=. Now, try to construct one permutation.
+
+1. You need to choose the first element for it. There are 9 to choose from, so you have 9 choices.
+2. Next, you need to chose the second element. There are 8 left to choose from.
+3. Next, third element. 7 left to choose from.
+4. Etc.
+
+So, the total number of permutations is $9\times8\times7\times6\times5\times4\times3\times2\times1$ which is $9!$ Thus, for $n$ items, there are $n!$ permutations.
+
+Our deterministic bogosort does two things for each iteration: checks whether the collection is sorted and, if needed, shuffles it. We know there are at least $n!$ permutations to shuffle through, so now we have to find out how much more work needs to happen for each permutation. This work is hidden in the checking (=is_sorted(collection)=). How much work?
+
+(Note: of course, the deterministic shuffling itself is a non-trivial task that would also require some work and contribute to the total number of operations. For simplicity, we're ignoring this part.)
+
+Again, consider collection =1, 2, 3, 4, 5, 6, 7, 8, 9=. In order to determine whether it's sorted or not, you have to go through all the items and check that they're placed in increasing order. Best case is something like =9, 1, 2, 3, 4, 5, 6, 7, 8=: the first check immediately yields "not sorted". Worst case is something like =2, 3, 4, 5, 6, 7, 8, 9, 1=: you have to iterate through all the items and only at the last step it turns out the collection is not sorted.
+
+So, worst case is $n-1$ checks for the collection of $n$ elements. If you want to go deeper, you can calculate the exact number of operations according to the RAM model: comparing a pair means accessing two elements ($2$), running a comparison operator ($1$), reading, increasing and writing the loop counter ($1 + 1 + 1$), etc. But, as you probably already noticed, we're not interested in accuracy as much as in scale. We can safely say it requires about $n$ operations to check for sortedness, and ignore whatever constant multiplier there could be (like $19 \times n$ — we don't care about 19, it's a constant number which never grows with $n$).
+
+So, in total, deterministic bogosort requires $n \times n!$ operations. This is its upper bound. Now the cases are as follows:
+
+1. Best case: collection is empty or already sorted. Time needed: effectively $0$.
+2. Average case: collection becomes sorted after some shuffling. Time needed: unknown, but finite.
+3. Worst case: collection becomes sorted after maximum possible amount of shuffling. Time needed: $n \times n!$
+
+Now it's bounded! Great!
+
+** Bubble sort
+
+
+
 ** Multiplication algorithm. Pseudocode.
 ** Insertion sort
 ** Divide and conquer
