@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-02-05 Wed 13:31 -->
+<!-- 2020-02-10 Mon 18:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Computer Science For The Busy Developer</title>
@@ -81,132 +81,52 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<div id="outline-container-org17da48b" class="outline-2">
-<h2 id="org17da48b"><span class="section-number-2">1</span> Why sort? Faithsort and Bogosort</h2>
+<div id="outline-container-org0596ae1" class="outline-2">
+<h2 id="org0596ae1"><span class="section-number-2">1</span> Lower bounds for sorting. Big Omega (\(\Omega\))</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf by author or, perhaps, by color; tasks in our ToDo lists by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm in a professional setting, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
+Generally speaking, for sorting, \(\mathcal{O}(n^{2})\) complexity is not great. Quadratic function grows very fast. Before exploring an alternative, better sorting algorithm, it makes sense to investigate the lower bounds for sorting. What is the best possible time complexity we can dream of?
 </p>
 
 <p>
-The reason people give sorting this much attention is twofold:
-</p>
-
-<ol class="org-ol">
-<li>It is a truly important kind of problem in computer science.</li>
-<li>Understanding and implementing sorting algorithms is a good exercise for computational thinking.</li>
-</ol>
-
-<p>
-Let's take an example collection of numbers <code>[3, 8, 1, 2, 5, 6, 4, 7, 9]</code> and see what approaches we can take.
+Of course, ideally, we want all algorithms to be \(\mathcal{O}(1)\) — constant time. Which means that the algorithm yields correct solution in the same amount for time for any possible input. Note that this doesn't necessarily mean "fast". It could be that it takes trillions of operations and billions of years on a real computer, but the point is that it takes that much for any input, regardless of size. Let's see what the real lower bound is.
 </p>
 
 <p>
-What is the dumbest sorting algorithm possible? One idea is to check whether the collection is sorted, and if not, just wait and check again later. Of course, it will never be sorted. Or will it? Maybe with enough time in an infinite universe, bits could spontaneously flip due to quantum effects. Or, if we're talking on a more practical level, the electronic representation of said bits (computer memory) could be affected by cosmic rays, radiation or just plain data corruption. As a result, the possibility of the collection becoming sorted by accident is non-zero.
+Bubble sort and other canonical algorithms are comparison-based: they compare pairs of elements in order to determine their relative position. As a result, the algorithm must output a permutation (rearrangement) of the input. For a collection of \(n\) elements, there are \(n!\) distinct permutations (recall the way permutations are calculated in "Faithsort and Bogosort"). For each of these permutations, there exists an input for which that permutation is the only correct answer. For example, the permutation \([a_{4}, a_{1}, a_{3}, a_{2}]\) is the only correct answer for the input \([9, 2, 7, 5]\). In fact, there exists a bijection (1-to-1 mapping) between different orderings of \(n\) distinct elements and the permutations needed to sort them. Give this, we can fix a set of \(n!\) inputs, one for each of \(n!\) output permutations.
 </p>
 
 <p>
-Let's call it "faithsort":
+Initially, the comparison-based sorting algorithm "knows" of \(n!\) possible correct permutations. In the end, it needs to settle on the one correct permutation. We can view the algorithm "travelling" from the first state to the last state, narrowing down the set of permutations all the way to one. The narrowing happens due to comparisons; each new comparison reduces the space of possible solutions. So, the computation can be thought of as a series of YES/NO questions, which yields a binary search tree. The root of the tree corresponds to the initial state of \(n!\) possible correct permutations, before any YES/NO questions is answered. One leaf of the tree corresponds to the correct permutation. For each possible input of size \(n\), there is a "correct leaf".
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">faithsort</span>(collection):
-    <span style="color: #a626a4;">while</span> <span style="color: #a626a4;">not</span> is_sorted(collection):
-        time.sleep(random.random())
-    <span style="color: #a626a4;">return</span> collection
-</pre>
-</div>
+<figure><img src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/4c6/a5e/21f/Decision_tree_comparison_search.png">
+<figcaption>Portion of a binary decision tree for a comparison-based sorting algorithm.</figcaption>
+</figure>
 
 <p>
-How long would it take to successfully finish?
-</p>
-
-<ol class="org-ol">
-<li>Best case: collection is empty or already sorted. Time needed: effectively 0.</li>
-<li>Average case: collection becomes sorted after some time. Time needed: unknown, but finite.</li>
-<li>Worst case: collection is never sorted. Time needed: n/a.</li>
-</ol>
-
-<p>
-Alright, jokes aside, what is the dumbest but still practical sorting algorithm possible? It's probably bogosort: shuffle the collection until it's sorted:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-python"><span style="color: #a626a4;">def</span> <span style="color: #0184bc;">bogosort</span>(collection):
-    <span style="color: #a626a4;">while</span> <span style="color: #a626a4;">not</span> is_sorted(collection):
-        random.shuffle(collection)
-    <span style="color: #a626a4;">return</span> collection
-</pre>
-</div>
-
-<p>
-How long would it take to successfully finish?
-</p>
-
-<ol class="org-ol">
-<li>Best case: collection is empty or already sorted. Time needed: effectively 0.</li>
-<li>Average case: collection becomes sorted after some shuffling. Time needed: unknown, but finite.</li>
-<li>Worst case: collection is never sorted. Time needed: n/a.</li>
-</ol>
-
-<p>
-You can say that both faithsort and bogosort are equally useless, but it looks like with bogosort it's at least not inconceivable to expect the correct result in our lifetime. In fact, for our collection <code>[3, 8, 1, 2, 5, 6, 4, 7, 9]</code>, the Python program presented above was successful on average with ≈100000 permutations and took about 2-5 seconds on a modern laptop.
+Let \(S\) be the set of inputs that are consistent with the answers to comparisons made so far. Initially, \(|S| = n!\). Each comparison splits \(S\) into two groups: those inputs for which the answer is YES and those for which the answer is NO. Each comparison cuts down the size of \(S\) by at most a factor of 2. Since initially the size of \(S\) is \(n!\), and in the end it should be reduced to 1 (one correct solution), the algorithm must make \(log_{2}(n!)\) comparisons.
 </p>
 
 <p>
-Both algorithms are bad not because they are slow, but mainly because they are <b>unbounded</b>: their worst case is infinity. This means we can't ever rely on the program to terminate (finish executing).
+Since we're looking for a lower bound, Big O notation doesn't apply. For this, Big Omega (\(\Omega\)) is used. Similar to Big O, Big Omega is a way to say that some function \(g(n)\) is always "lower" than the function in question.
 </p>
 
-<hr />
+<figure><img style="max-width: 400px !important;" src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/f94/565/c9e/Big_Omega.png">
+<figcaption>Graphs of f(n) and g(n).</figcaption>
+</figure>
 
 <p>
-Consider a slightly better version: deterministic bogosort. In this version, the shuffling is not completely random, but instead it iterates through all possible permutations. The amount of permutations is finite if the collection is finite.
-</p>
-
-<p>
-How to determine the number of permutations of \(n\) items? An intuitive explanation is rather simple. Consider nine elements <code>1, 2, 3, 4, 5, 6, 7, 8, 9</code>. Now, try to construct one permutation.
-</p>
-
-<ol class="org-ol">
-<li>You need to choose the first element for it. There are 9 to choose from, so you have 9 choices.</li>
-<li>Next, you need to chose the second element. There are 8 left to choose from.</li>
-<li>Next, third element. 7 left to choose from.</li>
-<li>Etc.</li>
-</ol>
-
-<p>
-So, the total number of permutations is \(9\times8\times7\times6\times5\times4\times3\times2\times1\) which is \(9!\) Thus, for \(n\) items, there are \(n!\) permutations.
+\[ log_{2}(n!) = log_{2}(n) + log_{2}(n-1) \textrm{ + ... + } log_{2}(2) \]
+\[ = \Omega(n log_{2}n) \]
 </p>
 
 <p>
-Our deterministic bogosort does two things for each iteration: checks whether the collection is sorted and, if needed, shuffles it. We know there are at least \(n!\) permutations to shuffle through, so now we have to find out how much more work needs to happen for each permutation. This work is hidden in the checking (<code>is_sorted(collection)</code>). How much work?
+Because \(log_{2}n\) is so frequent in computer science, number 2 is usually omitted and only \(logn\) is written. So, the lower bound for any comparison-based sorting algorithm is \(\Omega(n logn)\).
 </p>
 
 <p>
-(Note: of course, the deterministic shuffling itself is a non-trivial task that would also require some work and contribute to the total number of operations. For simplicity, we're ignoring this part.)
-</p>
-
-<p>
-Again, consider collection <code>1, 2, 3, 4, 5, 6, 7, 8, 9</code>. In order to determine whether it's sorted or not, you have to go through all the items and check that they're placed in increasing order. Best case is something like <code>9, 1, 2, 3, 4, 5, 6, 7, 8</code>: the first check immediately yields "not sorted". Worst case is something like <code>2, 3, 4, 5, 6, 7, 8, 9, 1</code>: you have to iterate through all the items and only at the last step it turns out the collection is not sorted.
-</p>
-
-<p>
-So, worst case is \(n-1\) checks for the collection of \(n\) elements. If you want to go deeper, you can calculate the exact number of operations according to the RAM model: comparing a pair means accessing two elements (\(2\)), running a comparison operator (\(1\)), reading, increasing and writing the loop counter (\(1 + 1 + 1\)), etc. But, as you probably already noticed, we're not interested in accuracy as much as in scale. We can safely say it requires about \(n\) operations to check for sortedness, and ignore whatever constant multiplier there could be (like \(19 \times n\) — we don't care about 19, it's a constant number which never grows with \(n\)).
-</p>
-
-<p>
-So, in total, deterministic bogosort requires \(n \times n!\) operations. This is its upper bound. Now the cases are as follows:
-</p>
-
-<ol class="org-ol">
-<li>Best case: collection is empty or already sorted. Time needed: effectively \(0\).</li>
-<li>Average case: collection becomes sorted after some shuffling. Time needed: unknown, but finite.</li>
-<li>Worst case: collection becomes sorted after maximum possible amount of shuffling. Time needed: \(n \times n!\)</li>
-</ol>
-
-<p>
-Now it's bounded! Great!
-</p>
+Heapsort and Mergesort sorting algorithms have an upper bound of \(\mathcal{O}(nlogn)\) steps. Therefore, they are optimal, as their upper bound is the same as the lower bound for any comparison-based sorting algorithm.</p>
 </div>
 </div>
 </div>
