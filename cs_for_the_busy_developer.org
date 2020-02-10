@@ -100,7 +100,6 @@ Since it seems impossible or at least unpractical to put all of computer science
 - Category theory
 - Type theory
 - Computational geometry
-
 * Foundations of Math
 ** Set theory
 
@@ -839,7 +838,6 @@ Formally: for each element $b \in B$, there exists an element $a \in A$, such th
 #+END_EXPORT
 
 We'll not focus on functions and relations anymore at the moment. Depending on how this course goes on, we'll either keep getting back to elements of this topic, or will extract it into a separate chapter.
-
 ** Proof techniques
 
 *** Direct proof
@@ -932,7 +930,7 @@ A rational number is any number that can be expressed as the fraction \(\frac{p}
 Oh! They are rational because they are /ratios/! Just to make things super clear, let's dig one more step and make sure we understand integers.
 
 #+BEGIN_QUOTE
-An integer (from the Latin /integer/ meaning "whole") is a number that can be written without a fractional component. For example, $21$, $4$, $0$, and $−2048$ are integers, while \(9.75\), \( 5\frac{1}{2} \) and \( \sqrt{2} \) are not.[fn:3]
+An integer (from the Latin /integer/ meaning "whole") is a number that can be written without a fractional component. For example, $21$, $4$, $0$, and $-2048$ are integers, while \(9.75\), \( 5\frac{1}{2} \) and \( \sqrt{2} \) are not.[fn:3]
 #+END_QUOTE
 
 Combining these things, we can construct a comprehensive definition of the irrational number: it's a number that cannot be expressed as the fraction of two whole numbers. Now, let's apply this to Theorem 3 so that it has some meat:
@@ -945,7 +943,7 @@ Alright, now there is something to play with!
 
 $$ \sqrt{2} = \frac{p}{q}\ $$
 
-We can assume that $p$ and $q$ are not *both* even, because if they are, we can reduce them by dividing both by a common factor (like, for example, \( \frac{8}{10}\ \) should be reduced to \( \frac{4}{5}\ \)). In other words, if they are both even, reduce them until at least one is odd and no further reductions are possible.
+We can assume that $p$ and $q$ are not *both* even, because if they are, we can reduce them by dividing both by a common factor (like, for example, $\frac{8}{10}\$ should be reduced to $\frac{4}{5}$). In other words, if they are both even, reduce them until at least one is odd and no further reductions are possible.
 
 Now, let's square the square root:
 
@@ -1104,9 +1102,9 @@ Recall that the elements in the sequence are distinct (no repeating numbers). He
 *Case 1.* $a_{i} < a_{j}$. Then the length of the longest increasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest increasing subsequence starting from $a_{j}$. Therefore, $inc_{i} \neq inc_{j}$, which contradicts (1).
 
 *Case 2.* $a_{i} > a_{j}$. Then the length of the longest deccreasing subsequence starting at $a_{i}$ must be $1 + inc_{j}$, because we can append $a_{i}$ to the longest deccreasing subsequence starting from $a_{j}$. Therefore, $dec_{i} \neq dec_{j}$, which again contradicts (1). $\blacksquare$
-
 * Computational Complexity
-** Intro to complexity
+** Intuition for complexity
+*** Intro to complexity
 
 The proper way to discuss computational complexity would probably look like this: start with the idea of computation, describe models of computation (e.g. Turing machines and/or Lambda calculus), discuss limits of computation, explore automatons and languages (not programming languages, but formal languages derived from formal grammars like Context-free grammar), and then, finally, discuss the ways we can count the number of operations for certain algorithms.
 
@@ -1138,7 +1136,7 @@ But computers can't. Computers can only follow precise, unambiguous instructions
 <figcaption>Statue of Muhammad ibn Musa al-Khwarizmi, just outside Khiva’s west wall, Uzbekistan. Photo by Dan Lundberg.</figcaption>
 </figure>
 #+END_EXPORT
-** Euclid's algorithm
+*** Euclid's algorithm
 
 Let's start with the famous, ancient algorithm for finding the greatest common divisor (GCD) of two numbers. GCD is the largest number that divides both given numbers without leaving a remained. For example, GCD of 4 and 8 is 4.
 
@@ -1190,7 +1188,7 @@ def gcd(a, b):
 #+END_SRC
 
 It's a recursive approach, which is a natural idea under given circumstances, since each step of the Euclid's algorithm is the same, only the numbers "shift". The stopping condition is ~b != 0~, and until it's reached we use =t= as a temporary variable while computing new value for =b=. Recall that =%= is a modulo operator which returns the remainder after division — exactly what we need for $r_{k}$ at each step $k$.
-** Analyzing Euclid's algorithm: statistical observations
+*** Analyzing Euclid's algorithm: statistical observations
 
 Let's now try to analyze Euclid's algorithm, or, rather, this particular implementation in Python:
 
@@ -1282,7 +1280,7 @@ gcd(196418, 121396) # 14
 Firstly, when changing one number slightly, the amount of steps doesn't change dramatically. It kind of hangs around some fixed point. Secondly, when the numbers are significantly bigger, the amount of steps is not significantly larger. The largest we've seen so far is 25 steps for ~a=196418~, ~b=121393~.
 
 These sorts of experimental observations don't usually lead to the answer, but at least can give a basis for assumption. Here we can assume that the number of steps does rise with the input numbers, but slowly. The rise is not linear.
-** Analyzing Euclid's algorithm: observing growth
+*** Analyzing Euclid's algorithm: observing growth
 
 Let's focus on the growth of steps.
 
@@ -1339,8 +1337,8 @@ Notice how =q= (quotient) changes: at first, it's =17=, which dramatically reduc
 Here, each quotient is =1=, the smallest possible value. That makes =a= decrease slower. The slowest, actually. This is the worst case. Thus, we can reframe the question once again:
 
 1. "What are the worst input numbers?"
-2. → "What input numbers produce the slowest decrease of =b= over time?"
-3. → *"What input numbers make all quotients be =1=?"*
+2. to "What input numbers produce the slowest decrease of =b= over time?"
+3. to  *"What input numbers make all quotients be =1=?"*
 
 Look at the previous output listing again. Do you notice something weird about values of =a=? 144, 89, 55, 34, 21, 13, 8, 5, 3, 2... They are reversed Fibonacci numbers!
 
@@ -1373,7 +1371,8 @@ is the [[https://en.wikipedia.org/wiki/Golden_ratio][golden ratio]]. For suffici
 $$n \approx \frac { \log_{2} F_n}{\log_{2} \varphi}$$
 
 This slightly difficult result is based on several assumptions and omitted proofs. Before continuing to the conclusion in the context of formal algorithmic complexity analysis, let's take a simpler detour into sorting algorithms. There, through a primitive scenario, we'll discuss the notion of upper bounds and Big O. And afterwards, we'll come back and finish analyzing Euclid's algorithm properly.
-** Faithsort and Bogosort
+** Sorting and asymptotic notation
+*** Faithsort and Bogosort
 
 Sorting is the staple of computer science education. We all have to deal with sorting one way or another: in college, in textbooks or during job interviews. We also occasionally sort things in real life: books on the shelf by author or, perhaps, by color; tasks in our ToDo lists by importance or priority, etc. Yet, I don't think I had implemented a sorting algorithm in a professional setting, ever. And I can imagine only a small subset of programmers who think deeply about sorting and implement new or modified sorting algorithms as part of their job.
 
@@ -1416,7 +1415,7 @@ How long would it take to successfully finish?
 2. Average case: collection becomes sorted after some shuffling. Time needed: unknown, but finite.
 3. Worst case: collection is never sorted. Time needed: n/a.
 
-You can say that both faithsort and bogosort are equally useless, but it looks like with bogosort it's at least not inconceivable to expect the correct result in our lifetime. In fact, for our collection =[3, 8, 1, 2, 5, 6, 4, 7, 9]=, the Python program presented above was successful on average with ≈100000 permutations and took about 2-5 seconds on a modern laptop.
+You can say that both faithsort and bogosort are equally useless, but it looks like with bogosort it's at least not inconceivable to expect the correct result in our lifetime. In fact, for our collection =[3, 8, 1, 2, 5, 6, 4, 7, 9]=, the Python program presented above was successful on average with approx. 100000 permutations and took about 2-5 seconds on a modern laptop.
 
 Both algorithms are bad not because they are slow, but mainly because they are *unbounded*: their worst case is infinity. This means we can't ever rely on the program to terminate (finish executing).
 
@@ -1448,7 +1447,7 @@ So, in total, deterministic bogosort requires $n \times n!$ operations. This is 
 3. Worst case: collection becomes sorted after maximum possible amount of shuffling. Time needed: $n \times n!$
 
 Now it's bounded! Great!
-** Bubble sort
+*** Bubble sort
 
 Let us now talk about a more sensible algorithm for sorting. It's called Bubble sort. The idea is as follows:
 
@@ -1490,8 +1489,7 @@ Best case is one pass, because if the collection is already sorted, one pass is 
 1. Best case: collection is empty or already sorted. Time needed: $n$.
 2. Average case: collection becomes sorted after some passes. Time needed: unknown, but finite.
 3. Worst case: collection becomes sorted after maximum possible amount passes. Time needed: $n \times n$ or $n^{2}$.
-
-** Big O
+*** Big O
 
 When discussing average and worst case scenarios, we were interested in one thing which can be generalized as a question: "what is the upper bound (limitation) on the number of steps with respect to the size of the problem?" At the same time, we did not care about being super precise.
 
@@ -1564,8 +1562,7 @@ We can now say that
 Often, instead of \(f(n) = \mathcal{O}(g(n))\) computer scientists write \(f(n) \textrm{ is } \mathcal{O}(g(n))\)
 because equality symbol there doesn't truly mean equality. Knuth describes such statements as "one-way equalities", since if the sides could be reversed, "we could deduce ridiculous things like \(n = n^{2}\) from the identities \(n = \mathcal{O}(n^{2})\) and \(n^{2} = \mathcal{O}(n^{2})\).
 #+END_EXPORT
-
-** Lower bounds for sorting. Big Omega ($\Omega$)
+*** Lower bounds for sorting. Big Omega ($\Omega$)
 
 Generally speaking, for sorting, $\mathcal{O}(n^{2})$ complexity is not great. Quadratic function grows very fast. Before exploring an alternative, better sorting algorithm, it makes sense to investigate the lower bounds for sorting. What is the best possible time complexity we can dream of?
 
@@ -1611,10 +1608,8 @@ $$ = \Omega(n log_{2}n) $$
 Because $log_{2}n$ is so frequent in computer science, number 2 is usually omitted and only $logn$ is written. So, the lower bound for any comparison-based sorting algorithm is $\Omega(n logn)$.
 
 Heapsort and Mergesort sorting algorithms have an upper bound of $\mathcal{O}(nlogn)$ steps. Therefore, they are optimal, as their upper bound is the same as the lower bound for any comparison-based sorting algorithm.
-** Divide and conquer
-** Big theta, etc
 
-* TODOs
+* COMMENT TODOs
 ** Graphs
 - bridges problem
 - dijkstra's algorithm
@@ -1637,7 +1632,6 @@ Heapsort and Mergesort sorting algorithms have an upper bound of $\mathcal{O}(nl
 ** End of book
 - proofs
 - why $log_{2}(n!)$ comparisons in comparison-based sorting algorithm
-
 * COMMENT Local Variables
 
 # Local Variables:
