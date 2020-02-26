@@ -2,7 +2,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="assets/style.css" />
 #+HTML_HEAD: <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
 
-#+LATEX_CLASS: tufte-book
+#+LATEX_CLASS: book
 #+LATEX_CLASS_OPTIONS: [a4paper, justified, notitlepage, sfsidenotes, notoc]
 
 #+TITLE: Computer Science For The Busy Developer
