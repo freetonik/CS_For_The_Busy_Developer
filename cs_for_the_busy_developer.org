@@ -1518,7 +1518,7 @@ Now consider three additional things:
 
 so that:
 
-$$ \lvert f(n) \rvert \leq k g(n) \textrm{ for all } n \geq n_{0} $$
+$$ f(n) \leq k g(n) \textrm{ for all } n \geq n_{0} $$
 
 In other words, $g(n)$ multiplied by some number $k$ is always "above" $f(n)$ for sufficiently large $n_{0}$.
 
@@ -1562,6 +1562,7 @@ We can now say that
 Often, instead of \(f(n) = \mathcal{O}(g(n))\) computer scientists write \(f(n) \textrm{ is } \mathcal{O}(g(n))\)
 because equality symbol there doesn't truly mean equality. Knuth describes such statements as "one-way equalities", since if the sides could be reversed, "we could deduce ridiculous things like \(n = n^{2}\) from the identities \(n = \mathcal{O}(n^{2})\) and \(n^{2} = \mathcal{O}(n^{2})\).
 #+END_EXPORT
+
 *** Lower bounds for sorting. Big Omega ($\Omega$)
 
 Generally speaking, for sorting, $\mathcal{O}(n^{2})$ complexity is not great. Quadratic function grows very fast. Before exploring an alternative, better sorting algorithm, it makes sense to investigate the lower bounds for sorting. What is the best possible time complexity we can dream of?
@@ -1609,6 +1610,36 @@ Because $log_{2}n$ is so frequent in computer science, number 2 is usually omitt
 
 Heapsort and Mergesort sorting algorithms have an upper bound of $\mathcal{O}(nlogn)$ steps. Therefore, they are optimal, as their upper bound is the same as the lower bound for any comparison-based sorting algorithm.
 
+*** Big Theta ($\Theta$)
+
+Big O defines an upper bound. Big Omega defines a lower bound. Big Theta is a combination of two: it bounds a function from above and below simultaneously. Otherwise, the principle is the same, the only difference is that we need two constants $k$ instead of one:
+
+1. Some sufficiently large $n$ (call it $n_{0}$);
+2. some other function $g(n)$;
+3. some numbers $k_{1}$, $k_{2}$.
+
+so that:
+
+$$ k_{1}g(n) \leq  f(n) \leq k_{1}g(n) \textrm{ for all } n \geq n_{0} $$
+
+In other words, $g(n)$, when multiplied by two different numbers $k_{1}$ and $k_{2}$ "wraps" $f(n)$ from both sides for sufficiently large $n_{0}$.
+
+#+BEGIN_EXPORT latex
+\begin{figure*}[htbp]
+\includegraphics[width=.5\linewidth]{./images/big_o_theta_etc/Big_Theta.png}
+\caption{\label{}
+Graphs of f(n) and g(n) with upper and lower bounds.}
+\end{figure*}
+#+END_EXPORT
+#+BEGIN_EXPORT html
+<figure><img style="max-width: 400px !important;" src="https://s3.amazonaws.com/thinkific/file_uploads/146581/images/395/b28/73a/Big_Theta.png">
+<figcaption>Graphs of f(n) and g(n) with upper and lower bounds.</figcaption>
+</figure>
+#+END_EXPORT
+
+Asymptotic notation can be used not only to bound number of steps, but also memory and other resources. There is often a balance at play: the more memory you use, the fewer steps you need, and vice versa. It all depends on the goal and the requirements.
+
+For the most part, Big O is the most "practical" as far as these not-quite-practical notations go, because we're often interested in analyzing how efficient an existing algorithm is, rather than how efficient one can be. Existing problems like sorting, search, graph algorithms, etc. already have proven lower bounds, and the question is often: is there a way to design a new algorithm that is more efficient in /some/ regard than existing solutions? Or, having some requirements at hand (e.g. limitations on memory or CPU power), is there a way to design an algorithm that satisfies the requirements?
 * COMMENT TODOs
 ** Graphs
 - bridges problem
