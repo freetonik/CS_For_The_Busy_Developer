@@ -1562,7 +1562,6 @@ We can now say that
 Often, instead of \(f(n) = \mathcal{O}(g(n))\) computer scientists write \(f(n) \textrm{ is } \mathcal{O}(g(n))\)
 because equality symbol there doesn't truly mean equality. Knuth describes such statements as "one-way equalities", since if the sides could be reversed, "we could deduce ridiculous things like \(n = n^{2}\) from the identities \(n = \mathcal{O}(n^{2})\) and \(n^{2} = \mathcal{O}(n^{2})\).
 #+END_EXPORT
-
 *** Lower bounds for sorting. Big Omega ($\Omega$)
 
 Generally speaking, for sorting, $\mathcal{O}(n^{2})$ complexity is not great. Quadratic function grows very fast. Before exploring an alternative, better sorting algorithm, it makes sense to investigate the lower bounds for sorting. What is the best possible time complexity we can dream of?
@@ -1609,7 +1608,6 @@ $$ = \Omega(n log_{2}n) $$
 Because $log_{2}n$ is so frequent in computer science, number 2 is usually omitted and only $logn$ is written. So, the lower bound for any comparison-based sorting algorithm is $\Omega(n logn)$.
 
 Heapsort and Mergesort sorting algorithms have an upper bound of $\mathcal{O}(nlogn)$ steps. Therefore, they are optimal, as their upper bound is the same as the lower bound for any comparison-based sorting algorithm.
-
 *** Big Theta ($\Theta$)
 
 Big O defines an upper bound. Big Omega defines a lower bound. Big Theta is a combination of two: it bounds a function from above and below simultaneously. Otherwise, the principle is the same, the only difference is that we need two constants $k$ instead of one:
@@ -1640,6 +1638,134 @@ Graphs of f(n) and g(n) with upper and lower bounds.}
 Asymptotic notation can be used not only to bound number of steps, but also memory and other resources. There is often a balance at play: the more memory you use, the fewer steps you need, and vice versa. It all depends on the goal and the requirements.
 
 For the most part, Big O is the most "practical" as far as these not-quite-practical notations go, because we're often interested in analyzing how efficient an existing algorithm is, rather than how efficient one can be. Existing problems like sorting, search, graph algorithms, etc. already have proven lower bounds, and the question is often: is there a way to design a new algorithm that is more efficient in /some/ regard than existing solutions? Or, having some requirements at hand (e.g. limitations on memory or CPU power), is there a way to design an algorithm that satisfies the requirements?
+* Abstract Data Types and Data Structures
+** What are ADTs
+
+Abstract data type (ADT) is a mathematical model for data types. It provides a strict description of all important aspects of a type: how it is structured, how operations are performed, how information is stored. It's an abstract, but full enough description which allows us to compare different ADTs in terms of performance, convenience and other aspects.
+
+Data structures in specific programming languages can be thought of as implementations of corresponding abstract data types. For example, an abstract array has a direct implementation in C and other low level languages. Some abstract types have built-in implementations in many modern languages, for example, array, list, set. Some more complex abstract types usually don't have built-in implementations, but may come with a standard library, for example, different types of trees, queues, maps, graphs.
+
+We shall discuss abstract data types in a tight connection to their implementations. We'll choose different languages depending on type to make our discussion easier. When discussing them, we'll be  mostly interested in these operations:
+
+1. create
+2. add element
+3. delete element
+4. find element
+5. copy
+6. destroy
+
+For any operation, we'll use asymptotic notation. For example, if in order to retrieve an arbitrary element you need to traverse the whole structure up to that element, then it takes $\mathcal{O}(n)$ where $n$ is the size of the structure.
+
+With both algorithms and data structures covered, it's possible to think about a complex software project in terms of their full complexity: algorithmic and memory. As you'll see, there's always going to be a trade off between fast operations and convenient storage.
+
+** Array
+
+Array is a group of elements that are accessed by index. In most programming languages all elements are of the same data type and the array occupies a continuous chunk of memory. An array is stored in such a way that the position of each element in memory can be computed from its index using arithmetic.
+
+Most programming languages come with a built-in array data type. Some languages seemingly contain arrays, but, in the strict sense, do not satisfy its definition. For example, JavaScript arrays are technically objects.
+
+An array in memory can be defined with just three numbers:
+
+1. Address of the first element.
+2. Size of each element. Or, rather, the type of each element, from which you can deduce the size.
+3. Number of elements.
+
+We've been using Python before, but for this topic we need a lower level language with direct, un-abstracted access to RAM. Let's use C. Here we create an integer array of 5 elements:
+
+#+BEGIN_SRC c
+int a[5];
+
+a[0] = 60;
+a[1] = 61;
+a[2] = 62;
+a[3] = 63;
+a[4] = 64;
+#+END_SRC
+
+In C, we can find out memory address with =&= operator. Let's print the address of the first element of =a=:
+
+#+BEGIN_SRC c
+printf("%p\n", &a[0]);
+#+END_SRC
+
+We'll see a long unsigned integer:
+
+#+BEGIN_SRC output
+0x7ffe6cda5217
+#+END_SRC
+
+Of course, it will be different each time we run the code because memory allocation is changed with each new execution. Now, =a= is an array of integers, and each integer takes 4 bytes of memory. And since arrays are stored continuously in memory, we can calculate the address of any other element by simply adding 4 bytes as many times as needed to the initial address.
+
+Actually, whether integer takes 4 or 2 bytes depends on the platform. To verify, call =sizeof= on type =int=:
+
+#+BEGIN_SRC c
+printf("%lu\n", sizeof(int));
+#+END_SRC
+
+For me it says 4:
+
+#+BEGIN_SRC output
+4
+#+END_SRC
+
+Unfortunately, we can't just add =4= to the address as is, because pointers in C are aware of arrays they point to, so that pointer arithmetic automatically takes into account the type. This means if you do =&a[0]+4= the compiler will technically perform =0x7ffe6cda5217+4*sizeof(int)= because it knows that =a= is an array of =int=. In other words, when doing pointer arithmetic, numbers you add are not considered bytes, but multiples of bytes to the corresponding data type size.
+
+We can go around this by defining a pointer to character. Chars in C take 1 byte (you can verify it with =sizeof(char)=). Then, we'll point that pointer to the first element of the array. C compiler would raise a warning of type mismatch, but it'll work nevertheless.
+
+Here's the full program:
+
+#+BEGIN_SRC c
+#include <stdio.h>
+
+int main(void) {
+  int a[5];
+  char *ptr;
+  ptr = &a[0];
+
+  a[0] = 60;
+  a[1] = 61;
+  a[2] = 62;
+  a[3] = 63;
+  a[4] = 64;
+
+  printf("%d\n", *(ptr));
+  printf("%d\n", *(ptr+4));
+  printf("%d\n", *(ptr+8));
+  printf("%d\n", *(ptr+12));
+  printf("%d\n", *(ptr+16));
+  return 0;
+}
+#+END_SRC
+
+Ignoring the warning, it produces this output:
+
+#+BEGIN_SRC output
+60
+61
+62
+63
+64
+#+END_SRC
+
+This ability to calculate address of any element is the main selling point of arrays. It's a constant time operation $\mathcal{O}(1)$.
+
+The problem of array is growth. If at some point you need to increase the size of the array, there might not be enough free memory beyond the last element. That's why increasing the size means you have to create a new array elsewhere and copy all the elements, which takes $\mathcal{O}(n)$.
+
+When it comes to choosing a data structure, there's always a trade off. To make a good choice one needs to answer at least these questions:
+
+1. how often elements are added?
+2. how stable is the size?
+3. how often search is done?
+
+Array are good when the size is stable; ideally, never changing. For example, to model a chess board you'd pick array because the size of the board won't change arbitrarily. Speaking of chess boards, as you can imagine, a 2-dimensional board would be difficult to model using a 1-dimensional structure. Sure, we can map 64 elements to 64 cells of the board, but it's easier to actually define a 2-dimensional array — an array of arrays.
+
+
+** Linked list
+
+** Tree
+
+** Stack and queue
+
 * COMMENT TODOs
 ** Graphs
 - bridges problem
